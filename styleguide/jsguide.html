@@ -17,15 +17,15 @@
         Этот документ содержит <strong>полное</strong> описание стандартов
         Google для исходного кода на языке JavaScript. JavaScript файл считается
         написанным в <em>стиле Google</em> если и только если он придерживается
-        правил, описанных на этой странице.
+        правил, описанных в этом документе.
       </p>
 
       <p>
-        Как и другие руководства по стилю программироанию, они охватывают не
-        только вопрос оформления и форматирования кода, но также включают
+        Как и другие руководства по стилю программирования, данный документ охватывает не
+        только вопрос оформления и форматирования кода, но также включает
         соглашения и стандарты написания кода. Хотя документ фокусируется на
         основных быстроприменимых правилах, которым в компании Google следуют
-        повсеместно, здесь тоже описываются правила и советы, которым не следуют
+        повсеместно — здесь также описываются правила и советы, которым не следуют
         следовать (как при ручном, так и при компьютерном написании кода).
       </p>
 
@@ -36,20 +36,20 @@
       <ol>
         <li>
           <p>
-            Термин <em>комментарий</em> всегда относиться к коментарию
+            Термин <em>комментарий</em> всегда относится к комментарию
             <em>реализации</em>. Мы не используем фразу
             <em>документирующий комментарий</em>. Для этого мы используем общий
             термин &#8220;JSDoc&#8221;, включая текст, читаемый человеком и
-            аннотации, обрабатывающиеся машиной при помощи
+            аннотации, обрабатывающиеся компьютером при помощи
             <code>/** &#8230; */</code>.
           </p>
         </li>
         <li>
           <p>
-            Данное руководство по стилю использует терминологию
+            Данное руководство по стилю ссылается на терминологию
             <a href="http://tools.ietf.org/html/rfc2119">RFC 2119</a>, когда
-            использует фразы "должен", "не должен", "не стоит" и "вероятно".
-            Термины "отдавайте предпочтение" и "избегайте используются" в смысле
+            использует фразы "нужно", "не нужно", "не стоит" и "вероятно".
+            Термины "отдавайте предпочтение" и "избегайте" используются в смысле
             "стоит" и "не стоит" делать соответственно, но не являются
             обязательными правилами.
           </p>
@@ -61,63 +61,71 @@
         ходу документа.
       </p>
 
-      <h3 id="guide-notes">1.2 Guide notes</h3>
+      <h3 id="guide-notes">1.2 Заметки по руководству</h3>
 
       <p>
-        Example code in this document is <strong>non-normative</strong>. That
-        is, while the examples are in Google Style, they may not illustrate the
-        <em>only</em> stylish way to represent the code. Optional formatting
-        choices made in examples must not be enforced as rules.
+        Примеры кода в этом документе не являются
+        <strong>нормативными</strong> (т.е. обязательными). Это значит, что
+        примеры в стиле Google могут и не иллюстрировать единственно правильный
+        вариант стилизации кода. Выбор сделанный об опциональном форматировании
+        в примерах код не должен приниматься в качестве правила.
       </p>
 
-      <h2 id="source-file-basics">2 Source file basics</h2>
+      <h2 id="source-file-basics">2 Основы исходных файлов</h2>
 
-      <h3 id="file-name">2.1 File name</h3>
+      <h3 id="file-name">2.1 Имя файла</h3>
 
       <p>
-        File names must be all lowercase and may include underscores
-        (<code>_</code>) or dashes (<code>-</code>), but no additional
-        punctuation. Follow the convention that your project uses.
-        Filenames&#8217; extension must be <code>.js</code>.
+        Имена файлов должны быть в нижнем регистре и могут включать нижнее
+        подчеркивание (<code>_</code>) или "тире" (<code>-</code>), но без любой
+        другой пунктуации. Придерживайтесь договоренностей, которые используются
+        в вашем проекте. Расширения файлов должны быть <code>.js</code>.
       </p>
 
-      <h3 id="file-encoding">2.2 File encoding: UTF-8</h3>
+      <h3 id="file-encoding">2.2 Кодировка файлов UTF-8</h3>
 
-      <p>Source files are encoded in <strong>UTF-8</strong>.</p>
+      <p>Кодировка файлов должна быть в <strong>UTF-8</strong>.</p>
 
-      <h3 id="special-characters">2.3 Special characters</h3>
+      <h3 id="special-characters">2.3 Специальные символы</h3>
 
-      <h4 id="whitespace-characters">2.3.1 Whitespace characters</h4>
+      <h4 id="whitespace-characters">2.3.1 Пробельные символы</h4>
 
       <p>
-        Aside from the line terminator sequence, the ASCII horizontal space
-        character (0x20) is the only whitespace character that appears anywhere
-        in a source file. This implies that
+        Помимо последовательности символов перевода строки, символ
+        горизонтального проблела (0х20) из таблицы символов ASCII - единственный
+        допустимый символ пробела, который может появляться где-либо в исходном
+        коде. Это подразумевает, что:
       </p>
 
       <ol>
         <li>
           <p>
-            All other whitespace characters in string literals are escaped, and
+            Все другие пробельные символы экранируются.
           </p>
         </li>
         <li>
-          <p>Tab characters are <strong>not</strong> used for indentation.</p>
+          <p>
+            Отступ с помощью Tab <strong>не</strong> используется для отступа.
+          </p>
         </li>
       </ol>
 
-      <h4 id="special-escape-sequences">2.3.2 Special escape sequences</h4>
+      <h4 id="special-escape-sequences">
+        2.3.2 Специальные экранирующие последовательности
+      </h4>
 
       <p>
-        For any character that has a special escape sequence (<code>\'</code>,
+        Любые символы, которые требуется экранировать специальными символьными
+        последовательностями (<code>\'</code>,
         <code>\"</code>, <code>\\</code>, <code>\b</code>, <code>\f</code>,
-        <code>\n</code>, <code>\r</code>, <code>\t</code>, <code>\v</code>),
-        that sequence is used rather than the corresponding numeric escape (e.g
-        <code>\x0a</code>, <code>\u000a</code>, or <code>\u{a}</code>). Legacy
-        octal escapes are never used.
+        <code>\n</code>, <code>\r</code>, <code>\t</code>, <code>\v</code>), эти
+        последовательности и используют, вместо числового экранированния
+        (например, <code>\x0a</code>, <code>\u000a</code>, or
+        <code>\u{a}</code>). Устаревшие восьмиричные символы экранирования не
+        используются.
       </p>
 
-      <h4 id="non-ascii-characters">2.3.3 Non-ASCII characters</h4>
+      <h4 id="non-ascii-characters">2.3.3 Не-ASCII символы</h4>
 
       <p>
         For the remaining non-ASCII characters, either the actual Unicode
