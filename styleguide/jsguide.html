@@ -21,12 +21,13 @@
       </p>
 
       <p>
-        Как и другие руководства по стилю программирования, данный документ охватывает не
-        только вопрос оформления и форматирования кода, но также включает
-        соглашения и стандарты написания кода. Хотя документ фокусируется на
-        основных быстроприменимых правилах, которым в компании Google следуют
-        повсеместно — здесь также описываются правила и советы, которым не следуют
-        следовать (как при ручном, так и при компьютерном написании кода).
+        Как и другие руководства по стилю программирования, данный документ
+        охватывает не только вопрос оформления и форматирования кода, но также
+        включает соглашения и стандарты написания кода. Хотя документ
+        фокусируется на основных быстроприменимых правилах, которым в компании
+        Google следуют повсеместно — здесь также описываются правила и советы,
+        которым не следуют следовать (как при ручном, так и при компьютерном
+        написании кода).
       </p>
 
       <h3 id="terminology-notes">1.1 Уточнения о терминологии</h3>
@@ -128,46 +129,47 @@
       <h4 id="non-ascii-characters">2.3.3 Не-ASCII символы</h4>
 
       <p>
-        For the remaining non-ASCII characters, either the actual Unicode
-        character (e.g.
-        <code>&#8734;</code>) or the equivalent hex or Unicode escape (e.g.
-        <code>\u221e</code>) is used, depending only on which makes the code
-        <strong>easier to read and understand</strong>.
+        Для оставшихся не-ASCII используется или подходящий символ Unicode
+        (например,
+        <code>&#8734;</code>), или эквивалентная hex или Unicode
+        последовательность символов (например, <code>\u221e</code>) в
+        зависимости от того, что делает код более
+        <strong>легко читаемым и более понятным</strong>.
       </p>
 
       <p>
-        Tip: In the Unicode escape case, and occasionally even when actual
-        Unicode characters are used, an explanatory comment can be very helpful.
+        Подсказка: при использовании Unicode-символов (или их
+        последовательноостей), лучше использовать пояснительный комментарий.
       </p>
 
-      <pre><code class="language-js prettyprint">/* Best: perfectly clear even without a comment. */
+      <pre><code class="language-js prettyprint">/* В идеале: код хорошо понятен даже без комментария. */
 const units = '&#956;s';
 
-/* Allowed: but unncessary as &#956; is a printable character. */
+/* Разрешено: но необязательно, так как &#956; - это печатаемый символ. */
 const units = '\u03bcs'; // '&#956;s'
 
-/* Good: use escapes for non-printable characters with a comment for clarity. */
-return '\ufeff' + content;  // Prepend a byte order mark.
+/* Хорошо: используется экранирование для непечатаемых символов с комментарием для большей ясности. */
+return '\ufeff' + content;  // Добавить знак порядка байтов.
 </code></pre>
 
-      <pre><code class="language-js prettyprint badcode">/* Poor: the reader has no idea what character this is. */
+      <pre><code class="language-js prettyprint badcode">/* Плохо: читатель не понимает, что это за символ. */
 const units = '\u03bcs';
 </code></pre>
 
       <p>
-        Tip: Never make your code less readable simply out of fear that some
-        programs might not handle non-ASCII characters properly. If that
-        happens, those programs are
-        <strong>broken</strong> and they must be <strong>fixed</strong>.
+        Подсказка: никогда не делайте Ваш код менее читабельным просто из-за
+        страха, что некоторые программы могут некорректно обрабатывать не-ASCII
+        символы. В случае, если это произойдет - программа будет "сломана" и это
+        потребуется исправить.
       </p>
 
-      <h2 id="source-file-structure">3 Source file structure</h2>
+      <h2 id="source-file-structure">3 Структура исходных файлов</h2>
 
       <p>
-        All new source files should either be a <code>goog.module</code> file (a
-        file containing a <code>goog.module</code> call) or an ECMAScript (ES)
-        module (uses <code>import</code> and <code>export</code> statements).
-        Files consist of the following, <strong>in order</strong>:
+        Все новые файлы должны быть или файлом <code>goog.module</code> (файл
+        содержащий вызов <code>goog.module</code>), или модулем ECMAScript
+        (использует операторы <code>import</code> и <code>export</code>). Файлы
+        состоят из следующего (по порядку):
       </p>
 
       <ol>
