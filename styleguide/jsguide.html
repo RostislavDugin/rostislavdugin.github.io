@@ -173,48 +173,46 @@ const units = '\u03bcs';
       </p>
 
       <ol>
-        <li>License or copyright information, if present</li>
-        <li><code>@fileoverview</code> JSDoc, if present</li>
+        <li>Информация о лицензии или авторских правах, если такая имеется</li>
+        <li><code>@fileoverview</code> JSDoc, если имеется</li>
         <li>
-          <code>goog.module</code> statement, if a <code>goog.module</code> file
+          Оператор <code>goog.module</code>, если это <code>goog.module</code> файл
         </li>
-        <li>ES <code>import</code> statements, if an ES module</li>
+        <li>ES оператор <code>import</code>, если это ES модуль</li>
         <li>
-          <code>goog.require</code> and <code>goog.requireType</code> statements
+          <code>Операторы goog.require</code> и <code>goog.requireType</code>
         </li>
-        <li>The file&#8217;s implementation</li>
+        <li>Реализация файла</li>
       </ol>
 
       <p>
-        <strong>Exactly one blank line</strong> separates each section that is
-        present, except the file's implementation, which may be preceded by 1 or
-        2 blank lines.
+        <strong>Одна линия</strong> отделяет каждую секуцию кода, за исключением отделения
+        реализации файла, которая должна отделяться 1 или 2 пустыми линиями.
       </p>
 
       <h3 id="file-copyright">
-        3.1 License or copyright information, if present
+        3.1 Информация о лицензии или авторских правах, если имеется.
       </h3>
 
       <p>
-        If license or copyright information belongs in a file, it belongs here.
+        Если информация о лицензии или авторском праве находится в файле, она находится здесь.
       </p>
 
       <h3 id="file-fileoverview">
-        3.2 <code>@fileoverview</code> JSDoc, if present
+        3.2 <code>@fileoverview</code> JSDoc, если имеется.
       </h3>
 
       <p>
-        See <a href="#jsdoc-top-file-level-comments">??</a> for formatting
-        rules.
+        Смотрите <a href="#jsdoc-top-file-level-comments">??</a> о правилах форматирования.
       </p>
 
-      <h3 id="file-goog-module">3.3 <code>goog.module</code> statement</h3>
+      <h3 id="file-goog-module">3.3 Оператор <code>goog.module</code></h3>
 
       <p>
-        All <code>goog.module</code> files must declare exactly one
-        <code>goog.module</code> name on a single line: lines containing a
-        <code>goog.module</code> declaration must not be wrapped, and are
-        therefore an exception to the 80-column limit.
+        Все <code>goog.module</code> файлы должны объявлять только одно имя для 
+                <code>goog.module</code> для одного файла: линии, содержащие объявление
+        <code>goog.module</code> не должны разрываться и, следовательно, они являются исключением 
+        из правила про лимит на 80 символов.
       </p>
 
       <p>
