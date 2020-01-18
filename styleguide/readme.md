@@ -8,13 +8,20 @@ Link to the translation - [translation](https://rostislavdugin.github.io/stylegu
 
 Ссылка на перевод - [перевод](https://rostislavdugin.github.io/styleguide/jsguide.html)
 
+<br>
+<br>
+<br>
+
 Translation progress:
 
-<span style="color:green">1.1</span>
 
-- 1.2
-+ 2.1
-* 2.2
+  1.1
+  
+  1.2
+ 
+  2.1
+  
+  2.2
 
   2.3
 
