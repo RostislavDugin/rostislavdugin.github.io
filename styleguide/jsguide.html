@@ -176,7 +176,8 @@ const units = '\u03bcs';
         <li>Информация о лицензии или авторских правах, если такая имеется</li>
         <li><code>@fileoverview</code> JSDoc, если имеется</li>
         <li>
-          Оператор <code>goog.module</code>, если это <code>goog.module</code> файл
+          Оператор <code>goog.module</code>, если это
+          <code>goog.module</code> файл
         </li>
         <li>ES оператор <code>import</code>, если это ES модуль</li>
         <li>
@@ -186,8 +187,9 @@ const units = '\u03bcs';
       </ol>
 
       <p>
-        <strong>Одна линия</strong> отделяет каждую секуцию кода, за исключением отделения
-        реализации файла, которая должна отделяться 1 или 2 пустыми линиями.
+        <strong>Одна линия</strong> отделяет каждую секуцию кода, за исключением
+        отделения реализации файла, которая должна отделяться 1 или 2 пустыми
+        линиями.
       </p>
 
       <h3 id="file-copyright">
@@ -195,7 +197,8 @@ const units = '\u03bcs';
       </h3>
 
       <p>
-        Если информация о лицензии или авторском праве находится в файле, она находится здесь.
+        Если информация о лицензии или авторском праве находится в файле, она
+        находится здесь.
       </p>
 
       <h3 id="file-fileoverview">
@@ -203,49 +206,51 @@ const units = '\u03bcs';
       </h3>
 
       <p>
-        Смотрите <a href="#jsdoc-top-file-level-comments">??</a> о правилах форматирования.
+        Смотрите <a href="#jsdoc-top-file-level-comments">??</a> о правилах
+        форматирования.
       </p>
 
       <h3 id="file-goog-module">3.3 Оператор <code>goog.module</code></h3>
 
       <p>
-        Все <code>goog.module</code> файлы должны объявлять только одно имя для 
-                <code>goog.module</code> для одного файла: линии, содержащие объявление
-        <code>goog.module</code> не должны разрываться и, следовательно, они являются исключением 
-        из правила про лимит на 80 символов.
+        Все <code>goog.module</code> файлы должны объявлять только одно имя для
+        <code>goog.module</code> для одного файла: линии, содержащие объявление
+        <code>goog.module</code> не должны разрываться и, следовательно, они
+        являются исключением из правила про лимит на 80 символов.
       </p>
 
       <p>
-        The entire argument to goog.module is what defines a namespace. It is
-        the package name (an identifier that reflects the fragment of the
-        directory structure where the code lives) plus, optionally, the main
-        class/enum/interface that it defines concatenated to the end.
+        Внутренние аргументы goog.module - то, что определяет пространство имен.
+        Это имя пакета (идентификатор, который отражает фрагмент структуры
+        каталогов, где находится исходный код) и, опционально, главный
+        класс\перечисление\интерфейс, который определяет связь со всем модулем.
       </p>
 
-      <p>Example</p>
+      <p>Пример:</p>
 
       <pre><code class="language-js prettyprint">goog.module('search.urlHistory.UrlHistoryService');
 </code></pre>
 
-      <h4 id="naming-hierarchy">3.3.1 Hierarchy</h4>
+      <h4 id="naming-hierarchy">3.3.1 Иерархия</h4>
 
       <p>
-        Module namespaces may never be named as a <em>direct</em> child of
-        another module's namespace.
+        Пространство имен модуля никогда не должны именоваться как прямой
+        потомок другого модульного пространства имен.
       </p>
 
-      <p>Disallowed:</p>
+      <p>Не разрешается:</p>
 
-      <pre><code class="language-js prettyprint badcode">goog.module('foo.bar');   // 'foo.bar.qux' would be fine, though
+      <pre><code class="language-js prettyprint badcode">goog.module('foo.bar');   // 'foo.bar.qux' было бы неплохо
 goog.module('foo.bar.baz');
 </code></pre>
 
       <p>
-        The directory hierarchy reflects the namespace hierarchy, so that
-        deeper-nested children are subdirectories of higher-level parent
-        directories. Note that this implies that owners of &#8220;parent&#8221;
-        namespace groups are necessarily aware of all child namespaces, since
-        they exist in the same directory.
+        Иерархия каталогов отражает иерархию пространств имен, поэтому более
+        глубокие вложенные дочерние элементы являются подкаталогами родительских
+        каталогов верхнего уровня. Обратите внимание, что владельцы
+        &#8220;родительских&#8221; групп пространств имен обязательно знают обо
+        всех дочерних пространствах имен, поскольку они существуют в одном и том
+        же каталоге.
       </p>
 
       <h4 id="file-declare-legacy-namespace">
@@ -253,12 +258,12 @@ goog.module('foo.bar.baz');
       </h4>
 
       <p>
-        The single <code>goog.module</code> statement may optionally be followed
-        by a call to <code>goog.module.declareLegacyNamespace();</code>. Avoid
-        <code>goog.module.declareLegacyNamespace()</code> when possible.
+        Оператор <code>goog.module</code> может опционально сдедовать до вызова
+        <code>goog.module.declareLegacyNamespace();</code>. Опустите
+        <code>goog.module.declareLegacyNamespace()</code>, когда это возможно.
       </p>
 
-      <p>Example:</p>
+      <p>Пример:</p>
 
       <pre><code class="language-js prettyprint">goog.module('my.test.helpers');
 goog.module.declareLegacyNamespace();
@@ -266,33 +271,33 @@ goog.setTestOnly();
 </code></pre>
 
       <p>
-        <code>goog.module.declareLegacyNamespace</code> exists to ease the
-        transition from traditional object hierarchy-based namespaces but comes
-        with some naming restrictions. As the child module name must be created
-        after the parent namespace, this name <strong>must not</strong> be a
-        child or parent of any other <code>goog.module</code> (for example,
-        <code>goog.module('parent');</code> and
-        <code>goog.module('parent.child');</code> cannot both exist safely, nor
-        can <code>goog.module('parent');</code> and
+        <code>goog.module.declareLegacyNamespace</code> существует для
+        облегчения перехода от традиционных пространств имен на основе иерархии
+        объектов, но имеет некоторые ограничения в плане именования. Поскольку
+        имя дочернего модуля должно быть создано после родительского
+        пространства имен, это имя <strong>не должно быть</strong> не должно
+        быть дочерним или родительским по отношению к
+        <code>goog.module</code> (например,
+        <code>goog.module('parent');</code> и
+        <code>goog.module('parent.child');</code> не могут существовать
+        одновременно, также как не может <code>goog.module('parent');</code> и
         <code>goog.module('parent.child.grandchild');</code>).
       </p>
 
       <h3 id="file-goog-module-exports">
-        3.3.3 <code>goog.module</code> Exports
+        3.3.3 <code>goog.module</code> Экспорт
       </h3>
 
       <p>
-        Classes, enums, functions, constants, and other symbols are exported
-        using the
-        <code>exports</code> object. Exported symbols may be defined directly on
-        the <code>exports</code> object, or else declared locally and exported
-        separately. Symbols are only exported if they are meant to be used
-        outside the module. Non-exported module-local symbols are not declared
-        <code>@private</code> nor do their names end with an underscore. There
-        is no prescribed ordering for exported and module-local symbols.
+        Классы, перечисления, функции, константы и другие символы экспортируются, используя объект 
+        <code>exports</code>. Экспортируемые символы могут быть определены 
+        прямо в объекте <code>exports</code>, или иначе определяться локально и экспортировать раздельно.
+        Символы экспортируются только, если они должны использоваться за пределами модулям.
+        Не экспортируемые модульно-локальные символы не декларируются как <code>@private</code> 
+        и не заканчиваются нижней чертой. Определенного порядка для экспортируемых модульно-локальных символов - нет.
       </p>
 
-      <p>Examples:</p>
+      <p>Пример:</p>
 
       <pre><code class="language-js prettyprint">const /** !Array&lt;number&gt; */ exportedArray = [1, 2, 3];
 
@@ -315,13 +320,12 @@ exports = {exportedArray, exportedFunction};
 exports.CONSTANT_ONE = 1;
 
 /** @const {string} */
-exports.CONSTANT_TWO = 'Another constant';
+exports.CONSTANT_TWO = 'Другая константа';
 </code></pre>
 
       <p>
-        Do not annotate the <code>exports</code> object as
-        <code>@const</code> as it is already treated as a constant by the
-        compiler.
+        Не аннотируйте <code>exports</code> с помощью 
+        <code>@const</code>, так как они уже рассматриваются компилятором в качестве констант.
       </p>
 
       <pre><code class="language-js badcode prettyprint">/** @const */
@@ -330,25 +334,23 @@ exports = {exportedFunction};
 
       <p><span id="file-es6-modules"></span></p>
 
-      <h3 id="file-es-modules">3.4 ES modules</h3>
+      <h3 id="file-es-modules">3.4 ES модули</h3>
 
       <p><span id="es6-module-imports"></span></p>
 
-      <h4 id="es-module-imports">3.4.1 Imports</h4>
+      <h4 id="es-module-imports">3.4.1 Импорт</h4>
 
       <p>
-        Import statements must not be line wrapped and are therefore an
-        exception to the 80-column limit.
+        Операторы импорта не должны разделяться переносом строки и, следовательно, являются исключением из ограничения в 80 столбцов.
       </p>
 
       <p><span id="es6-import-paths"></span></p>
 
-      <h5 id="esm-import-paths">3.4.1.1 Import paths</h5>
+      <h5 id="esm-import-paths">3.4.1.1 Импорт путей</h5>
 
       <p>
-        ES module files must use the <code>import</code> statement to import
-        other ES module files. Do not <code>goog.require</code> another ES
-        module.
+        Файлы ES модуля должны использовать оператор <code>import</code> для импорта файлов 
+        из ES модуля. Не используйте <code>goog.require</code> для другого ES модуля.
       </p>
 
       <pre><code class="language-js prettyprint external">import './sideeffects.js';
@@ -362,12 +364,12 @@ import {name} from './sibling.js';
       <p><span id="es6-import-paths-file-extension"></span></p>
 
       <h6 id="esm-import-paths-file-extension">
-        3.4.1.1.1 File extensions in import paths
+        3.4.1.1.1 Расширения файлов в для импортируемых путей
       </h6>
 
       <p>
-        The <code>.js</code> file extension is not optional in import paths and
-        must always be included.
+        Расширение <code>.js</code> не является опциональным в импортируемых путях
+        и всегда должно присутствовать.
       </p>
 
       <pre><code class="language-js badcode prettyprint">import '../directory/file';
@@ -377,7 +379,7 @@ import {name} from './sibling.js';
 </code></pre>
 
       <h5 id="importing-the-same-file-multiple-times">
-        3.4.1.2 Importing the same file multiple times
+        3.4.1.2 Импорт одного файла несколько раз
       </h5>
 
       <p>
