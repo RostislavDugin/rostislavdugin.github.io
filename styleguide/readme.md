@@ -5,3 +5,8 @@
 
 Link to the translation - [translation](https://rostislavdugin.github.io/styleguide/jsguide.html)
 Ссылка на перевод - [перевод](https://rostislavdugin.github.io/styleguide/jsguide.html)
+
+Translation progress:
+
+1.1.
+1.2.
