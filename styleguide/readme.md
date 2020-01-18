@@ -1,17 +1,16 @@
 ### Translation of [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html) to russian.
+
 ### Перевод [руководство по JavaScript стилю от Google](https://google.github.io/styleguide/jsguide.html) на русский
 
 ---
 
 Link to the translation - [translation](https://rostislavdugin.github.io/styleguide/jsguide.html)
+
 Ссылка на перевод - [перевод](https://rostislavdugin.github.io/styleguide/jsguide.html)
-
-
-
 
 Translation progress:
 
-1.1
+<span style="color:green">1.1</span>
 
 1.2
 
