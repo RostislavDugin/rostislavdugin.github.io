@@ -13,9 +13,8 @@ Translation progress:
 <span style="color:green">1.1</span>
 
 - 1.2
-- 2.1
-
-  2.2
++ 2.1
+* 2.2
 
   2.3
 
