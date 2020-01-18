@@ -13,7 +13,7 @@
 <br>
 
 ```
-Translated: 12,1% (8 from 66 sections)
+Translated: 16,1% (9 from 56 sections)
 Translation progress (translated points - must be removed):
 
 1.1 - translated by Rostislav Dugin
@@ -24,6 +24,7 @@ Translation progress (translated points - must be removed):
 3.1 - translated by Rostislav Dugin
 3.2 - translated by Rostislav Dugin
 3.3 - translated by Rostislav Dugin
+3.3.3 - translated by Rostislav Dugin
 3.4 <--- is translating by Rostislav Dugin
 3.5
 3.6
