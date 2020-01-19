@@ -12,6 +12,11 @@
 <br>
 <br>
 
+How to contribute:
+
+1. Enter the Telegram chat - https://t.me/js_style_guide_translation
+2. Make the first pull request and add to an item list which you want to translate in `readme.md`
+
 ```
 Translated: 16,1% (9 from 56 sections)
 Translation progress (translated points - must be removed):
