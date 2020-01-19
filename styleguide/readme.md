@@ -9,13 +9,16 @@
 ##### Ссылка на перевод - [перевод](https://rostislavdugin.github.io/styleguide/jsguide.html)
 
 <br>
-<br>
-<br>
 
-How to contribute:
+### How to contribute:
 
-1. Enter the Telegram chat - https://t.me/js_style_guide_translation
-2. Make the first pull request and add to an item list which you want to translate in `readme.md`
+1. Enter the Telegram chat - https://t.me/js_style_guide_translation.
+2. Make the first pull request and add to a list's item which you want to translate in the `readme.md` the string `<--- is translating by *your name*` (see the current). This point is used to avoid misunderstanding between contributors.
+3. Translate any section of the Style Guide in the `./styleguide/jsguide.html`.
+4. Make a pull request with translation.
+5. Repeat the sequence of actions (please, do not translate several sections at a time).
+
+<br>
 
 ```
 Translated: 16,1% (9 from 56 sections)
