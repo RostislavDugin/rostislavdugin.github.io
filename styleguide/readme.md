@@ -20,6 +20,8 @@
 
 <br>
 
+### Progress
+
 ```
 Translated: 16,1% (9 from 56 sections)
 Translation progress (translated points - must be removed):
