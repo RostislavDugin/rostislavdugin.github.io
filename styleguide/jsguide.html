@@ -289,12 +289,15 @@ goog.setTestOnly();
       </h3>
 
       <p>
-        Классы, перечисления, функции, константы и другие символы экспортируются, используя объект 
-        <code>exports</code>. Экспортируемые символы могут быть определены 
-        прямо в объекте <code>exports</code>, или иначе определяться локально и экспортировать раздельно.
-        Символы экспортируются только, если они должны использоваться за пределами модулям.
-        Не экспортируемые модульно-локальные символы не декларируются как <code>@private</code> 
-        и не заканчиваются нижней чертой. Определенного порядка для экспортируемых модульно-локальных символов - нет.
+        Классы, перечисления, функции, константы и другие символы
+        экспортируются, используя объект
+        <code>exports</code>. Экспортируемые символы могут быть определены прямо
+        в объекте <code>exports</code>, или иначе определяться локально и
+        экспортировать раздельно. Символы экспортируются только, если они должны
+        использоваться за пределами модулям. Не экспортируемые
+        модульно-локальные символы не декларируются как <code>@private</code>
+        и не заканчиваются нижней чертой. Определенного порядка для
+        экспортируемых модульно-локальных символов - нет.
       </p>
 
       <p>Пример:</p>
@@ -324,8 +327,8 @@ exports.CONSTANT_TWO = 'Другая константа';
 </code></pre>
 
       <p>
-        Не аннотируйте <code>exports</code> с помощью 
-        <code>@const</code>, так как они уже рассматриваются компилятором в качестве констант.
+        Не аннотируйте <code>exports</code> с помощью <code>@const</code>, так
+        как они уже рассматриваются компилятором в качестве констант.
       </p>
 
       <pre><code class="language-js badcode prettyprint">/** @const */
@@ -341,7 +344,8 @@ exports = {exportedFunction};
       <h4 id="es-module-imports">3.4.1 Импорт</h4>
 
       <p>
-        Операторы импорта не должны разделяться переносом строки и, следовательно, являются исключением из ограничения в 80 столбцов.
+        Операторы импорта не должны разделяться переносом строки и,
+        следовательно, являются исключением из ограничения в 80 столбцов.
       </p>
 
       <p><span id="es6-import-paths"></span></p>
@@ -349,8 +353,9 @@ exports = {exportedFunction};
       <h5 id="esm-import-paths">3.4.1.1 Импорт путей</h5>
 
       <p>
-        Файлы ES модуля должны использовать оператор <code>import</code> для импорта файлов 
-        из ES модуля. Не используйте <code>goog.require</code> для другого ES модуля.
+        Файлы ES модуля должны использовать оператор <code>import</code> для
+        импорта файлов из ES модуля. Не используйте
+        <code>goog.require</code> для другого ES модуля.
       </p>
 
       <pre><code class="language-js prettyprint external">import './sideeffects.js';
@@ -368,8 +373,8 @@ import {name} from './sibling.js';
       </h6>
 
       <p>
-        Расширение <code>.js</code> не является опциональным в импортируемых путях
-        и всегда должно присутствовать.
+        Расширение <code>.js</code> не является опциональным в импортируемых
+        путях и всегда должно присутствовать.
       </p>
 
       <pre><code class="language-js badcode prettyprint">import '../directory/file';
@@ -383,25 +388,27 @@ import {name} from './sibling.js';
       </h5>
 
       <p>
-        Do not import the same file multiple times. This can make it hard to
-        determine the aggregate imports of a file.
+        Не импортируйте один и тот же файл несколько раз. Это может затруднить
+        определение совокупности всех импортов из файла.
       </p>
 
-      <pre><code class="language-js badcode prettyprint">// Imports have the same path, but since it doesn't align it can be hard to see.
+      <pre><code class="language-js badcode prettyprint">// Импорт имеет один и тот же путь, но, поскольку он не выравнивается, может быть трудно его заметить.
 import {short} from './long/path/to/a/file.js';
 import {aLongNameThatBreaksAlignment} from './long/path/to/a/file.js';
 </code></pre>
 
       <p><span id="naming-es6-imports"></span></p>
 
-      <h5 id="naming-esm-imports">3.4.1.3 Naming imports</h5>
+      <h5 id="naming-esm-imports">3.4.1.3 Именование импортов</h5>
 
-      <h6 id="naming-module-imports">3.4.1.3.1 Naming module imports</h6>
+      <h6 id="naming-module-imports">
+        3.4.1.3.1 Именование модульных импортов
+      </h6>
 
       <p>
-        Module import names (<code>import * as name</code>) are
-        <code>lowerCamelCase</code> names that are derived from the imported
-        file name.
+        Имена импорта модуля (<code>import * as name</code>) - это имена в
+        <code>нижнемВерблюжьемСтиле</code>, которые получены из имени
+        импортируемого файла.
       </p>
 
       <pre><code class="language-js prettyprint">import * as fileOne from '../file-one.js';
@@ -414,11 +421,13 @@ import * as math from './math/math.js';
 import * as vectorMath from './vector/math.js';
 </code></pre>
 
-      <h6 id="naming-default-imports">3.4.1.3.2 Naming default imports</h6>
+      <h6 id="naming-default-imports">
+        3.4.1.3.2 Именование импортов по умолчанию
+      </h6>
 
       <p>
-        Default import names are derived from the imported file name and follow
-        the rules in
+        Имена импорта по умолчанию получены из имени импортируемого файла и
+        следуют правилам из
         <a href="#naming-rules-by-identifier-type">??</a>.
       </p>
 
@@ -428,22 +437,25 @@ import SOME_CONSTANT from '../someconstant.js';
 </code></pre>
 
       <p>
-        Note: In general this should not happen as default exports are banned by
-        this style guide, see <a href="#named-vs-default-exports">??</a>.
-        Default imports are only used to import modules that do not conform to
-        this style guide.
+        Примечание. В общем случае этого не должно происходить, поскольку
+        экспорт по умолчанию запрещен этим руководством по стилю, см.
+        <a href="#named-vs-default-exports">??</a>. Импорт по умолчанию
+        используется только для импорта модулей, которые не соответствуют этому
+        руководству по стилю.
       </p>
 
-      <h6 id="naming-named-imports">3.4.1.3.3 Naming named imports</h6>
+      <h6 id="naming-named-imports">
+        3.4.1.3.3 Именование именованного импорта
+      </h6>
 
       <p>
-        In general symbols imported via the named import (<code
+        В целом, символы, импортируемые через именованный импорт (<code
           >import {name}</code
-        >) should keep the same name. Avoid aliasing imports (<code
+        >), должны иметь одинаковое имя. Избегайте импорта псевдонимов (<code
           >import {SomeThing as SomeOtherThing}</code
-        >). Prefer fixing name collisions by using a module import (<code
-          >import *</code
-        >) or renaming the exports themselves.
+        >). Отдавайте предпочтение исправлению конфликты имен, при помощи
+        использования модуля (<code>import *</code>) или переименовывая сами
+        экспорты.
       </p>
 
       <pre><code class="language-js prettyprint">import * as bigAnimals from './biganimals.js';
@@ -454,8 +466,8 @@ new domesticatedAnimals.Cat();
 </code></pre>
 
       <p>
-        If renaming a named import is needed then use components of the imported
-        module's file name or path in the resulting alias.
+        Если необходимо переименовать именованный импорт, используйте компоненты
+        имени файла или пути импортированного модуля в полученном псевдониме.
       </p>
 
       <pre><code class="language-js prettyprint">import {Cat as BigCat} from './biganimals.js';
