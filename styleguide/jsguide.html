@@ -483,23 +483,25 @@ new DomesticatedCat();
 
       <p>
         Символы экспортируются только в том случае, если они предназначены для
-         использования вне модуля. Неэкспортированные локальные символы
-          не объявляются как <code>@private</code>, и их имена не заканчиваются 
-            подчеркиванием. Не существует предписанного порядка для экспортируемых
-             и локальных символов.
+        использования вне модуля. Неэкспортированные локальные символы не
+        объявляются как <code>@private</code>, и их имена не заканчиваются
+        подчеркиванием. Не существует предписанного порядка для экспортируемых и
+        локальных символов.
       </p>
 
-      <h5 id="named-vs-default-exports">3.4.2.1 Именованные против экспорта по умолчанию</h5>
+      <h5 id="named-vs-default-exports">
+        3.4.2.1 Именованные против экспорта по умолчанию
+      </h5>
 
       <p>
-        Используйте именованные экспорты во всем коде. Вы можете
-         применить ключевое слово <code>export</code> к объявлению
-           или использовать синтаксис <code>export {name};</code>.
+        Используйте именованные экспорты во всем коде. Вы можете применить
+        ключевое слово <code>export</code> к объявлению или использовать
+        синтаксис <code>export {name};</code>.
       </p>
 
       <p>
-        Не используйте экспорт по умолчанию. Импортирующие модули должны давать имя этим значениям,
-         чтобы избежать несоответствий в именах модулей.
+        Не используйте экспорт по умолчанию. Импортирующие модули должны давать
+        имя этим значениям, чтобы избежать несоответствий в именах модулей.
       </p>
 
       <pre><code class="language-js badcode prettyprint">// Не используйте эспорт по умолчанию:
@@ -521,8 +523,8 @@ export {Foo};
       </h5>
 
       <p>
-        Не экспортируйте классы контейнеров или объекты 
-        со статическими методами или свойствами для пространства имен.
+        Не экспортируйте классы контейнеров или объекты со статическими методами
+        или свойствами для пространства имен.
       </p>
 
       <pre><code class="language-js badcode prettyprint">// container.js
@@ -550,23 +552,24 @@ export const /** number */ FOO = 1;
 
       <p><span id="es6-exports-mutability"></span></p>
 
-      <h5 id="esm-exports-mutability">3.4.2.3 Mutability of exports</h5>
+      <h5 id="esm-exports-mutability">3.4.2.3 Мутироемость экспорта</h5>
 
       <p>
-        Exported variables must not be mutated outside of module initialization.
+        Экспортируемые переменные не должны быть видоизменены за пределами
+        инициализации модуля.
       </p>
 
       <p>
-        There are alternatives if mutation is needed, including exporting a
-        constant reference to an object that has mutable fields or exporting
-        accessor functions for mutable data.
+        Существуют альтернативы, если необходима мутация, включая экспорт
+        постоянной ссылки на объект, который имеет изменяемые поля или экспорт
+        функций доступа для изменяемых данных.
       </p>
 
-      <pre><code class="language-js badcode prettyprint">// Bad: both foo and mutateFoo are exported and mutated.
+      <pre><code class="language-js badcode prettyprint">// Плохо: и foо, и mutateFoo экспортируются и могут быть изменены.
 export let /** number */ foo = 0;
 
 /**
- * Mutates foo.
+ * Изменяется foo.
  */
 export function mutateFoo() {
   ++foo;
@@ -576,15 +579,15 @@ export function mutateFoo() {
  * @param {function(number): number} newMutateFoo
  */
 export function setMutateFoo(newMutateFoo) {
-  // Exported classes and functions can be mutated!
+  // Экспортируемые классы и функции могут быть видоизменены!
   mutateFoo = () =&gt; {
     foo = newMutateFoo(foo);
   };
 }
 </code></pre>
 
-      <pre><code class="language-js good prettyprint">// Good: Rather than export the mutable variables foo and mutateFoo directly,
-// instead make them module scoped and export a getter for foo and a wrapper for
+      <pre><code class="language-js good prettyprint">// Хорошо: вместо того, чтобы экспортировать изменяемые переменные foo и mutateFoo напрямую,
+// вместо этого сделайте их модульными и экспортируйте getter для foo и оболочку для
 // mutateFooFunc.
 let /** number */ foo = 0;
 let /** function(number): number */ mutateFooFunc = foo =&gt; foo + 1;
@@ -609,9 +612,9 @@ export function setMutateFoo(mutateFoo) {
       <h5 id="es-module-export-from">3.4.2.4 export from</h5>
 
       <p>
-        <code>export from</code> statements must not be line wrapped and are
-        therefore an exception to the 80-column limit. This applies to both
-        <code>export from</code> flavors.
+        Операторы <code>export from</code> не должны быть заключены в строку и
+        следовательно, являются исключением из ограничения в 80
+        символом. Это относится ко всем <code>export from</code> операторам.
       </p>
 
       <pre><code class="language-js">export {specificName} from './other.js';
@@ -619,13 +622,13 @@ export * from './another.js';
 </code></pre>
 
       <h4 id="es-module-circular-dependencies">
-        3.4.3 Circular Dependencies in ES modules
+        3.4.3 Цикличные зависимости в ES модулях
       </h4>
 
       <p>
-        Do not create cycles between ES modules, even though the ECMAScript
-        specification allows this. Note that it is possible to create cycles
-        with both the <code>import</code> and <code>export</code> statements.
+        Не создавайте циклы между модулями ES, даже если спецификация ECMAScript
+        позволяет это. Обратите внимание, что можно создавать циклы как с
+        помощью операторов <code>import</code>, так и <code>export</code>.
       </p>
 
       <pre><code class="language-js badcode prettyprint">// a.js
@@ -635,7 +638,7 @@ import './b.js';
       <pre><code class="language-js badcode prettyprint">// b.js
 import './a.js';
 
-// `export from` can cause circular dependencies too!
+// `export from` тоже может вызвать цикличиские зависимости!
 export {x} from './c.js';
 </code></pre>
 
@@ -651,11 +654,11 @@ export let x;
 
       <p><span id="es6-module-referencing-goog"></span></p>
 
-      <h5 id="es-module-referencing-goog">3.4.4.1 Referencing goog</h5>
+      <h5 id="es-module-referencing-goog">3.4.4.1 Ссылание goog</h5>
 
       <p>
-        To reference the Closure <code>goog</code> namespace, import Closure's
-        <code>goog.js</code>.
+        Для ссылки на пространство имён замыкания <code>goog</code>,
+        импортируйте <code>goog.js</code> принадлежащий конкретному замыканию.
       </p>
 
       <pre><code class="language-js good prettyprint external">import * as goog from '../closure/goog/goog.js';
@@ -666,20 +669,21 @@ export const CONSTANT = name.compute();
 </code></pre>
 
       <p>
-        <code>goog.js</code> exports only a subset of properties from the global
-        <code>goog</code> that can be used in ES modules.
+        <code>goog.js</code> экспортирует только подмножество параметров из
+        глобального <code>goog</code>, которые могут использоваться в ES
+        модулях.
       </p>
 
       <p><span id="goog-require-in-es6-module"></span></p>
 
-      <h5 id="goog-require-in-es-module">3.4.4.2 goog.require in ES modules</h5>
+      <h5 id="goog-require-in-es-module">3.4.4.2 goog.require в ES модулях</h5>
 
       <p>
-        <code>goog.require</code> in ES modules works as it does in
-        <code>goog.module</code> files. You can require any Closure namespace
-        symbol (i.e., symbols created by <code>goog.provide</code> or
-        <code>goog.module</code>) and <code>goog.require</code> will return the
-        value.
+        <code>goog.require</code> в ES модулях работает так же, как и в
+        <code>goog.module</code> файлах. Вы можете потребовать (require) любой
+        символ пространства имён из замыкания (т.е. символы созданные с помощью
+        <code>goog.provide</code> или <code>goog.module</code>) и
+        <code>goog.require</code> вернёт значение.
       </p>
 
       <pre><code class="language-js prettyprint external">import * as goog from '../closure/goog/goog.js';
@@ -692,37 +696,39 @@ const myNamespace = goog.require('my.namespace');
       <p><span id="closure-module-id-in-es6-module"></span></p>
 
       <h5 id="closure-module-id-in-es-module">
-        3.4.4.3 Declaring Closure Module IDs in ES modules
+        3.4.4.3 Декларирование ID замыканий в ES модулях
       </h5>
 
       <p>
-        <code>goog.declareModuleId</code> can be used within ES modules to
-        declare a <code>goog.module</code>-like module ID. This means that this
-        module ID can be <code>goog.require</code>d,
-        <code>goog.module.get</code>d, <code>goog.forwardDeclare</code>'d, etc.
-        as if it were a <code>goog.module</code> that did not call
-        <code>goog.module.declareLegacyNamespace</code>. It does not create the
-        module ID as a globally available JavaScript symbol.
+        <code>goog.declareModuleId</code> может использоваться в ES модулях,
+        чтобы декларировать ID модуля в стиле <code>goog.module</code>. Это
+        значит, что ID модуля может быть потребован с помощью
+        <code>goog.require</code>, <code>goog.module.get</code>,
+        <code>goog.forwardDeclare</code>'d и т.п., как-будто это
+        <code>goog.module</code> , который не вызывает
+        <code>goog.module.declareLegacyNamespace</code>. Это не создаёт ID для
+        модуля в качестве глобально доступного символ JavaScript.
       </p>
 
       <p>
-        A <code>goog.require</code> (or <code>goog.module.get</code>) for a
-        module ID from <code>goog.declareModuleId</code> will always return the
-        module object (as if it was <code>import *</code>'d). As a result, the
-        argument to <code>goog.declareModuleId</code> should always end with a
-        <code>lowerCamelCaseName</code>.
+        <code>goog.require</code> (or <code>goog.module.get</code>) для ID
+        модуля из <code>goog.declareModuleId</code> будет всегда возвращать
+        объект модуля (как будто используется <code>import *</code>'d). Как
+        результат, аргумент для <code>goog.declareModuleId</code> должен всегда
+        заканчиваться <code>имяНижнегоРегистра</code>.
       </p>
 
       <p>
-        Note: It is an error to call
-        <code>goog.module.declareLegacyNamespace</code> in an ES module, it can
-        only be called from <code>goog.module</code> files. There is no direct
-        way to associate a <q>legacy</q> namespace with an ES module.
+        Обратите внимание: это ошибка - вызывать
+        <code>goog.module.declareLegacyNamespace</code> в ES модуле, он может
+        быть вызван только из файлов <code>goog.module</code>. Не существует
+        прямолинейных путей, чтобы ассоциировать <q>устаревшее</q> пространство
+        имён с ES модулем.
       </p>
 
       <p>
-        <code>goog.declareModuleId</code> should only be used to upgrade Closure
-        files to ES modules in place, where named exports are used.
+        <code>goog.declareModuleId</code> должен использоваться только, чтобы
+        обновить файлы замыканий в месте, где используется именованный экспорт.
       </p>
 
       <pre><code class="language-js prettyprint external">import * as goog from '../closure/goog.js';
@@ -735,35 +741,36 @@ export class Class {};
       <h3 id="file-set-test-only">3.5 <code>goog.setTestOnly</code></h3>
 
       <p>
-        In a <code>goog.module</code> file the
-        <code>goog.module</code> statement may optionally be followed by a call
-        to <code>goog.setTestOnly()</code>.
+        В файле модуля <code>goog.module</code> оператор
+        <code>goog.module</code> может опционально сопровождаться вызовом
+        <code>goog.setTestOnly()</code>.
       </p>
 
       <p>
-        In an ES module the <code>import</code> statements may optionally be
-        followed by a call to <code>goog.setTestOnly()</code>.
+        В ES модуле оператор <code>import</code> может опционально
+        сопровождаться вызовом <code>goog.setTestOnly()</code>.
       </p>
 
       <h3 id="file-goog-require">
-        3.6 <code>goog.require</code> and
-        <code>goog.requireType</code> statements
+        3.6 Операторы <code>goog.require</code> и
+        <code>goog.requireType</code>
       </h3>
 
       <p>
-        Imports are done with <code>goog.require</code> and
-        <code>goog.requireType</code> statements. The names imported by a
-        <code>goog.require</code> statement may be used both in code and in type
-        annotations, while those imported by a <code>goog.requireType</code> may
-        be used in type annotations only.
+        Импорты реализованные с помощью операторов
+        <code>goog.require</code> и <code>goog.requireType</code>. Имена
+        импортированные с помощью оператора <code>goog.require</code> могут быть
+        использованы и в коде, и в аннотациях, в то время как импортированные с
+        помощью <code>goog.requireType</code> могут быть использованные в
+        аннотациях типа.
       </p>
 
       <p>
-        The <code>goog.require</code> and
-        <code>goog.requireType</code> statements form a contiguous block with no
-        empty lines. This block follows the <code>goog.module</code> declaration
-        separated <a href="#source-file-structure">by a single empty line</a>.
-        The entire argument to <code>goog.require</code> or
+        Операторы <code>goog.require</code> и
+        <code>goog.requireType</code> формируют смежны блок без пустых линий.
+        Этот блок следуют за декларацией <code>goog.module</code> разделённой
+        <a href="#source-file-structure">с помощью одной пустой линии</a>. The
+        entire argument to <code>goog.require</code> or
         <code>goog.requireType</code> is a namespace defined by a
         <code>goog.module</code> in a separate file.
         <code>goog.require</code> and <code>goog.requireType</code> statements
