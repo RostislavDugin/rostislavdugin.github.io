@@ -482,50 +482,51 @@ new DomesticatedCat();
       <h4 id="es-module-exports">3.4.2 Exports</h4>
 
       <p>
-        Symbols are only exported if they are meant to be used outside the
-        module. Non-exported module-local symbols are not declared
-        <code>@private</code> nor do their names end with an underscore. There
-        is no prescribed ordering for exported and module-local symbols.
+        Символы экспортируются только в том случае, если они предназначены для
+         использования вне модуля. Неэкспортированные локальные символы
+          не объявляются как <code>@private</code>, и их имена не заканчиваются 
+            подчеркиванием. Не существует предписанного порядка для экспортируемых
+             и локальных символов.
       </p>
 
-      <h5 id="named-vs-default-exports">3.4.2.1 Named vs default exports</h5>
+      <h5 id="named-vs-default-exports">3.4.2.1 Именованные против экспорта по умолчанию</h5>
 
       <p>
-        Use named exports in all code. You can apply the
-        <code>export</code> keyword to a declaration, or use the
-        <code>export {name};</code> syntax.
+        Используйте именованные экспорты во всем коде. Вы можете
+         применить ключевое слово <code>export</code> к объявлению
+           или использовать синтаксис <code>export {name};</code>.
       </p>
 
       <p>
-        Do not use default exports. Importing modules must give a name to these
-        values, which can lead to inconsistencies in naming across modules.
+        Не используйте экспорт по умолчанию. Импортирующие модули должны давать имя этим значениям,
+         чтобы избежать несоответствий в именах модулей.
       </p>
 
-      <pre><code class="language-js badcode prettyprint">// Do not use default exports:
-export default class Foo { ... } // BAD!
+      <pre><code class="language-js badcode prettyprint">// Не используйте эспорт по умолчанию:
+export default class Foo { ... } // Плохо!
 </code></pre>
 
-      <pre><code class="language-js good prettyprint">// Use named exports:
+      <pre><code class="language-js good prettyprint">// Используйте именованный экспорт:
 export class Foo { ... }
 </code></pre>
 
-      <pre><code class="language-js good prettyprint">// Alternate style named exports:
+      <pre><code class="language-js good prettyprint">// Альтернативный стиль с именем экспорта:
 class Foo { ... }
 
 export {Foo};
 </code></pre>
 
       <h5 id="exporting-static-containers">
-        3.4.2.2 Exporting static container classes and objects
+        3.4.2.2 Экспорт статических контейнерных классов и объектов
       </h5>
 
       <p>
-        Do not export container classes or objects with static methods or
-        properties for the sake of namespacing.
+        Не экспортируйте классы контейнеров или объекты 
+        со статическими методами или свойствами для пространства имен.
       </p>
 
       <pre><code class="language-js badcode prettyprint">// container.js
-// Bad: Container is an exported class that has only static methods and fields.
+// Плохо: контейнер - это экспортируемый класс, который имеет только статические методы и поля.
 export class Container {
   /** @return {number} */
   static bar() {
@@ -537,7 +538,7 @@ export class Container {
 Container.FOO = 1;
 </code></pre>
 
-      <p>Instead, export individual constants and functions:</p>
+      <p>Вместо этого экспортируйте отдельные константы и функции:</p>
 
       <pre><code class="language-js good prettyprint">/** @return {number} */
 export function bar() {
