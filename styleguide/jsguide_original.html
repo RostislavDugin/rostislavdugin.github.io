@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Google JavaScript руководство по стилю</title>
+    <title>Google JavaScript Style Guide</title>
     <link rel="stylesheet" href="javaguide.css" />
     <script src="include/styleguide.js"></script>
     <link rel="shortcut icon" href="https://www.google.com/favicon.ico" />
@@ -10,247 +10,232 @@
   </head>
   <body onload="initStyleGuide();">
     <div id="content">
-      <h1>Google JavaScript руководство по стилю</h1>
-      <h2 id="introduction">1 Введение</h2>
+      <h1>Google JavaScript Style Guide</h1>
+      <h2 id="introduction">1 Introduction</h2>
 
       <p>
-        Этот документ содержит <strong>полное</strong> описание стандартов
-        Google для исходного кода на языке JavaScript. JavaScript файл считается
-        написанным в <em>стиле Google</em> если и только если он придерживается
-        правил, описанных в этом документе.
+        This document serves as the <strong>complete</strong> definition of
+        Google&#8217;s coding standards for source code in the JavaScript
+        programming language. A JavaScript source file is described as being
+        <em>in Google Style</em> if and only if it adheres to the rules herein.
       </p>
 
       <p>
-        Как и другие руководства по стилю программирования, данный документ
-        охватывает не только вопрос оформления и форматирования кода, но также
-        включает соглашения и стандарты написания кода. Хотя документ
-        фокусируется на основных быстроприменимых правилах, которым в компании
-        Google следуют повсеместно — здесь также описываются правила и советы,
-        которым не следуют следовать (как при ручном, так и при компьютерном
-        написании кода).
+        Like other programming style guides, the issues covered span not only
+        aesthetic issues of formatting, but other types of conventions or coding
+        standards as well. However, this document focuses primarily on the
+        hard-and-fast rules that we follow universally, and avoids giving advice
+        that isn't clearly enforceable (whether by human or tool).
       </p>
 
-      <h3 id="terminology-notes">1.1 Уточнения о терминологии</h3>
+      <h3 id="terminology-notes">1.1 Terminology notes</h3>
 
-      <p>В данном документе, если не указано другое:</p>
+      <p>In this document, unless otherwise clarified:</p>
 
       <ol>
         <li>
           <p>
-            Термин <em>комментарий</em> всегда относится к комментарию
-            <em>реализации</em>. Мы не используем фразу
-            <em>документирующий комментарий</em>. Для этого мы используем общий
-            термин &#8220;JSDoc&#8221;, включая текст, читаемый человеком и
-            аннотации, обрабатывающиеся компьютером при помощи
-            <code>/** &#8230; */</code>.
+            The term <em>comment</em> always refers to
+            <em>implementation</em> comments. We do not use the phrase
+            <q>documentation comments</q>, instead using the common term
+            &#8220;JSDoc&#8221; for both human-readable text and
+            machine-readable annotations within <code>/** &#8230; */</code>.
           </p>
         </li>
         <li>
           <p>
-            Данное руководство по стилю ссылается на терминологию
-            <a href="http://tools.ietf.org/html/rfc2119">RFC 2119</a>, когда
-            использует фразы "нужно", "не нужно", "не стоит" и "вероятно".
-            Термины "отдавайте предпочтение" и "избегайте" используются в смысле
-            "стоит" и "не стоит" делать соответственно, но не являются
-            обязательными правилами.
+            This Style Guide uses
+            <a href="http://tools.ietf.org/html/rfc2119">RFC 2119</a>
+            terminology when using the phrases <em>must</em>, <em>must not</em>,
+            <em>should</em>, <em>should not</em>, and <em>may</em>. The terms
+            <em>prefer</em> and <em>avoid</em> correspond to <em>should</em> and
+            <em>should not</em>, respectively. Imperative and declarative
+            statements are prescriptive and correspond to <em>must</em>.
           </p>
         </li>
       </ol>
 
       <p>
-        Другие <q>терминологические уточнения</q> будут иногда появляться по
-        ходу документа.
+        Other <q>terminology notes</q> will appear occasionally throughout the
+        document.
       </p>
 
-      <h3 id="guide-notes">1.2 Заметки по руководству</h3>
+      <h3 id="guide-notes">1.2 Guide notes</h3>
 
       <p>
-        Примеры кода в этом документе не являются
-        <strong>нормативными</strong> (т.е. обязательными). Это значит, что
-        примеры в стиле Google могут и не иллюстрировать единственно правильный
-        вариант стилизации кода. Выбор сделанный об опциональном форматировании
-        в примерах код не должен приниматься в качестве правила.
+        Example code in this document is <strong>non-normative</strong>. That
+        is, while the examples are in Google Style, they may not illustrate the
+        <em>only</em> stylish way to represent the code. Optional formatting
+        choices made in examples must not be enforced as rules.
       </p>
 
-      <h2 id="source-file-basics">2 Основы исходных файлов</h2>
+      <h2 id="source-file-basics">2 Source file basics</h2>
 
-      <h3 id="file-name">2.1 Имя файла</h3>
+      <h3 id="file-name">2.1 File name</h3>
 
       <p>
-        Имена файлов должны быть в нижнем регистре и могут включать нижнее
-        подчеркивание (<code>_</code>) или "тире" (<code>-</code>), но без любой
-        другой пунктуации. Придерживайтесь договоренностей, которые используются
-        в вашем проекте. Расширения файлов должны быть <code>.js</code>.
+        File names must be all lowercase and may include underscores
+        (<code>_</code>) or dashes (<code>-</code>), but no additional
+        punctuation. Follow the convention that your project uses.
+        Filenames&#8217; extension must be <code>.js</code>.
       </p>
 
-      <h3 id="file-encoding">2.2 Кодировка файлов UTF-8</h3>
+      <h3 id="file-encoding">2.2 File encoding: UTF-8</h3>
 
-      <p>Кодировка файлов должна быть в <strong>UTF-8</strong>.</p>
+      <p>Source files are encoded in <strong>UTF-8</strong>.</p>
 
-      <h3 id="special-characters">2.3 Специальные символы</h3>
+      <h3 id="special-characters">2.3 Special characters</h3>
 
-      <h4 id="whitespace-characters">2.3.1 Пробельные символы</h4>
+      <h4 id="whitespace-characters">2.3.1 Whitespace characters</h4>
 
       <p>
-        Помимо последовательности символов перевода строки, символ
-        горизонтального проблела (0х20) из таблицы символов ASCII - единственный
-        допустимый символ пробела, который может появляться где-либо в исходном
-        коде. Это подразумевает, что:
+        Aside from the line terminator sequence, the ASCII horizontal space
+        character (0x20) is the only whitespace character that appears anywhere
+        in a source file. This implies that
       </p>
 
       <ol>
         <li>
           <p>
-            Все другие пробельные символы экранируются.
+            All other whitespace characters in string literals are escaped, and
           </p>
         </li>
         <li>
-          <p>
-            Отступ с помощью Tab <strong>не</strong> используется для отступа.
-          </p>
+          <p>Tab characters are <strong>not</strong> used for indentation.</p>
         </li>
       </ol>
 
-      <h4 id="special-escape-sequences">
-        2.3.2 Специальные экранирующие последовательности
-      </h4>
+      <h4 id="special-escape-sequences">2.3.2 Special escape sequences</h4>
 
       <p>
-        Любые символы, которые требуется экранировать специальными символьными
-        последовательностями (<code>\'</code>,
+        For any character that has a special escape sequence (<code>\'</code>,
         <code>\"</code>, <code>\\</code>, <code>\b</code>, <code>\f</code>,
-        <code>\n</code>, <code>\r</code>, <code>\t</code>, <code>\v</code>), эти
-        последовательности и используют, вместо числового экранированния
-        (например, <code>\x0a</code>, <code>\u000a</code>, or
-        <code>\u{a}</code>). Устаревшие восьмиричные символы экранирования не
-        используются.
+        <code>\n</code>, <code>\r</code>, <code>\t</code>, <code>\v</code>),
+        that sequence is used rather than the corresponding numeric escape (e.g
+        <code>\x0a</code>, <code>\u000a</code>, or <code>\u{a}</code>). Legacy
+        octal escapes are never used.
       </p>
 
-      <h4 id="non-ascii-characters">2.3.3 Не-ASCII символы</h4>
+      <h4 id="non-ascii-characters">2.3.3 Non-ASCII characters</h4>
 
       <p>
-        Для оставшихся не-ASCII используется или подходящий символ Unicode
-        (например,
-        <code>&#8734;</code>), или эквивалентная hex или Unicode
-        последовательность символов (например, <code>\u221e</code>) в
-        зависимости от того, что делает код более
-        <strong>легко читаемым и более понятным</strong>.
+        For the remaining non-ASCII characters, either the actual Unicode
+        character (e.g. <code>&#8734;</code>) or the equivalent hex or Unicode
+        escape (e.g. <code>\u221e</code>) is used, depending only on which makes
+        the code <strong>easier to read and understand</strong>.
       </p>
 
       <p>
-        Подсказка: при использовании Unicode-символов (или их
-        последовательноостей), лучше использовать пояснительный комментарий.
+        Tip: In the Unicode escape case, and occasionally even when actual
+        Unicode characters are used, an explanatory comment can be very helpful.
       </p>
 
-      <pre><code class="language-js prettyprint">/* В идеале: код хорошо понятен даже без комментария. */
+      <pre><code class="language-js prettyprint">/* Best: perfectly clear even without a comment. */
 const units = '&#956;s';
 
-/* Разрешено: но необязательно, так как &#956; - это печатаемый символ. */
+/* Allowed: but unncessary as &#956; is a printable character. */
 const units = '\u03bcs'; // '&#956;s'
 
-/* Хорошо: используется экранирование для непечатаемых символов с комментарием для большей ясности. */
-return '\ufeff' + content;  // Добавить знак порядка байтов.
+/* Good: use escapes for non-printable characters with a comment for clarity. */
+return '\ufeff' + content;  // Prepend a byte order mark.
 </code></pre>
 
-      <pre><code class="language-js prettyprint badcode">/* Плохо: читатель не понимает, что это за символ. */
+      <pre><code class="language-js prettyprint badcode">/* Poor: the reader has no idea what character this is. */
 const units = '\u03bcs';
 </code></pre>
 
       <p>
-        Подсказка: никогда не делайте Ваш код менее читабельным просто из-за
-        страха, что некоторые программы могут некорректно обрабатывать не-ASCII
-        символы. В случае, если это произойдет - программа будет "сломана" и это
-        потребуется исправить.
+        Tip: Never make your code less readable simply out of fear that some
+        programs might not handle non-ASCII characters properly. If that
+        happens, those programs are <strong>broken</strong> and they must be
+        <strong>fixed</strong>.
       </p>
 
-      <h2 id="source-file-structure">3 Структура исходных файлов</h2>
+      <h2 id="source-file-structure">3 Source file structure</h2>
 
       <p>
-        Все новые файлы должны быть или файлом <code>goog.module</code> (файл
-        содержащий вызов <code>goog.module</code>), или модулем ECMAScript
-        (использует операторы <code>import</code> и <code>export</code>). Файлы
-        состоят из следующего (по порядку):
+        All new source files should either be a <code>goog.module</code> file (a
+        file containing a <code>goog.module</code> call) or an ECMAScript (ES)
+        module (uses <code>import</code> and <code>export</code> statements).
+        Files consist of the following, <strong>in order</strong>:
       </p>
 
       <ol>
-        <li>Информация о лицензии или авторских правах, если такая имеется</li>
-        <li><code>@fileoverview</code> JSDoc, если имеется</li>
+        <li>License or copyright information, if present</li>
+        <li><code>@fileoverview</code> JSDoc, if present</li>
         <li>
-          Оператор <code>goog.module</code>, если это
-          <code>goog.module</code> файл
+          <code>goog.module</code> statement, if a <code>goog.module</code> file
         </li>
-        <li>ES оператор <code>import</code>, если это ES модуль</li>
+        <li>ES <code>import</code> statements, if an ES module</li>
         <li>
-          <code>Операторы goog.require</code> и <code>goog.requireType</code>
+          <code>goog.require</code> and <code>goog.requireType</code> statements
         </li>
-        <li>Реализация файла</li>
+        <li>The file&#8217;s implementation</li>
       </ol>
 
       <p>
-        <strong>Одна линия</strong> отделяет каждую секуцию кода, за исключением
-        отделения реализации файла, которая должна отделяться 1 или 2 пустыми
-        линиями.
+        <strong>Exactly one blank line</strong> separates each section that is
+        present, except the file's implementation, which may be preceded by 1 or
+        2 blank lines.
       </p>
 
       <h3 id="file-copyright">
-        3.1 Информация о лицензии или авторских правах, если имеется.
+        3.1 License or copyright information, if present
       </h3>
 
       <p>
-        Если информация о лицензии или авторском праве находится в файле, она
-        находится здесь.
+        If license or copyright information belongs in a file, it belongs here.
       </p>
 
       <h3 id="file-fileoverview">
-        3.2 <code>@fileoverview</code> JSDoc, если имеется.
+        3.2 <code>@fileoverview</code> JSDoc, if present
       </h3>
 
       <p>
-        Смотрите <a href="#jsdoc-top-file-level-comments">??</a> о правилах
-        форматирования.
+        See <a href="#jsdoc-top-file-level-comments">??</a> for formatting
+        rules.
       </p>
 
-      <h3 id="file-goog-module">3.3 Оператор <code>goog.module</code></h3>
+      <h3 id="file-goog-module">3.3 <code>goog.module</code> statement</h3>
 
       <p>
-        Все <code>goog.module</code> файлы должны объявлять только одно имя для
-        <code>goog.module</code> для одного файла: линии, содержащие объявление
-        <code>goog.module</code> не должны разрываться и, следовательно, они
-        являются исключением из правила про лимит на 80 символов.
+        All <code>goog.module</code> files must declare exactly one
+        <code>goog.module</code> name on a single line: lines containing a
+        <code>goog.module</code> declaration must not be wrapped, and are
+        therefore an exception to the 80-column limit.
       </p>
 
       <p>
-        Внутренние аргументы goog.module - то, что определяет пространство имен.
-        Это имя пакета (идентификатор, который отражает фрагмент структуры
-        каталогов, где находится исходный код) и, опционально, главный
-        класс\перечисление\интерфейс, который определяет связь со всем модулем.
+        The entire argument to goog.module is what defines a namespace. It is
+        the package name (an identifier that reflects the fragment of the
+        directory structure where the code lives) plus, optionally, the main
+        class/enum/interface that it defines concatenated to the end.
       </p>
 
-      <p>Пример:</p>
+      <p>Example</p>
 
       <pre><code class="language-js prettyprint">goog.module('search.urlHistory.UrlHistoryService');
 </code></pre>
 
-      <h4 id="naming-hierarchy">3.3.1 Иерархия</h4>
+      <h4 id="naming-hierarchy">3.3.1 Hierarchy</h4>
 
       <p>
-        Пространство имен модуля никогда не должны именоваться как прямой
-        потомок другого модульного пространства имен.
+        Module namespaces may never be named as a <em>direct</em> child of
+        another module's namespace.
       </p>
 
-      <p>Не разрешается:</p>
+      <p>Disallowed:</p>
 
-      <pre><code class="language-js prettyprint badcode">goog.module('foo.bar');   // 'foo.bar.qux' было бы неплохо
+      <pre><code class="language-js prettyprint badcode">goog.module('foo.bar');   // 'foo.bar.qux' would be fine, though
 goog.module('foo.bar.baz');
 </code></pre>
 
       <p>
-        Иерархия каталогов отражает иерархию пространств имен, поэтому более
-        глубокие вложенные дочерние элементы являются подкаталогами родительских
-        каталогов верхнего уровня. Обратите внимание, что владельцы
-        &#8220;родительских&#8221; групп пространств имен обязательно знают обо
-        всех дочерних пространствах имен, поскольку они существуют в одном и том
-        же каталоге.
+        The directory hierarchy reflects the namespace hierarchy, so that
+        deeper-nested children are subdirectories of higher-level parent
+        directories. Note that this implies that owners of &#8220;parent&#8221;
+        namespace groups are necessarily aware of all child namespaces, since
+        they exist in the same directory.
       </p>
 
       <h4 id="file-declare-legacy-namespace">
@@ -258,12 +243,12 @@ goog.module('foo.bar.baz');
       </h4>
 
       <p>
-        Оператор <code>goog.module</code> может опционально сдедовать до вызова
-        <code>goog.module.declareLegacyNamespace();</code>. Опустите
-        <code>goog.module.declareLegacyNamespace()</code>, когда это возможно.
+        The single <code>goog.module</code> statement may optionally be followed
+        by a call to <code>goog.module.declareLegacyNamespace();</code>. Avoid
+        <code>goog.module.declareLegacyNamespace()</code> when possible.
       </p>
 
-      <p>Пример:</p>
+      <p>Example:</p>
 
       <pre><code class="language-js prettyprint">goog.module('my.test.helpers');
 goog.module.declareLegacyNamespace();
@@ -271,36 +256,33 @@ goog.setTestOnly();
 </code></pre>
 
       <p>
-        <code>goog.module.declareLegacyNamespace</code> существует для
-        облегчения перехода от традиционных пространств имен на основе иерархии
-        объектов, но имеет некоторые ограничения в плане именования. Поскольку
-        имя дочернего модуля должно быть создано после родительского
-        пространства имен, это имя <strong>не должно быть</strong> не должно
-        быть дочерним или родительским по отношению к
-        <code>goog.module</code> (например,
-        <code>goog.module('parent');</code> и
-        <code>goog.module('parent.child');</code> не могут существовать
-        одновременно, также как не может <code>goog.module('parent');</code> и
+        <code>goog.module.declareLegacyNamespace</code> exists to ease the
+        transition from traditional object hierarchy-based namespaces but comes
+        with some naming restrictions. As the child module name must be created
+        after the parent namespace, this name <strong>must not</strong> be a
+        child or parent of any other <code>goog.module</code> (for example,
+        <code>goog.module('parent');</code> and
+        <code>goog.module('parent.child');</code> cannot both exist safely, nor
+        can <code>goog.module('parent');</code> and
         <code>goog.module('parent.child.grandchild');</code>).
       </p>
 
       <h3 id="file-goog-module-exports">
-        3.3.3 <code>goog.module</code> Экспорт
+        3.3.3 <code>goog.module</code> Exports
       </h3>
 
       <p>
-        Классы, перечисления, функции, константы и другие символы
-        экспортируются, используя объект
-        <code>exports</code>. Экспортируемые символы могут быть определены прямо
-        в объекте <code>exports</code>, или иначе определяться локально и
-        экспортировать раздельно. Символы экспортируются только, если они должны
-        использоваться за пределами модулям. Не экспортируемые
-        модульно-локальные символы не декларируются как <code>@private</code>
-        и не заканчиваются нижней чертой. Определенного порядка для
-        экспортируемых модульно-локальных символов - нет.
+        Classes, enums, functions, constants, and other symbols are exported
+        using the <code>exports</code> object. Exported symbols may be defined
+        directly on the <code>exports</code> object, or else declared locally
+        and exported separately. Symbols are only exported if they are meant to
+        be used outside the module. Non-exported module-local symbols are not
+        declared <code>@private</code> nor do their names end with an
+        underscore. There is no prescribed ordering for exported and
+        module-local symbols.
       </p>
 
-      <p>Пример:</p>
+      <p>Examples:</p>
 
       <pre><code class="language-js prettyprint">const /** !Array&lt;number&gt; */ exportedArray = [1, 2, 3];
 
@@ -323,12 +305,13 @@ exports = {exportedArray, exportedFunction};
 exports.CONSTANT_ONE = 1;
 
 /** @const {string} */
-exports.CONSTANT_TWO = 'Другая константа';
+exports.CONSTANT_TWO = 'Another constant';
 </code></pre>
 
       <p>
-        Не аннотируйте <code>exports</code> с помощью <code>@const</code>, так
-        как они уже рассматриваются компилятором в качестве констант.
+        Do not annotate the <code>exports</code> object as
+        <code>@const</code> as it is already treated as a constant by the
+        compiler.
       </p>
 
       <pre><code class="language-js badcode prettyprint">/** @const */
@@ -337,25 +320,25 @@ exports = {exportedFunction};
 
       <p><span id="file-es6-modules"></span></p>
 
-      <h3 id="file-es-modules">3.4 ES модули</h3>
+      <h3 id="file-es-modules">3.4 ES modules</h3>
 
       <p><span id="es6-module-imports"></span></p>
 
-      <h4 id="es-module-imports">3.4.1 Импорт</h4>
+      <h4 id="es-module-imports">3.4.1 Imports</h4>
 
       <p>
-        Операторы импорта не должны разделяться переносом строки и,
-        следовательно, являются исключением из ограничения в 80 столбцов.
+        Import statements must not be line wrapped and are therefore an
+        exception to the 80-column limit.
       </p>
 
       <p><span id="es6-import-paths"></span></p>
 
-      <h5 id="esm-import-paths">3.4.1.1 Импорт путей</h5>
+      <h5 id="esm-import-paths">3.4.1.1 Import paths</h5>
 
       <p>
-        Файлы ES модуля должны использовать оператор <code>import</code> для
-        импорта файлов из ES модуля. Не используйте
-        <code>goog.require</code> для другого ES модуля.
+        ES module files must use the <code>import</code> statement to import
+        other ES module files. Do not <code>goog.require</code> another ES
+        module.
       </p>
 
       <pre><code class="language-js prettyprint external">import './sideeffects.js';
@@ -369,12 +352,12 @@ import {name} from './sibling.js';
       <p><span id="es6-import-paths-file-extension"></span></p>
 
       <h6 id="esm-import-paths-file-extension">
-        3.4.1.1.1 Расширения файлов в для импортируемых путей
+        3.4.1.1.1 File extensions in import paths
       </h6>
 
       <p>
-        Расширение <code>.js</code> не является опциональным в импортируемых
-        путях и всегда должно присутствовать.
+        The <code>.js</code> file extension is not optional in import paths and
+        must always be included.
       </p>
 
       <pre><code class="language-js badcode prettyprint">import '../directory/file';
@@ -384,31 +367,29 @@ import {name} from './sibling.js';
 </code></pre>
 
       <h5 id="importing-the-same-file-multiple-times">
-        3.4.1.2 Импорт одного файла несколько раз
+        3.4.1.2 Importing the same file multiple times
       </h5>
 
       <p>
-        Не импортируйте один и тот же файл несколько раз. Это может затруднить
-        определение совокупности всех импортов из файла.
+        Do not import the same file multiple times. This can make it hard to
+        determine the aggregate imports of a file.
       </p>
 
-      <pre><code class="language-js badcode prettyprint">// Импорт имеет один и тот же путь, но, поскольку он не выравнивается, может быть трудно его заметить.
+      <pre><code class="language-js badcode prettyprint">// Imports have the same path, but since it doesn't align it can be hard to see.
 import {short} from './long/path/to/a/file.js';
 import {aLongNameThatBreaksAlignment} from './long/path/to/a/file.js';
 </code></pre>
 
       <p><span id="naming-es6-imports"></span></p>
 
-      <h5 id="naming-esm-imports">3.4.1.3 Именование импортов</h5>
+      <h5 id="naming-esm-imports">3.4.1.3 Naming imports</h5>
 
-      <h6 id="naming-module-imports">
-        3.4.1.3.1 Именование модульных импортов
-      </h6>
+      <h6 id="naming-module-imports">3.4.1.3.1 Naming module imports</h6>
 
       <p>
-        Имена импорта модуля (<code>import * as name</code>) - это имена в
-        <code>нижнемВерблюжьемСтиле</code>, которые получены из имени
-        импортируемого файла.
+        Module import names (<code>import * as name</code>) are
+        <code>lowerCamelCase</code> names that are derived from the imported
+        file name.
       </p>
 
       <pre><code class="language-js prettyprint">import * as fileOne from '../file-one.js';
@@ -421,14 +402,11 @@ import * as math from './math/math.js';
 import * as vectorMath from './vector/math.js';
 </code></pre>
 
-      <h6 id="naming-default-imports">
-        3.4.1.3.2 Именование импортов по умолчанию
-      </h6>
+      <h6 id="naming-default-imports">3.4.1.3.2 Naming default imports</h6>
 
       <p>
-        Имена импорта по умолчанию получены из имени импортируемого файла и
-        следуют правилам из
-        <a href="#naming-rules-by-identifier-type">??</a>.
+        Default import names are derived from the imported file name and follow
+        the rules in <a href="#naming-rules-by-identifier-type">??</a>.
       </p>
 
       <pre><code class="language-js prettyprint">import MyClass from '../my-class.js';
@@ -437,25 +415,22 @@ import SOME_CONSTANT from '../someconstant.js';
 </code></pre>
 
       <p>
-        Примечание. В общем случае этого не должно происходить, поскольку
-        экспорт по умолчанию запрещен этим руководством по стилю, см.
-        <a href="#named-vs-default-exports">??</a>. Импорт по умолчанию
-        используется только для импорта модулей, которые не соответствуют этому
-        руководству по стилю.
+        Note: In general this should not happen as default exports are banned by
+        this style guide, see <a href="#named-vs-default-exports">??</a>.
+        Default imports are only used to import modules that do not conform to
+        this style guide.
       </p>
 
-      <h6 id="naming-named-imports">
-        3.4.1.3.3 Именование именованного импорта
-      </h6>
+      <h6 id="naming-named-imports">3.4.1.3.3 Naming named imports</h6>
 
       <p>
-        В целом, символы, импортируемые через именованный импорт (<code
+        In general symbols imported via the named import (<code
           >import {name}</code
-        >), должны иметь одинаковое имя. Избегайте импорта псевдонимов (<code
+        >) should keep the same name. Avoid aliasing imports (<code
           >import {SomeThing as SomeOtherThing}</code
-        >). Отдавайте предпочтение исправлению конфликты имен, при помощи
-        использования модуля (<code>import *</code>) или переименовывая сами
-        экспорты.
+        >). Prefer fixing name collisions by using a module import (<code
+          >import *</code
+        >) or renaming the exports themselves.
       </p>
 
       <pre><code class="language-js prettyprint">import * as bigAnimals from './biganimals.js';
@@ -466,8 +441,8 @@ new domesticatedAnimals.Cat();
 </code></pre>
 
       <p>
-        Если необходимо переименовать именованный импорт, используйте компоненты
-        имени файла или пути импортированного модуля в полученном псевдониме.
+        If renaming a named import is needed then use components of the imported
+        module's file name or path in the resulting alias.
       </p>
 
       <pre><code class="language-js prettyprint">import {Cat as BigCat} from './biganimals.js';
@@ -482,53 +457,50 @@ new DomesticatedCat();
       <h4 id="es-module-exports">3.4.2 Exports</h4>
 
       <p>
-        Символы экспортируются только в том случае, если они предназначены для
-        использования вне модуля. Неэкспортированные локальные символы не
-        объявляются как <code>@private</code>, и их имена не заканчиваются
-        подчеркиванием. Не существует предписанного порядка для экспортируемых и
-        локальных символов.
+        Symbols are only exported if they are meant to be used outside the
+        module. Non-exported module-local symbols are not declared
+        <code>@private</code> nor do their names end with an underscore. There
+        is no prescribed ordering for exported and module-local symbols.
       </p>
 
-      <h5 id="named-vs-default-exports">
-        3.4.2.1 Именованные против экспорта по умолчанию
-      </h5>
+      <h5 id="named-vs-default-exports">3.4.2.1 Named vs default exports</h5>
 
       <p>
-        Используйте именованные экспорты во всем коде. Вы можете применить
-        ключевое слово <code>export</code> к объявлению или использовать
-        синтаксис <code>export {name};</code>.
+        Use named exports in all code. You can apply the
+        <code>export</code> keyword to a declaration, or use the
+        <code>export {name};</code> syntax.
       </p>
 
       <p>
-        Не используйте экспорт по умолчанию. Импортирующие модули должны давать
-        имя этим значениям, чтобы избежать несоответствий в именах модулей.
+        Do not use default exports. Importing modules must give a name to these
+        values, which can lead to inconsistencies in naming across modules.
       </p>
 
-      <pre><code class="language-js badcode prettyprint">// Не используйте эспорт по умолчанию:
-export default class Foo { ... } // Плохо!
+      <pre><code class="language-js badcode prettyprint">// Do not use default exports:
+export default class Foo { ... } // BAD!
 </code></pre>
 
-      <pre><code class="language-js good prettyprint">// Используйте именованный экспорт:
+      <pre><code class="language-js good prettyprint">// Use named exports:
 export class Foo { ... }
 </code></pre>
 
-      <pre><code class="language-js good prettyprint">// Альтернативный стиль с именем экспорта:
+      <pre><code class="language-js good prettyprint">// Alternate style named exports:
 class Foo { ... }
 
 export {Foo};
 </code></pre>
 
       <h5 id="exporting-static-containers">
-        3.4.2.2 Экспорт статических контейнерных классов и объектов
+        3.4.2.2 Exporting static container classes and objects
       </h5>
 
       <p>
-        Не экспортируйте классы контейнеров или объекты со статическими методами
-        или свойствами для пространства имен.
+        Do not export container classes or objects with static methods or
+        properties for the sake of namespacing.
       </p>
 
       <pre><code class="language-js badcode prettyprint">// container.js
-// Плохо: контейнер - это экспортируемый класс, который имеет только статические методы и поля.
+// Bad: Container is an exported class that has only static methods and fields.
 export class Container {
   /** @return {number} */
   static bar() {
@@ -540,7 +512,7 @@ export class Container {
 Container.FOO = 1;
 </code></pre>
 
-      <p>Вместо этого экспортируйте отдельные константы и функции:</p>
+      <p>Instead, export individual constants and functions:</p>
 
       <pre><code class="language-js good prettyprint">/** @return {number} */
 export function bar() {
@@ -552,24 +524,23 @@ export const /** number */ FOO = 1;
 
       <p><span id="es6-exports-mutability"></span></p>
 
-      <h5 id="esm-exports-mutability">3.4.2.3 Мутироемость экспорта</h5>
+      <h5 id="esm-exports-mutability">3.4.2.3 Mutability of exports</h5>
 
       <p>
-        Экспортируемые переменные не должны быть видоизменены за пределами
-        инициализации модуля.
+        Exported variables must not be mutated outside of module initialization.
       </p>
 
       <p>
-        Существуют альтернативы, если необходима мутация, включая экспорт
-        постоянной ссылки на объект, который имеет изменяемые поля или экспорт
-        функций доступа для изменяемых данных.
+        There are alternatives if mutation is needed, including exporting a
+        constant reference to an object that has mutable fields or exporting
+        accessor functions for mutable data.
       </p>
 
-      <pre><code class="language-js badcode prettyprint">// Плохо: и foо, и mutateFoo экспортируются и могут быть изменены.
+      <pre><code class="language-js badcode prettyprint">// Bad: both foo and mutateFoo are exported and mutated.
 export let /** number */ foo = 0;
 
 /**
- * Изменяется foo.
+ * Mutates foo.
  */
 export function mutateFoo() {
   ++foo;
@@ -579,15 +550,15 @@ export function mutateFoo() {
  * @param {function(number): number} newMutateFoo
  */
 export function setMutateFoo(newMutateFoo) {
-  // Экспортируемые классы и функции могут быть видоизменены!
+  // Exported classes and functions can be mutated!
   mutateFoo = () =&gt; {
     foo = newMutateFoo(foo);
   };
 }
 </code></pre>
 
-      <pre><code class="language-js good prettyprint">// Хорошо: вместо того, чтобы экспортировать изменяемые переменные foo и mutateFoo напрямую,
-// вместо этого сделайте их модульными и экспортируйте getter для foo и оболочку для
+      <pre><code class="language-js good prettyprint">// Good: Rather than export the mutable variables foo and mutateFoo directly,
+// instead make them module scoped and export a getter for foo and a wrapper for
 // mutateFooFunc.
 let /** number */ foo = 0;
 let /** function(number): number */ mutateFooFunc = foo =&gt; foo + 1;
@@ -612,9 +583,9 @@ export function setMutateFoo(mutateFoo) {
       <h5 id="es-module-export-from">3.4.2.4 export from</h5>
 
       <p>
-        Операторы <code>export from</code> не должны быть заключены в строку и
-        следовательно, являются исключением из ограничения в 80 символом. Это
-        относится ко всем <code>export from</code> операторам.
+        <code>export from</code> statements must not be line wrapped and are
+        therefore an exception to the 80-column limit. This applies to both
+        <code>export from</code> flavors.
       </p>
 
       <pre><code class="language-js">export {specificName} from './other.js';
@@ -622,13 +593,13 @@ export * from './another.js';
 </code></pre>
 
       <h4 id="es-module-circular-dependencies">
-        3.4.3 Цикличные зависимости в ES модулях
+        3.4.3 Circular Dependencies in ES modules
       </h4>
 
       <p>
-        Не создавайте циклы между модулями ES, даже если спецификация ECMAScript
-        позволяет это. Обратите внимание, что можно создавать циклы как с
-        помощью операторов <code>import</code>, так и <code>export</code>.
+        Do not create cycles between ES modules, even though the ECMAScript
+        specification allows this. Note that it is possible to create cycles
+        with both the <code>import</code> and <code>export</code> statements.
       </p>
 
       <pre><code class="language-js badcode prettyprint">// a.js
@@ -638,7 +609,7 @@ import './b.js';
       <pre><code class="language-js badcode prettyprint">// b.js
 import './a.js';
 
-// `export from` тоже может вызвать цикличиские зависимости!
+// `export from` can cause circular dependencies too!
 export {x} from './c.js';
 </code></pre>
 
@@ -654,11 +625,11 @@ export let x;
 
       <p><span id="es6-module-referencing-goog"></span></p>
 
-      <h5 id="es-module-referencing-goog">3.4.4.1 Ссылание goog</h5>
+      <h5 id="es-module-referencing-goog">3.4.4.1 Referencing goog</h5>
 
       <p>
-        Для ссылки на пространство имён замыкания <code>goog</code>,
-        импортируйте <code>goog.js</code> принадлежащий конкретному замыканию.
+        To reference the Closure <code>goog</code> namespace, import Closure's
+        <code>goog.js</code>.
       </p>
 
       <pre><code class="language-js good prettyprint external">import * as goog from '../closure/goog/goog.js';
@@ -669,21 +640,20 @@ export const CONSTANT = name.compute();
 </code></pre>
 
       <p>
-        <code>goog.js</code> экспортирует только подмножество параметров из
-        глобального <code>goog</code>, которые могут использоваться в ES
-        модулях.
+        <code>goog.js</code> exports only a subset of properties from the global
+        <code>goog</code> that can be used in ES modules.
       </p>
 
       <p><span id="goog-require-in-es6-module"></span></p>
 
-      <h5 id="goog-require-in-es-module">3.4.4.2 goog.require в ES модулях</h5>
+      <h5 id="goog-require-in-es-module">3.4.4.2 goog.require in ES modules</h5>
 
       <p>
-        <code>goog.require</code> в ES модулях работает так же, как и в
-        <code>goog.module</code> файлах. Вы можете потребовать (require) любой
-        символ пространства имён из замыкания (т.е. символы созданные с помощью
-        <code>goog.provide</code> или <code>goog.module</code>) и
-        <code>goog.require</code> вернёт значение.
+        <code>goog.require</code> in ES modules works as it does in
+        <code>goog.module</code> files. You can require any Closure namespace
+        symbol (i.e., symbols created by <code>goog.provide</code> or
+        <code>goog.module</code>) and <code>goog.require</code> will return the
+        value.
       </p>
 
       <pre><code class="language-js prettyprint external">import * as goog from '../closure/goog/goog.js';
@@ -696,39 +666,37 @@ const myNamespace = goog.require('my.namespace');
       <p><span id="closure-module-id-in-es6-module"></span></p>
 
       <h5 id="closure-module-id-in-es-module">
-        3.4.4.3 Декларирование ID замыканий в ES модулях
+        3.4.4.3 Declaring Closure Module IDs in ES modules
       </h5>
 
       <p>
-        <code>goog.declareModuleId</code> может использоваться в ES модулях,
-        чтобы декларировать ID модуля в стиле <code>goog.module</code>. Это
-        значит, что ID модуля может быть потребован с помощью
-        <code>goog.require</code>, <code>goog.module.get</code>,
-        <code>goog.forwardDeclare</code>'d и т.п., как-будто это
-        <code>goog.module</code> , который не вызывает
-        <code>goog.module.declareLegacyNamespace</code>. Это не создаёт ID для
-        модуля в качестве глобально доступного символ JavaScript.
+        <code>goog.declareModuleId</code> can be used within ES modules to
+        declare a <code>goog.module</code>-like module ID. This means that this
+        module ID can be <code>goog.require</code>d,
+        <code>goog.module.get</code>d, <code>goog.forwardDeclare</code>'d, etc.
+        as if it were a <code>goog.module</code> that did not call
+        <code>goog.module.declareLegacyNamespace</code>. It does not create the
+        module ID as a globally available JavaScript symbol.
       </p>
 
       <p>
-        <code>goog.require</code> (or <code>goog.module.get</code>) для ID
-        модуля из <code>goog.declareModuleId</code> будет всегда возвращать
-        объект модуля (как будто используется <code>import *</code>'d). Как
-        результат, аргумент для <code>goog.declareModuleId</code> должен всегда
-        заканчиваться <code>имяНижнегоРегистра</code>.
+        A <code>goog.require</code> (or <code>goog.module.get</code>) for a
+        module ID from <code>goog.declareModuleId</code> will always return the
+        module object (as if it was <code>import *</code>'d). As a result, the
+        argument to <code>goog.declareModuleId</code> should always end with a
+        <code>lowerCamelCaseName</code>.
       </p>
 
       <p>
-        Обратите внимание: это ошибка - вызывать
-        <code>goog.module.declareLegacyNamespace</code> в ES модуле, он может
-        быть вызван только из файлов <code>goog.module</code>. Не существует
-        прямолинейных путей, чтобы ассоциировать <q>устаревшее</q> пространство
-        имён с ES модулем.
+        Note: It is an error to call
+        <code>goog.module.declareLegacyNamespace</code> in an ES module, it can
+        only be called from <code>goog.module</code> files. There is no direct
+        way to associate a <q>legacy</q> namespace with an ES module.
       </p>
 
       <p>
-        <code>goog.declareModuleId</code> должен использоваться только, чтобы
-        обновить файлы замыканий в месте, где используется именованный экспорт.
+        <code>goog.declareModuleId</code> should only be used to upgrade Closure
+        files to ES modules in place, where named exports are used.
       </p>
 
       <pre><code class="language-js prettyprint external">import * as goog from '../closure/goog.js';
@@ -741,235 +709,224 @@ export class Class {};
       <h3 id="file-set-test-only">3.5 <code>goog.setTestOnly</code></h3>
 
       <p>
-        В файле модуля <code>goog.module</code> оператор
-        <code>goog.module</code> может опционально сопровождаться вызовом
-        <code>goog.setTestOnly()</code>.
+        In a <code>goog.module</code> file the
+        <code>goog.module</code> statement may optionally be followed by a call
+        to <code>goog.setTestOnly()</code>.
       </p>
 
       <p>
-        В ES модуле оператор <code>import</code> может опционально
-        сопровождаться вызовом <code>goog.setTestOnly()</code>.
+        In an ES module the <code>import</code> statements may optionally be
+        followed by a call to <code>goog.setTestOnly()</code>.
       </p>
 
       <h3 id="file-goog-require">
-        3.6 Операторы <code>goog.require</code> и
-        <code>goog.requireType</code>
+        3.6 <code>goog.require</code> and
+        <code>goog.requireType</code> statements
       </h3>
 
       <p>
-        Импорты реализованные с помощью операторов
-        <code>goog.require</code> и <code>goog.requireType</code>. Имена
-        импортированные с помощью оператора <code>goog.require</code> могут быть
-        использованы и в коде, и в аннотациях, в то время как импортированные с
-        помощью <code>goog.requireType</code> могут быть использованные в
-        аннотациях типа.
+        Imports are done with <code>goog.require</code> and
+        <code>goog.requireType</code> statements. The names imported by a
+        <code>goog.require</code> statement may be used both in code and in type
+        annotations, while those imported by a <code>goog.requireType</code> may
+        be used in type annotations only.
       </p>
 
       <p>
-        Операторы <code>goog.require</code> и
-        <code>goog.requireType</code> формируют смежны блок без пустых линий.
-        Этот блок следуют за декларацией <code>goog.module</code> разделённой
-        <a href="#source-file-structure">с помощью одной пустой линии</a>.
-        Единственный аргумент для <code>goog.require</code> или
-        <code>goog.requireType</code> - это пространство имен, определенное с
-        помощью <code>goog.module</code> в отдельном файле. Операторы
-        <code>goog.require</code> и <code>goog.requireType</code> не должны
-        появляться в других местах данного файла.
+        The <code>goog.require</code> and
+        <code>goog.requireType</code> statements form a contiguous block with no
+        empty lines. This block follows the <code>goog.module</code> declaration
+        separated <a href="#source-file-structure">by a single empty line</a>.
+        The entire argument to <code>goog.require</code> or
+        <code>goog.requireType</code> is a namespace defined by a
+        <code>goog.module</code> in a separate file.
+        <code>goog.require</code> and <code>goog.requireType</code> statements
+        may not appear anywhere else in the file.
       </p>
 
       <p>
-        Каждый <code>goog.require</code> или
-        <code>goog.requireType</code> определяется в единственном константном
-        псевдониме или деструктурируется в несколько константных псевдонимах.
-        Эти псевдонимы единственные допустимые способы для ссылания на
-        зависимости в коде или аннотациях. Полные имена пространства имен не
-        должны использоваться нигде, кроме как в качестве аргумента дял
-        <code>goog.require</code> или <code>goog.requireType</code>.
+        Each <code>goog.require</code> or <code>goog.requireType</code> is
+        assigned to a single constant alias, or else destructured into several
+        constant aliases. These aliases are the only acceptable way to refer to
+        dependencies in type annotations or code. Fully qualified namespaces
+        must not be used anywhere, except as an argument to
+        <code>goog.require</code> or <code>goog.requireType</code>.
       </p>
 
       <p>
-        <strong>Ислючение</strong>: Типы, переменные, и функции определенные во
-        внешних файлах вынуждены использовать их полные имена в аннотациях и
-        коде.
+        <strong>Exception</strong>: Types, variables, and functions declared in
+        externs files have to use their fully qualified name in type annotations
+        and code.
       </p>
 
       <p>
-        Псевдонимы должны соответствовать финальному компоненту, разделенному
-        точками, принаделажщему пространству имен испортируемого модуля.
+        Aliases must match the final dot-separated component of the imported
+        module's namespace.
       </p>
 
       <p>
-        <strong>Исклбючение</strong>: В некоторых случаях, дополнительные
-        компоненты пространства имен могут использоваться для формирования более
-        длинных псевдонимов. Полученный псевдоним должен сохранять регистр
-        исходного идентификатора, чтобы он по-прежнему правильно идентифицировал
-        свой тип. Более длинные псевдонимы могут использоваться для устранения
-        неоднозначности идентичных псевдонимов, или, если это значительно
-        улучшает читабельность. Кроме того, для предотвращения маскирования
-        нативных типов, таких как <code>Element</code>, <code>Event</code>,
-        <code>Error</code>, <code>Map</code>, и <code>Promise</code> (см. более
-        полный список в
+        <strong>Exception</strong>: In certain cases, additional components of
+        the namespace can be used to form a longer alias. The resulting alias
+        must retain the original identifier's casing such that it still
+        correctly identifies its type. Longer aliases may be used to
+        disambiguate otherwise identical aliases, or if it significantly
+        improves readability. In addition, a longer alias must be used to
+        prevent masking native types such as <code>Element</code>,
+        <code>Event</code>, <code>Error</code>, <code>Map</code>, and
+        <code>Promise</code> (for a more complete list, see
         <a
           href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects"
-          >Стандартные встроенные объекты</a
+          >Standard Built-in Objects</a
         >
-        и MDN
+        and
         <a href="https://developer.mozilla.org/en-US/docs/Web/API">Web APIs</a>
-        ). При переименовании деструктурированных псевдонимов пробел должен
-        следовать за двоеточием, как требуется в
-        <a href="#formatting-horizontal-whitespace">??</a>.
+        at MDN). When renaming destructured aliases, a space must follow the
+        colon as required in <a href="#formatting-horizontal-whitespace">??</a>.
       </p>
 
       <p>
-        Файл должен содержать операторы <code>goog.require</code> и
-        <code>goog.requireType</code> для одного и того же пространства
-        имен.Если импортированное имя используется как в коде, так и в
-        аннотациях типа, оно должно быть импортировано одним оператором
-        <code>goog.require</code>.
+        A file should not contain both a <code>goog.require</code> and a
+        <code>goog.requireType</code> statement for the same namespace. If the
+        imported name is used both in code and in type annotations, it should be
+        imported by a single <code>goog.require</code> statement.
       </p>
 
       <p>
-        Если модуль импортируется только для его побочных эффектов, вызов должен
-        быть сделан при помощи
-        <code>goog.require</code> (а не <code>goog.requireType</code>) и
-        назначение может быть опущено. Комментарий необходим, чтобы объяснить,
-        почему это необходимо, и подавить предупреждение компилятора.
+        If a module is imported only for its side effects, the call must be a
+        <code>goog.require</code> (not a <code>goog.requireType</code>) and
+        assignment may be omitted. A comment is required to explain why this is
+        needed and suppress a compiler warning.
       </p>
 
       <p>
-        Строки сортируются в соответствии со следующими правилами: Все
-        требования с именем слева идут на первом месте, сортируются по алфавиту
-        по этим именам. Затем требуется деструктуризация, снова отсортированная
-        по именам с левой стороны. Наконец, любые требующие вызовы, которые
-        являются автономными (обычно это для модулей, импортированных только для
-        их побочных эффектов)
+        The lines are sorted according to the following rules: All requires with
+        a name on the left hand side come first, sorted alphabetically by those
+        names. Then destructuring requires, again sorted by the names on the
+        left hand side. Finally, any require calls that are standalone
+        (generally these are for modules imported just for their side effects).
       </p>
 
       <p>
-        Совет. Нет необходимости запоминать этот порядок и применять его
-        вручную. Вы можете положиться на свою среду IDE, чтобы сообщить о
-        требованиях, которые отсортированы неправильно
+        Tip: There&#8217;s no need to memorize this order and enforce it
+        manually. You can rely on your IDE to report requires that are not
+        sorted correctly.
       </p>
 
       <p>
-        Если длинный псевдоним или имя модуля приведет к тому, что строка
-        превысит ограничение в 80 столбцов, оно <strong>не</strong> должно
-        переноситься: обязательные строки являются исключением из ограничения в
-        80 столбцов.
+        If a long alias or module name would cause a line to exceed the
+        80-column limit, it <strong>must not</strong> be wrapped: require lines
+        are an exception to the 80-column limit.
       </p>
 
-      <p>Пример:</p>
+      <p>Example:</p>
 
-      <pre><code class="language-js prettyprint">// Стандартный стиль псевдонимов.
+      <pre><code class="language-js prettyprint">// Standard alias style.
 const MyClass = goog.require('some.package.MyClass');
 const MyType = goog.requireType('some.package.MyType');
-// Псевдоним на основе пространства имен, используемый для устранения неоднозначности.
+// Namespace-based alias used to disambiguate.
 const NsMyClass = goog.require('other.ns.MyClass');
-// Псевдоним на основе пространства имен, используемый для предотвращения маскирования собственного типа.
+// Namespace-based alias used to prevent masking native type.
 const RendererElement = goog.require('web.renderer.Element');
-// Вне последовательности псевдонимы на основе пространства имен используются для улучшения читабельности.
-// Кроме того, строки, содержащие более 80 столбцов, не должны переноситься.
+// Out of sequence namespace-based aliases used to improve readability.
+// Also, require lines longer than 80 columns must not be wrapped.
 const SomeDataStructureModel = goog.requireType('identical.package.identifiers.models.SomeDataStructure');
 const SomeDataStructureProto = goog.require('proto.identical.package.identifiers.SomeDataStructure');
-// Стандартный стиль псевдонима.
+// Standard alias style.
 const asserts = goog.require('goog.asserts');
-// Псевдоним на основе пространства имен, используемый для устранения неоднозначности.
+// Namespace-based alias used to disambiguate.
 const testingAsserts = goog.require('goog.testing.asserts');
-// Стандартная деструкция в псевдонимы.
+// Standard destructuring into aliases.
 const {clear, clone} = goog.require('goog.array');
 const {Rgb} = goog.require('goog.color');
-// Деструктуризация на основе пространства имен в псевдонимы для устранения неоднозначности.
+// Namespace-based destructuring into aliases in order to disambiguate.
 const {SomeType: FooSomeType} = goog.requireType('foo.types');
 const {clear: objectClear, clone: objectClone} = goog.require('goog.object');
 // goog.require without an alias in order to trigger side effects.
-/** @suppress {extraRequire} Инициализируется MyFramework. */
+/** @suppress {extraRequire} Initializes MyFramework. */
 goog.require('my.framework.initialization');
 </code></pre>
 
-      <p>Неоднозначно:</p>
+      <p>Discouraged:</p>
 
-      <pre><code class="language-js badcode prettyprint">// Если необходимо устранить неоднозначность, предпочтите PackageClass, а не SomeClass
-// ближе к формату имени модуля.
+      <pre><code class="language-js badcode prettyprint">// If necessary to disambiguate, prefer PackageClass over SomeClass as it is
+// closer to the format of the module name.
 const SomeClass = goog.require('some.package.Class');
 </code></pre>
 
-      <p>Запрещено:</p>
+      <p>Disallowed:</p>
 
-      <pre><code class="language-js badcode prettyprint">// Дополнительные термины должны исходить из пространства имен.
+      <pre><code class="language-js badcode prettyprint">// Extra terms must come from the namespace.
 const MyClassForBizzing = goog.require('some.package.MyClass');
-// Псевдоним должен включать весь конечный компонент пространства имен.
+// Alias must include the entire final namespace component.
 const MyClass = goog.require('some.package.MyClassForBizzing');
-// Псевдоним не должен маскировать собственный тип (здесь должно быть `const JspbMap`).
+// Alias must not mask native type (should be `const JspbMap` here).
 const Map = goog.require('jspb.Map');
-// Не ломайте goog.require строки более 80 символов.
+// Don't break goog.require lines over 80 columns.
 const SomeDataStructure =
     goog.require('proto.identical.package.identifiers.SomeDataStructure');
-// Псевдоним должен быть основан на пространстве имен.
+// Alias must be based on the namespace.
 const randomName = goog.require('something.else');
-// Отсутствует пробел после двоеточия.
+// Missing a space after the colon.
 const {Foo:FooProto} = goog.require('some.package.proto.Foo');
-// goog.requireType без псевдонима.
+// goog.requireType without an alias.
 goog.requireType('some.package.with.a.Type');
 
 
 /**
- * @param {!some.unimported.Dependency} param Все внешние типы использующиеся в JSDoc
- *    аннотациях должны быть потребованы с помощью goog.require, если не объявлено в externs.
+ * @param {!some.unimported.Dependency} param All external types used in JSDoc
+ *     annotations must be goog.require'd, unless declared in externs.
  */
 function someFunction(param) {
-  // goog.require строки должны быть на верхнем уровне перед любым другим кодом.
+  // goog.require lines must be at the top level before any other code.
   const alias = goog.require('my.long.name.alias');
   // ...
 }
 </code></pre>
 
-      <h3 id="file-implementation">3.7 Реализация файла</h3>
+      <h3 id="file-implementation">3.7 The file&#8217;s implementation</h3>
 
       <p>
-        Реальная реализация следует после того, как вся информация о
-        зависимостях объявлена (разделена хотя бы одной пустой строкой).
+        The actual implementation follows after all dependency information is
+        declared (separated by at least one blank line).
       </p>
 
       <p>
-        Это может состоять из любых локальных объявлений модулей (констант,
-        переменных, классов, функций и т. Д.), А также любых экспортируемых
-        символов.
+        This may consist of any module-local declarations (constants, variables,
+        classes, functions, etc), as well as any exported symbols.
       </p>
 
-      <h2 id="formatting">4 Форматирование</h2>
+      <h2 id="formatting">4 Formatting</h2>
 
       <p>
-        <strong>Терминологическая заметка</strong>:
-        <em>блочная конструкция</em> ссылается на тело класса, функции, метода
-        или блока кода, разделенного скобками. Обратите внимание, что по
-        правилам <a href="#features-array-literals">??</a> и
-        <a href="#features-object-literals">??</a>, любой массив или объектный
-        литерал может опционально обрабатываться, как если бы это была блочная
-        конструкция.
+        <strong>Terminology Note</strong>: <em>block-like construct</em> refers
+        to the body of a class, function, method, or brace-delimited block of
+        code. Note that, by <a href="#features-array-literals">??</a> and
+        <a href="#features-object-literals">??</a>, any array or object literal
+        may optionally be treated as if it were a block-like construct.
       </p>
 
       <p>
-        Подсказка: Используйте <code>clang-format</code>. Сообщество JavaScript
-        приложило усилия, чтобы убедиться, clang-format
-        <q>правильно работает</q> в JavaScript файлах.
-        <code>clang-format</code> имеет интеграцию с несколькими популярными
-        редакторами.
+        Tip: Use <code>clang-format</code>. The JavaScript community has
+        invested effort to make sure clang-format <q>does the right thing</q> on
+        JavaScript files. <code>clang-format</code> has integration with several
+        popular editors.
       </p>
 
-      <h3 id="formatting-braces">4.1 Скобки</h3>
+      <h3 id="formatting-braces">4.1 Braces</h3>
 
       <h4 id="formatting-braces-all">
-        4.1.1 Скобки, использующиеся для всех управляющих структур
+        4.1.1 Braces are used for all control structures
       </h4>
 
       <p>
-        Скобки требуются для всех управляющих структур (например,
-        <code>if</code>, <code>else</code>, <code>for</code>, <code>do</code>,
-        <code>while</code> и т.п.), даже если тело содержит один оператор.
-        Первый оператор непустого блока должен начинаться с отдельной строки.
+        Braces are required for all control structures (i.e. <code>if</code>,
+        <code>else</code>, <code>for</code>, <code>do</code>,
+        <code>while</code>, as well as any others), even if the body contains
+        only a single statement. The first statement of a non-empty block must
+        begin on its own line.
       </p>
 
-      <p>Не разрешено:</p>
+      <p>Disallowed:</p>
 
       <pre><code class="language-js badcode prettyprint">if (someVeryLongCondition())
   doSomething();
@@ -978,43 +935,43 @@ for (let i = 0; i &lt; foo.length; i++) bar(foo[i]);
 </code></pre>
 
       <p>
-        <strong>Исключение</strong>: Простой оператор if, который может
-        поместиться целиком в одну строку без переноса (и в котором нет
-        другого), может быть сохранен в одной строке без фигурных скобок, когда
-        он улучшает читабельность. Это единственный случай, когда управляющая
-        структура может пропускать скобки и переводы строк.
+        <strong>Exception</strong>: A simple if statement that can fit entirely
+        on a single line with no wrapping (and that doesn&#8217;t have an else)
+        may be kept on a single line with no braces when it improves
+        readability. This is the only case in which a control structure may omit
+        braces and newlines.
       </p>
 
       <pre><code class="language-js prettyprint">if (shortCondition()) foo();
 </code></pre>
 
       <h4 id="formatting-nonempty-blocks">
-        4.1.2 Непустые блоки: стиль K&amp;R
+        4.1.2 Nonempty blocks: K&amp;R style
       </h4>
 
       <p>
-        Скобки следуют стилю Кернигана и Ричи (<q
+        Braces follow the Kernighan and Ritchie style (<q
           ><a
             href="http://www.codinghorror.com/blog/2012/07/new-programming-jargon.html"
-            >египитские скобки</a
+            >Egyptian brackets</a
           ></q
-        >) для <em>непутсых</em> блоков и блочных конструкций:
+        >) for <em>nonempty</em> blocks and block-like constructs:
       </p>
 
       <ul>
-        <li>Никакого разрыва строки перед открывающей скобкой.</li>
-        <li>Разрыв строки после открывающей скобки.</li>
-        <li>Разрыв строки перед закрывающей скобкой.</li>
+        <li>No line break before the opening brace.</li>
+        <li>Line break after the opening brace.</li>
+        <li>Line break before the closing brace.</li>
         <li>
-          Разрыв строки после закрывающей скобки <em>if</em> эта фигурная скобка
-          завершает оператор или тело оператора функции или класса или метод
-          класса. В частности, после фигурной скобки <em>нет</em> разрыва
-          строки, если за ней следует <code>else</code>, <code>catch</code>,
-          <code>while</code>, или запятая, точка с запятой или правая скобка.
+          Line break after the closing brace <em>if</em> that brace terminates a
+          statement or the body of a function or class statement, or a class
+          method. Specifically, there is <em>no</em> line break after the brace
+          if it is followed by <code>else</code>, <code>catch</code>,
+          <code>while</code>, or a comma, semicolon, or right-parenthesis.
         </li>
       </ul>
 
-      <p>Пример:</p>
+      <p>Example:</p>
 
       <pre><code class="language-js prettyprint">class InnerClass {
   constructor() {}
@@ -1023,7 +980,7 @@ for (let i = 0; i &lt; foo.length; i++) bar(foo[i]);
   method(foo) {
     if (condition(foo)) {
       try {
-        // Обратите внимание: это может потерпеть неудачу.
+        // Note: this might fail.
         something();
       } catch (err) {
         recover();
@@ -1033,25 +990,23 @@ for (let i = 0; i &lt; foo.length; i++) bar(foo[i]);
 }
 </code></pre>
 
-      <h4 id="formatting-empty-blocks">
-        4.1.3 Пустые блоки: могут быть краткими
-      </h4>
+      <h4 id="formatting-empty-blocks">4.1.3 Empty blocks: may be concise</h4>
 
       <p>
-        Пустой блок или блочно-подобная конструкция <em>может</em> быть закрыта
-        сразу после открытия, без символов, пробелов или разрыва строки между
-        ними (например, <code>{}</code>), <strong>Если</strong> только это не
-        является частью <em>многоблочного оператора</em> (который содержит
-        непосредственно несколько блоков: <code>if</code>/<code>else</code> или
+        An empty block or block-like construct <em>may</em> be closed
+        immediately after it is opened, with no characters, space, or line break
+        in between (i.e. <code>{}</code>), <strong>unless</strong> it is a part
+        of a <em>multi-block statement</em> (one that directly contains multiple
+        blocks: <code>if</code>/<code>else</code> or
         <code>try</code>/<code>catch</code>/<code>finally</code>).
       </p>
 
-      <p>Пример:</p>
+      <p>Example:</p>
 
       <pre><code class="language-js prettyprint">function doNothing() {}
 </code></pre>
 
-      <p>Запрещено:</p>
+      <p>Disallowed:</p>
 
       <pre><code class="language-js prettyprint badcode">if (condition) {
   // &#8230;
@@ -1065,25 +1020,25 @@ try {
 </code></pre>
 
       <h3 id="formatting-block-indentation">
-        4.2 Блочный отступ: +2 пробела
+        4.2 Block indentation: +2 spaces
       </h3>
 
       <p>
-        Каждый раз, когда открывается новый блок или блочная конструкция, отступ
-        увеличивается на два пробела. Когда блок заканчивается, отступ
-        возвращается к предыдущему уровню отступа. Уровень отступа применяется
-        как к коду, так и к комментариям по всему блоку. (См. Пример в
+        Each time a new block or block-like construct is opened, the indent
+        increases by two spaces. When the block ends, the indent returns to the
+        previous indent level. The indent level applies to both code and
+        comments throughout the block. (See the example in
         <a href="#formatting-nonempty-blocks">??</a>).
       </p>
 
       <h4 id="formatting-array-literals">
-        4.2.1 Литералы массива: <q>опционально блочные</q>
+        4.2.1 Array literals: optionally <q>block-like</q>
       </h4>
 
       <p>
-        Любой литерал массива может быть необязательно отформатирован так, как
-        если бы он был «блочной конструкцией». Например, допустимые варианты
-        ниже (<strong>не</strong> исчерпывающий список):
+        Any array literal may optionally be formatted as if it were a
+        &#8220;block-like construct.&#8221; For example, the following are all
+        valid (<strong>not</strong> an exhaustive list):
       </p>
 
       <pre><code class="language-js prettyprint columns">const a = [
@@ -1105,20 +1060,20 @@ someMethod(foo, [
 </code></pre>
 
       <p>
-        Допускаются другие комбинации, особенно при выделении семантических
-        группировок между элементами, но они не должны использоваться только для
-        уменьшения вертикального размера больших массивов.
+        Other combinations are allowed, particularly when emphasizing semantic
+        groupings between elements, but should not be used only to reduce the
+        vertical size of larger arrays.
       </p>
 
       <h4 id="formatting-object-literals">
-        4.2.2 Объектные литералы: <q>опционально блочные</q>
+        4.2.2 Object literals: optionally <q>block-like</q>
       </h4>
 
       <p>
-        Любой объектный литерал может быть отформатирован так, как если бы он
-        был «блочной конструкцией». Применяются те же примеры, что и
-        <a href="#formatting-array-literals">??</a>. Например, следующие
-        действительны (<strong>не</strong> исчерпывающий список):
+        Any object literal may optionally be formatted as if it were a
+        &#8220;block-like construct.&#8221; The same examples apply as
+        <a href="#formatting-array-literals">??</a>. For example, the following
+        are all valid (<strong>not</strong> an exhaustive list):
       </p>
 
       <pre><code class="language-js prettyprint columns">const a = {
@@ -1137,20 +1092,19 @@ someMethod(foo, {
 }, bar);
 </code></pre>
 
-      <h4 id="formatting-class-literals">4.2.3 Литералы класса</h4>
+      <h4 id="formatting-class-literals">4.2.3 Class literals</h4>
 
       <p>
-        Литералы класса (будь то объявления или выражения) имеют отступ в виде
-        блоков. Не добавляйте точку с запятой после методов или после
-        закрывающей скобки
-        <em>объявления класса</em> (операторы, такие как присваивания, которые
-        содержат <em>выражения</em> класса, по-прежнему заканчиваются точкой с
-        запятой). Используйте ключевое слово <code>@extends</code>, но не
-        аннотацию <code>@extends</code> JSDoc, если класс не расширяет
-        шаблонизированный тип.
+        Class literals (whether declarations or expressions) are indented as
+        blocks. Do not add semicolons after methods, or after the closing brace
+        of a class <em>declaration</em> (statements&#8212;such as
+        assignments&#8212;that contain class <em>expressions</em> are still
+        terminated with a semicolon). Use the <code>extends</code> keyword, but
+        not the <code>@extends</code> JSDoc annotation unless the class extends
+        a templatized type.
       </p>
 
-      <p>Пример:</p>
+      <p>Example:</p>
 
       <pre><code class="language-js prettyprint columns">class Foo {
   constructor() {
@@ -1181,21 +1135,19 @@ class Frobnicator {
 }
 </code></pre>
 
-      <h4 id="formatting-function-expressions">
-        4.2.4 Функциональные выражения
-      </h4>
+      <h4 id="formatting-function-expressions">4.2.4 Function expressions</h4>
 
       <p>
-        При объявлении анонимной функции в списке аргументов для вызова функции
-        тело функции имеет отступ на два пробела больше, чем предыдущая глубина
-        отступа.
+        When declaring an anonymous function in the list of arguments for a
+        function call, the body of the function is indented two spaces more than
+        the preceding indentation depth.
       </p>
 
-      <p>Пример:</p>
+      <p>Example:</p>
 
       <pre><code class="language-js prettyprint">prefix.something.reallyLongFunctionName('whatever', (a1, a2) =&gt; {
-  // Отступ тела функции +2 относительно глубины отступа
-  // оператора "префикса" на одну строку выше.
+  // Indent the function body +2 relative to indentation depth
+  // of the 'prefix' statement one line above.
   if (a1.equals(a2)) {
     someOtherLongFunctionName(a1);
   } else {
@@ -1206,34 +1158,34 @@ class Frobnicator {
 some.reallyLongFunctionCall(arg1, arg2, arg3)
     .thatsWrapped()
     .then((result) =&gt; {
-      // Отступ тела функции +2 относительно глубины отступа
-      // от вызова '.then()'.
+      // Indent the function body +2 relative to the indentation depth
+      // of the '.then()' call.
       if (result) {
         result.use();
       }
     });
 </code></pre>
 
-      <h4 id="formatting-switch-statements">4.2.5 Switch оператор</h4>
+      <h4 id="formatting-switch-statements">4.2.5 Switch statements</h4>
 
       <p>
-        Как и в любом другом блоке, содержимое блока switch имеет отступ +2.
+        As with any other block, the contents of a switch block are indented +2.
       </p>
 
       <p>
-        После метки переключателя появляется новая строка, и уровень отступа
-        увеличивается на +2, точно так же, как если бы блок открывался. Явный
-        блок может использоваться, если этого требует лексическая область
-        видимости. Следующая метка переключателя возвращает к предыдущему уровню
-        отступа, как если бы блок был закрыт.
+        After a switch label, a newline appears, and the indentation level is
+        increased +2, exactly as if a block were being opened. An explicit block
+        may be used if required by lexical scoping. The following switch label
+        returns to the previous indentation level, as if a block had been
+        closed.
       </p>
 
       <p>
-        Пустая строка необязательна между <code>break</code> и следующим
-        случаем.
+        A blank line is optional between a <code>break</code> and the following
+        case.
       </p>
 
-      <p>Пример:</p>
+      <p>Example:</p>
 
       <pre><code class="language-js prettyprint">switch (animal) {
   case Animal.BANDERSNATCH:
@@ -1249,197 +1201,190 @@ some.reallyLongFunctionCall(arg1, arg2, arg3)
 }
 </code></pre>
 
-      <h3 id="formatting-statements">4.3 Операторы</h3>
+      <h3 id="formatting-statements">4.3 Statements</h3>
 
       <h4 id="formatting-one-statement-perline">
-        4.3.1 Один оператор на строку
+        4.3.1 One statement per line
       </h4>
 
-      <p>После каждого оператора делается перевод строки.</p>
+      <p>Each statement is followed by a line-break.</p>
 
       <h4 id="formatting-semicolons-are-required">
-        4.3.2 Необходима точка с запятой.
+        4.3.2 Semicolons are required
       </h4>
 
       <p>
-        Каждое утверждение должно заканчиваться точкой с запятой. Использование
-        автоматической точки с запятой запрещено.
+        Every statement must be terminated with a semicolon. Relying on
+        automatic semicolon insertion is forbidden.
       </p>
 
-      <h3 id="formatting-column-limit">4.4 Лимит строки: 80 символов</h3>
+      <h3 id="formatting-column-limit">4.4 Column limit: 80</h3>
 
       <p>
-        Код JavaScript имеет ограничение столбца 80 символов. За исключением
-        случаев, указанных ниже, любая строка, которая превысила бы этот предел,
-        должна быть перенесена, как описано в
-        <a href="#formatting-line-wrapping">??</a>.
+        JavaScript code has a column limit of 80 characters. Except as noted
+        below, any line that would exceed this limit must be line-wrapped, as
+        explained in <a href="#formatting-line-wrapping">??</a>.
       </p>
 
-      <p><strong>Исключения:</strong></p>
+      <p><strong>Exceptions:</strong></p>
 
       <ol>
         <li>
-          Операторы <code>goog.module</code>, <code>goog.require</code> и
-          <code>goog.requireType</code> (см.
-          <a href="#file-goog-module">??</a> и
+          <code>goog.module</code>, <code>goog.require</code> and
+          <code>goog.requireType</code> statements (see
+          <a href="#file-goog-module">??</a> and
           <a href="#file-goog-require">??</a>).
         </li>
         <li>
-          ES модули <code>import</code> и операторы
-          <code>export from</code> (см. <a href="#es-module-imports">??</a> и
+          ES module <code>import</code> and <code>export from</code> statements
+          (see <a href="#es-module-imports">??</a> and
           <a href="#es-module-export-from">??</a>).
         </li>
         <li>
-          Линии, в которых соблюдение предела столбцов невозможно или может
-          препятствовать обнаружению. Примеры включают в себя:
+          Lines where obeying the column limit is not possible or would hinder
+          discoverability. Examples include:
           <ul>
-            <li>Длинный URL, который должен быть кликабельным в источнике.</li>
-            <li>Команда консоли, предназначенная для копирования и вставки</li>
+            <li>A long URL which should be clickable in source.</li>
+            <li>A shell command intended to be copied-and-pasted.</li>
             <li>
-              Длинный строковый литерал, который может потребоваться полностью
-              скопировать или найти (например, длинный путь к файлу).
+              A long string literal which may need to be copied or searched for
+              wholly (e.g., a long file path).
             </li>
           </ul>
         </li>
       </ol>
 
-      <h3 id="formatting-line-wrapping">4.5 Перенос строк</h3>
+      <h3 id="formatting-line-wrapping">4.5 Line-wrapping</h3>
 
       <p>
-        <strong>Терминологическая заметка</strong>:
-        <em>Перенос строки</em> разбивает кусок кода на несколько строк в
-        соответствии с ограничением столбца, где фрагмент в противном случае мог
-        бы по закону поместиться в одну строку.
+        <strong>Terminology Note</strong>: <em>Line wrapping</em> is breaking a
+        chunk of code into multiple lines to obey column limit, where the chunk
+        could otherwise legally fit in a single line.
       </p>
 
       <p>
-        Не существует всеобъемлющей формулы, показывающей, как
-        <em>именно</em> переносить строки в каждой ситуации. Очень часто есть
-        несколько допустимых способов переноса строк в одном и том же фрагменте
-        кода.
+        There is no comprehensive, deterministic formula showing
+        <em>exactly</em> how to line-wrap in every situation. Very often there
+        are several valid ways to line-wrap the same piece of code.
       </p>
 
       <p>
-        Примечание. Хотя типичная причина переноса строки заключается в том,
-        чтобы избежать переполнения предела столбца, даже код, который на самом
-        деле помещается в пределе столбца, может быть перенесен строкой на
-        усмотрение автора.
+        Note: While the typical reason for line-wrapping is to avoid overflowing
+        the column limit, even code that would in fact fit within the column
+        limit may be line-wrapped at the author's discretion.
       </p>
 
       <p>
-        Совет: извлечение метода или локальной переменной может решить проблему
-        без необходимости переноса строки.
+        Tip: Extracting a method or local variable may solve the problem without
+        the need to line-wrap.
       </p>
 
-      <h4 id="formatting-where-to-break">4.5.1 Когда переносить</h4>
+      <h4 id="formatting-where-to-break">4.5.1 Where to break</h4>
 
       <p>
-        Основная директива переноса строк такова: предпочитайте разрывать на
-        <strong>более высоком синтаксическом уровне</strong>.
+        The prime directive of line-wrapping is: prefer to break at a
+        <strong>higher syntactic level</strong>.
       </p>
 
-      <p>Предпочтительно:</p>
+      <p>Preferred:</p>
 
       <pre><code class="language-js prettyprint">currentEstimate =
     calc(currentEstimate + x * currentEstimate) /
         2.0;
 </code></pre>
 
-      <p>Нежелательно:</p>
+      <p>Discouraged:</p>
 
       <pre><code class="language-js prettyprint badcode">currentEstimate = calc(currentEstimate + x *
     currentEstimate) / 2.0;
 </code></pre>
 
       <p>
-        В предыдущем примере синтаксические уровни от самого высокого до самого
-        низкого следующие: назначение, деление, вызов функции, параметры,
-        числовая константа.
+        In the preceding example, the syntactic levels from highest to lowest
+        are as follows: assignment, division, function call, parameters, number
+        constant.
       </p>
 
-      <p>Операторы переносятся следующим образом:</p>
+      <p>Operators are wrapped as follows:</p>
 
       <ol>
         <li>
-          Когда у оператора разрывается строка, разрыв следует за символом.
-          (Обратите внимание, что это не та же практика, что и в стиле Google
-          для Java.)
+          When a line is broken at an operator the break comes after the symbol.
+          (Note that this is not the same practice used in Google style for
+          Java.)
           <ol>
             <li>
-              Это не относится к <q>точке</q> (<code>.</code>), которая на самом
-              деле не является оператором.
+              This does not apply to the <q>dot</q> (<code>.</code>), which is
+              not actually an operator.
             </li>
           </ol>
         </li>
         <li>
-          Имя метода или конструктора остается присоединенным к открытой круглой
-          скобке (<code>(</code>), которая следует за ней.
+          A method or constructor name stays attached to the open parenthesis
+          (<code>(</code>) that follows it.
         </li>
         <li>
-          Запятая (<code>,</code>) остается прикрепленной к токену, который
-          предшествует ей.
+          A comma (<code>,</code>) stays attached to the token that precedes it.
         </li>
       </ol>
 
       <blockquote>
         <p>
-          Примечание. Основной целью переноса строк является наличие четкого
-          кода, а не обязательно кода, который помещается в наименьшее
-          количество строк.
+          Note: The primary goal for line wrapping is to have clear code, not
+          necessarily code that fits in the smallest number of lines.
         </p>
       </blockquote>
 
       <h4 id="formatting-indent">
-        4.5.2 Отступ строки продолжения не менее +4 пробелов
+        4.5.2 Indent continuation lines at least +4 spaces
       </h4>
 
       <p>
-        При переносе строк каждая строка после первой (каждая
-        <em> строка продолжения </em>) имеет отступ не менее +4 от исходной
-        строки, если только она не подпадает под правила отступа блока.
+        When line-wrapping, each line after the first (each
+        <em>continuation line</em>) is indented at least +4 from the original
+        line, unless it falls under the rules of block indentation.
       </p>
 
       <p>
-        Когда имеется несколько строк продолжения, отступ может изменяться за
-        пределы +4 в зависимости от ситуации. Как правило, строки продолжения на
-        более глубоком синтаксическом уровне имеют отступ с большим числом,
-        кратным 4, и две строки используют один и тот же уровень отступа, если и
-        только если они начинаются с синтаксически параллельных элементов.
+        When there are multiple continuation lines, indentation may be varied
+        beyond +4 as appropriate. In general, continuation lines at a deeper
+        syntactic level are indented by larger multiples of 4, and two lines use
+        the same indentation level if and only if they begin with syntactically
+        parallel elements.
       </p>
 
       <p>
-        <a href="#formatting-horizontal-alignment">??</a> объясняет
-        нежелательную практику использования переменного числа пробелов для
-        выравнивания определенных токенов с предыдущими строками.
+        <a href="#formatting-horizontal-alignment">??</a> addresses the
+        discouraged practice of using a variable number of spaces to align
+        certain tokens with previous lines.
       </p>
 
-      <h3 id="formatting-whitespace">4.6 Пробелы</h3>
+      <h3 id="formatting-whitespace">4.6 Whitespace</h3>
 
-      <h4 id="formatting-vertical-whitespace">4.6.1 Вертикальный пробел</h4>
+      <h4 id="formatting-vertical-whitespace">4.6.1 Vertical whitespace</h4>
 
-      <p>Одна пустая строка ставится:</p>
+      <p>A single blank line appears:</p>
 
       <ol>
         <li>
-          Между последовательными методами в литерале класса или объекта
+          Between consecutive methods in a class or object literal
           <ol>
             <li>
-              Исключение: пустая строка между двумя последовательными
-              определениями свойств в литерале объекта (без другого кода между
-              ними) является необязательной. Такие пустые строки используются по
-              мере необходимости для создания
-              <em>логических группировок</em> полей.
+              Exception: A blank line between two consecutive properties
+              definitions in an object literal (with no other code between them)
+              is optional. Such blank lines are used as needed to create
+              <em>logical groupings</em> of fields.
             </li>
           </ol>
         </li>
         <li>
-          Внутри тел методов, экономно создавать
-          <em>логические группировки</em> операторов. Пустые строки в начале или
-          конце тела функции не допускаются.
+          Within method bodies, sparingly to create
+          <em>logical groupings</em> of statements. Blank lines at the start or
+          end of a function body are not allowed.
         </li>
         <li>
-          <em>Необязательно</em> перед первым или после последнего метода в
-          литерале класса или объекта (не рекомендуется и не поощряется).
+          <em>Optionally</em> before the first or after the last method in a
+          class or object literal (neither encouraged nor discouraged).
         </li>
         <li>
           As required by other sections of this document (e.g.
@@ -1448,155 +1393,150 @@ some.reallyLongFunctionCall(arg1, arg2, arg3)
       </ol>
 
       <p>
-        <em> Несколько </em> последовательных пустых строк разрешены, но никогда
-        не требуются (и не поощряются).
+        <em>Multiple</em> consecutive blank lines are permitted, but never
+        required (nor encouraged).
       </p>
 
-      <h4 id="formatting-horizontal-whitespace">
-        4.6.2 Горизонтальный проблел
-      </h4>
+      <h4 id="formatting-horizontal-whitespace">4.6.2 Horizontal whitespace</h4>
 
       <p>
-        Использование горизонтального пробела зависит от местоположения и
-        подразделяется на три широкие категории: <em> ведущий </em> (в начале
-        строки), <em> конечный </em> (в конце строки) и <em> внутренний </em>.
-        ведущий   пробел (то есть отступ) адресован в другом месте. Конечный
-        пробел запрещен.
+        Use of horizontal whitespace depends on location, and falls into three
+        broad categories: <em>leading</em> (at the start of a line),
+        <em>trailing</em> (at the end of a line), and <em>internal</em>. Leading
+        whitespace (i.e., indentation) is addressed elsewhere. Trailing
+        whitespace is forbidden.
       </p>
 
       <p>
-        Кроме того, где этого требуют правила языка или других стилевых правил,
-        а также литералы, комментарии и JSDoc, единое внутреннее пространство
-        ASCII также появляется <strong>только</strong> в следующих местах.
+        Beyond where required by the language or other style rules, and apart
+        from literals, comments, and JSDoc, a single internal ASCII space also
+        appears in the following places <strong>only</strong>.
       </p>
 
       <ol>
         <li>
-          Отделение любого зарезервированного слова (например, <code>if</code>,
-          <code>for</code> или <code>catch</code>), за исключением
-          <code>function</code> и <code>super</code> из открытой скобки
-          (<code>(</code>), которая следует за ней в этой строке.
+          Separating any reserved word (such as <code>if</code>,
+          <code>for</code>, or <code>catch</code>) except for
+          <code>function</code> and <code>super</code>, from an open parenthesis
+          (<code>(</code>) that follows it on that line.
         </li>
         <li>
-          Отделение любого зарезервированного слова (такого как
-          <code>else</code> или <code>catch</code>) от закрывающей фигурной
-          скобки (<code>}</code>), которая предшествует ему в этой строке.
+          Separating any reserved word (such as <code>else</code> or
+          <code>catch</code>) from a closing curly brace (<code>}</code>) that
+          precedes it on that line.
         </li>
         <li>
-          Перед любой открытой фигурной скобкой (<code>{</code>), с двумя
-          исключениями:
+          Before any open curly brace (<code>{</code>), with two exceptions:
           <ol>
             <li>
-              Перед литералом объекта, который является первым аргументом
-              функции или первым элементом в литерале массива (например,
-              <code> foo ({a: [{c: d}]}) </code>).
+              Before an object literal that is the first argument of a function
+              or the first element in an array literal (e.g.
+              <code>foo({a: [{c: d}]})</code>).
             </li>
             <li>
-              В расширении шаблона, как это запрещено языком (например, валидно:
-              <code>`ab${1 + 2}cd`</code>, не валидно:
+              In a template expansion, as it is forbidden by the language (e.g.
+              valid: <code>`ab${1 + 2}cd`</code>, invalid:
               <code class="badcode">`xy$ {3}z`</code>).
             </li>
           </ol>
         </li>
-        <li>С обеих сторон любой бинарный или троичный оператор.</li>
+        <li>On both sides of any binary or ternary operator.</li>
         <li>
-          После запятой (<code>, </code>) или точки с запятой (<code>;</code>).
-          Обратите внимание, что пробелы <em>никогда</em> разрешены перед этими
-          символами.
+          After a comma (<code>,</code>) or semicolon (<code>;</code>). Note
+          that spaces are <em>never</em> allowed before these characters.
         </li>
-        <li>После двоеточия (<code>: </code>) в литерале объекта.</li>
+        <li>After the colon (<code>:</code>) in an object literal.</li>
         <li>
-          По обе стороны от двойной косой черты (<code>//</code>), начинающей
-          комментарий в конце строки. Здесь разрешено использование нескольких
-          пробелов, но это не обязательно.
+          On both sides of the double slash (<code>//</code>) that begins an
+          end-of-line comment. Here, multiple spaces are allowed, but not
+          required.
         </li>
         <li>
-          После символа комментария открытого блока и с обеих сторон символов
-          закрытия (например, для кратких объявлений типов, приведений и
-          комментариев имени параметра:
-          <code>this.foo = /** @type {number} */ (bar)</code>; или
-          <code>function(/** string */ foo) {</code>; или
+          After an open-block comment character and on both sides of close
+          characters (e.g. for short-form type declarations, casts, and
+          parameter name comments:
+          <code>this.foo = /** @type {number} */ (bar)</code>; or
+          <code>function(/** string */ foo) {</code>; or
           <code>baz(/* buzz= */ true)</code>).
         </li>
       </ol>
 
       <h4 id="formatting-horizontal-alignment">
-        4.6.3 Горизонтальное выравнивание: не рекомендуется
+        4.6.3 Horizontal alignment: discouraged
       </h4>
 
       <p>
-        <strong>Примечание по терминологии:</strong> Горизонтальное выравнивание
-        - это практика добавления в ваш код переменного числа дополнительных
-        пробелов с целью отображения определенных токенов непосредственно под
-        некоторыми другими токенами в предыдущих строках.
+        <strong>Terminology Note</strong>: <em>Horizontal alignment</em> is the
+        practice of adding a variable number of additional spaces in your code
+        with the goal of making certain tokens appear directly below certain
+        other tokens on previous lines.
       </p>
 
       <p>
-        Эта практика разрешена, но, как правило,
-        <strong>не рекомендуется</strong> в Google Style. Даже не требуется
-        <em>поддерживать</em> горизонтальное выравнивание в местах, где оно уже
-        использовалось.
+        This practice is permitted, but it is
+        <strong>generally discouraged</strong> by Google Style. It is not even
+        required to <em>maintain</em> horizontal alignment in places where it
+        was already used.
       </p>
 
       <p>
-        Вот пример без выравнивания, за которым следует пример с выравниванием.
-        Оба разрешены, но последний не рекомендуется:
+        Here is an example without alignment, followed by one with alignment.
+        Both are allowed, but the latter is discouraged:
       </p>
 
       <pre><code class="language-js prettyprint">{
-  tiny: 42, // хорошо
-  longer: 435, // тоже хорошо
+  tiny: 42, // this is great
+  longer: 435, // this too
 };
 
 {
-  tiny:   42,  // разрешено, но требует будущего редактирования
-  longer: 435, // может остаться без выравнивания
+  tiny:   42,  // permitted, but future edits
+  longer: 435, // may leave it unaligned
 };
 </code></pre>
 
       <p>
-        Совет: Выравнивание может улучшить читаемость, но создает проблемы для
-        дальнейшего обслуживания. Рассмотрим будущее изменение, которое должно
-        касаться только одной строки. Это изменение может оставить искаженное
-        ранее приятное форматирование, и это разрешено. Чаще всего это побуждает
-        кодера (возможно, вас) также корректировать пробелы на близлежащих
-        линиях, возможно, вызывая каскадную серию переформатирований. Это
-        изменение в одну строку теперь имеет радиус взрыва. В худшем случае это
-        может привести к бессмысленной занятой работе, но в лучшем случае это
-        все еще искажает информацию об истории версий, замедляет работу
-        рецензентов и усугубляет конфликты слияний.
+        Tip: Alignment can aid readability, but it creates problems for future
+        maintenance. Consider a future change that needs to touch just one line.
+        This change may leave the formerly-pleasing formatting mangled, and that
+        is allowed. More often it prompts the coder (perhaps you) to adjust
+        whitespace on nearby lines as well, possibly triggering a cascading
+        series of reformattings. That one-line change now has a
+        <q>blast radius.</q> This can at worst result in pointless busywork, but
+        at best it still corrupts version history information, slows down
+        reviewers and exacerbates merge conflicts.
       </p>
 
-      <h4 id="formatting-function-arguments">4.6.4 Аргументы функций</h4>
+      <h4 id="formatting-function-arguments">4.6.4 Function arguments</h4>
 
       <p>
-        Предпочитаю помещать все аргументы функции в одну строку с именем
-        функции. Если это превысит ограничение в 80 столбцов, аргументы должны
-        быть обернуты строкой в удобочитаемом виде. Чтобы сэкономить место, вы
-        можете обернуть как можно ближе к 80 или поместить каждый аргумент в
-        отдельной строке, чтобы улучшить читаемость. Отступы должны быть четыре
-        пробела. Выравнивание в скобках разрешено, но не рекомендуется. Ниже
-        приведены наиболее распространенные шаблоны для переноса аргументов:
+        Prefer to put all function arguments on the same line as the function
+        name. If doing so would exceed the 80-column limit, the arguments must
+        be line-wrapped in a readable way. To save space, you may wrap as close
+        to 80 as possible, or put each argument on its own line to enhance
+        readability. Indentation should be four spaces. Aligning to the
+        parenthesis is allowed, but discouraged. Below are the most common
+        patterns for argument wrapping:
       </p>
 
-      <pre><code class="language-js prettyprint">// Аргументы начинаются с новой строки, с отступом в четыре пробела. Предпочтительнее, когда
-// аргументы не помещаются в одну строку с именем функции (или ключевым словом
-// "функция"), но помещается полностью на второй строке. Работает с очень долго
-// имена функций, сохраняется переименование без переиндексации, мало места.
+      <pre><code class="language-js prettyprint">// Arguments start on a new line, indented four spaces. Preferred when the
+// arguments don't fit on the same line with the function name (or the keyword
+// "function") but fit entirely on the second line. Works with very long
+// function names, survives renaming without reindenting, low on space.
 doSomething(
     descriptiveArgumentOne, descriptiveArgumentTwo, descriptiveArgumentThree) {
   // &#8230;
 }
 
-// Если список аргументов длиннее, оберните в 80. Использует меньше вертикального пространства,
-// но нарушает правило прямоугольника и поэтому не рекомендуется.
+// If the argument list is longer, wrap at 80. Uses less vertical space,
+// but violates the rectangle rule and is thus not recommended.
 doSomething(veryDescriptiveArgumentNumberOne, veryDescriptiveArgumentTwo,
     tableModelEventHandlerProxy, artichokeDescriptorAdapterIterator) {
   // &#8230;
 }
 
-// Четыре пробела, один аргумент в строке. Работает с длинными именами функций,
-// выживает переименование, и подчеркивает каждый аргумент.
+// Four-space, one argument per line.  Works with long function names,
+// survives renaming, and emphasizes each argument.
 doSomething(
     veryDescriptiveArgumentNumberOne,
     veryDescriptiveArgumentTwo,
@@ -1620,8 +1560,7 @@ doSomething(
 
       <p>
         Do not use unnecessary parentheses around the entire expression
-        following
-        <code>delete</code>, <code>typeof</code>, <code>void</code>,
+        following <code>delete</code>, <code>typeof</code>, <code>void</code>,
         <code>return</code>, <code>throw</code>, <code>case</code>,
         <code>in</code>, <code>of</code>, or <code>yield</code>.
       </p>
@@ -1642,11 +1581,10 @@ doSomething(
 
       <p>
         Block comments are indented at the same level as the surrounding code.
-        They may be in
-        <code>/* &#8230; */</code> or <code>//</code>-style. For multi-line
-        <code>/* &#8230; */</code> comments, subsequent lines must start with *
-        aligned with the <code>*</code> on the previous line, to make comments
-        obvious with no extra context.
+        They may be in <code>/* &#8230; */</code> or <code>//</code>-style. For
+        multi-line <code>/* &#8230; */</code> comments, subsequent lines must
+        start with * aligned with the <code>*</code> on the previous line, to
+        make comments obvious with no extra context.
       </p>
 
       <pre><code class="language-js prettyprint">/*
@@ -1719,8 +1657,8 @@ doSomething(
 
       <p>
         Every local variable declaration declares only one variable:
-        declarations such as
-        <code class="badcode">let a = 1, b = 2;</code> are not used.
+        declarations such as <code class="badcode">let a = 1, b = 2;</code> are
+        not used.
       </p>
 
       <h4 id="features-declared-when-needed">
@@ -1845,10 +1783,9 @@ const a4 = [];
       <p>
         Array literals may be used on the left-hand side of an assignment to
         perform destructuring (such as when unpacking multiple values from a
-        single array or iterable). A final
-        <q>rest</q> element may be included (with no space between the
-        <code>...</code> and the variable name). Elements should be omitted if
-        they are unused.
+        single array or iterable). A final <q>rest</q> element may be included
+        (with no space between the <code>...</code> and the variable name).
+        Elements should be omitted if they are unused.
       </p>
 
       <pre><code class="language-js prettyprint">const [a, b, c, ...rest] = generateResults();
@@ -2168,11 +2105,10 @@ const Option = {
       <p>
         Computed properties may only be used in classes when the property is a
         symbol. Dict-style properties (that is, quoted or computed non-symbol
-        keys, as defined in
-        <a href="#features-objects-mixing-keys">??</a>) are not allowed. A
-        <code>[Symbol.iterator]</code> method should be defined for any classes
-        that are logically iterable. Beyond this, <code>Symbol</code> should be
-        used sparingly.
+        keys, as defined in <a href="#features-objects-mixing-keys">??</a>) are
+        not allowed. A <code>[Symbol.iterator]</code> method should be defined
+        for any classes that are logically iterable. Beyond this,
+        <code>Symbol</code> should be used sparingly.
       </p>
 
       <p>
@@ -2410,8 +2346,8 @@ class Frobnicator {
 
       <p>
         Use abstract classes when appropriate. Abstract classes and methods must
-        be annotated with
-        <code>@abstract</code>. Do not use <code>goog.abstractMethod</code>. See
+        be annotated with <code>@abstract</code>. Do not use
+        <code>goog.abstractMethod</code>. See
         <a
           href="https://github.com/google/closure-compiler/wiki/@abstract-classes-and-methods"
           >abstract classes and methods</a
@@ -2676,10 +2612,9 @@ function variadic(array, ...numbers) {}
 
       <p>
         Function calls may use the spread operator (<code>...</code>). Prefer
-        the spread operator to
-        <code>Function.prototype.apply</code> when an array or iterable is
-        unpacked into multiple parameters of a variadic function. There is no
-        space after the <code>...</code>.
+        the spread operator to <code>Function.prototype.apply</code> when an
+        array or iterable is unpacked into multiple parameters of a variadic
+        function. There is no space after the <code>...</code>.
       </p>
 
       <p>Example:</p>
@@ -2860,8 +2795,7 @@ return handleTextResponse(response);
 
       <p>
         Within a switch block, each statement group either terminates abruptly
-        (with a
-        <code>break</code>, <code>return</code> or <code>throw</code>n
+        (with a <code>break</code>, <code>return</code> or <code>throw</code>n
         exception), or is marked with a comment to indicate that execution will
         or might continue into the next statement group. Any comment that
         communicates the idea of fall-through is sufficient (typically
@@ -2964,14 +2898,13 @@ return handleTextResponse(response);
 
       <p>
         Do not use non-standard features. This includes old features that have
-        been removed (e.g.,
-        <code>WeakMap.clear</code>), new features that are not yet standardized
-        (e.g., the current TC39 working draft, proposals at any stage, or
-        proposed but not-yet-complete web standards), or proprietary features
-        that are only implemented in some browsers. Use only features defined in
-        the current ECMA-262 or WHATWG standards. (Note that projects writing
-        against specific APIs, such as Chrome extensions or Node.js, can
-        obviously use those APIs). Non-standard language
+        been removed (e.g., <code>WeakMap.clear</code>), new features that are
+        not yet standardized (e.g., the current TC39 working draft, proposals at
+        any stage, or proposed but not-yet-complete web standards), or
+        proprietary features that are only implemented in some browsers. Use
+        only features defined in the current ECMA-262 or WHATWG standards. (Note
+        that projects writing against specific APIs, such as Chrome extensions
+        or Node.js, can obviously use those APIs). Non-standard language
         &#8220;extensions&#8221; (such as those provided by some external
         transpilers) are forbidden.
       </p>
@@ -2994,8 +2927,8 @@ if (x) alert(typeof x);  // alerts 'object' - WAT?
 
       <p>
         The wrappers may be called as functions for coercing (which is preferred
-        over using
-        <code>+</code> or concatenating the empty string) or creating symbols.
+        over using <code>+</code> or concatenating the empty string) or creating
+        symbols.
       </p>
 
       <p>Example:</p>
@@ -3262,10 +3195,9 @@ const {assert, assertInstanceof} = asserts;
 
       <p>
         Module-local names that are not exported are implicitly private. They
-        are not marked
-        <code>@private</code> and do not end in an underscore. This applies to
-        classes, functions, variables, constants, enums, and other module-local
-        identifiers.
+        are not marked <code>@private</code> and do not end in an underscore.
+        This applies to classes, functions, variables, constants, enums, and
+        other module-local identifiers.
       </p>
 
       <h3 id="naming-camel-case-defined">6.3 Camel case: defined</h3>
@@ -3282,8 +3214,8 @@ const {assert, assertInstanceof} = asserts;
       <ol>
         <li>
           Convert the phrase to plain ASCII and remove any apostrophes. For
-          example,
-          <q>M&#252;ller's algorithm</q> might become <q>Muellers algorithm</q>.
+          example, <q>M&#252;ller's algorithm</q> might become
+          <q>Muellers algorithm</q>.
         </li>
         <li>
           Divide this result into words, splitting on spaces and any remaining
@@ -3360,9 +3292,8 @@ const {assert, assertInstanceof} = asserts;
 
       <p>
         Note: Some words are ambiguously hyphenated in the English language: for
-        example
-        <q>nonempty</q> and <q>non-empty</q> are both correct, so the method
-        names checkNonempty and checkNonEmpty are likewise both correct.
+        example <q>nonempty</q> and <q>non-empty</q> are both correct, so the
+        method names checkNonempty and checkNonEmpty are likewise both correct.
       </p>
 
       <h2 id="jsdoc">7 JSDoc</h2>
@@ -4255,10 +4186,9 @@ function fn() {
 
         <p>
           Documents the author of a file or the owner of a test, generally only
-          used in the
-          <code>@fileoverview</code> comment. The <code>@owner</code> tag is
-          used by the unit test dashboard to determine who owns the test
-          results.
+          used in the <code>@fileoverview</code> comment. The
+          <code>@owner</code> tag is used by the unit test dashboard to
+          determine who owns the test results.
         </p>
       </section>
 
