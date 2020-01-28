@@ -26,60 +26,60 @@
 Translated: 19,6% (11 from 56 sections)
 Translation progress (translated points - must be removed):
 
-1.1 - translated by Rostislav Dugin
-1.2 - translated by Rostislav Dugin
-2.1 - translated by Rostislav Dugin
-2.2 - translated by Rostislav Dugin
-2.3 - translated by Rostislav Dugin
-3.1 - translated by Rostislav Dugin
-3.2 - translated by Rostislav Dugin
-3.3 - translated by Rostislav Dugin
-3.3.3 - translated by Rostislav Dugin
-3.4 - translated by Rostislav Dugin
-3.5 - translated by Rostislav Dugin
+1.1 - TRANSLATED by Rostislav Dugin
+1.2 - TRANSLATED by Rostislav Dugin
+2.1 - TRANSLATED by Rostislav Dugin
+2.2 - TRANSLATED by Rostislav Dugin
+2.3 - TRANSLATED by Rostislav Dugin
+3.1 - TRANSLATED by Rostislav Dugin
+3.2 - TRANSLATED by Rostislav Dugin
+3.3 - TRANSLATED by Rostislav Dugin
+3.3.3 - TRANSLATED by Rostislav Dugin
+3.4 - TRANSLATED by Rostislav Dugin
+3.5 - TRANSLATED by Rostislav Dugin
 3.6 <--- is translating by Rostislav Dugin
-3.7
-4.1
-4.2
-4.3
-4.4
-4.5
-4.6
-4.7
-4.8
-5.1
-5.2
-5.3
-5.4
-5.5
-5.6
-5.7
-5.8
-5.9
-5.10
-5.11
-6.1
-6.2
-6.3
-7.1
-7.2
-7.3
-7.4
-7.5
-7.6
-7.7
-7.8
-7.9
-7.10
-7.11
-8.1
-8.2
-8.3
-8.4
-8.5
-8.6
-9.1
-9.2
-9.3
-9.4
+3.7 <--- partial machine translation by Rostislav Dugin
+4.1 <--- partial machine translation by Rostislav Dugin
+4.2 <--- partial machine translation by Rostislav Dugin
+4.3 <--- partial machine translation by Rostislav Dugin
+4.4 <--- partial machine translation by Rostislav Dugin
+4.5 <--- partial machine translation by Rostislav Dugin
+4.6 <--- partial machine translation by Rostislav Dugin
+4.7 <--- partial machine translation by Rostislav Dugin
+4.8 <--- partial machine translation by Rostislav Dugin
+5.1 <--- partial machine translation by Rostislav Dugin
+5.2 <--- partial machine translation by Rostislav Dugin
+5.3 <--- partial machine translation by Rostislav Dugin
+5.4 <--- partial machine translation by Rostislav Dugin
+5.5 <--- partial machine translation by Rostislav Dugin
+5.6 <--- partial machine translation by Rostislav Dugin
+5.7 <--- partial machine translation by Rostislav Dugin
+5.8 <--- partial machine translation by Rostislav Dugin
+5.9 <--- partial machine translation by Rostislav Dugin
+5.10 <--- partial machine translation by Rostislav Dugin
+5.11 <--- partial machine translation by Rostislav Dugin
+6.1 <--- partial machine translation by Rostislav Dugin
+6.2 <--- partial machine translation by Rostislav Dugin
+6.3 <--- partial machine translation by Rostislav Dugin
+7.1 <--- partial machine translation by Rostislav Dugin
+7.2 <--- partial machine translation by Rostislav Dugin
+7.3 <--- partial machine translation by Rostislav Dugin
+7.4 <--- partial machine translation by Rostislav Dugin
+7.5 <--- partial machine translation by Rostislav Dugin
+7.6 <--- partial machine translation by Rostislav Dugin
+7.7 <--- partial machine translation by Rostislav Dugin
+7.8 <--- partial machine translation by Rostislav Dugin
+7.9 <--- partial machine translation by Rostislav Dugin
+7.10 <--- partial machine translation by Rostislav Dugin
+7.11 <--- partial machine translation by Rostislav Dugin
+8.1 <--- partial machine translation by Rostislav Dugin
+8.2 <--- partial machine translation by Rostislav Dugin
+8.3 <--- partial machine translation by Rostislav Dugin
+8.4 <--- partial machine translation by Rostislav Dugin
+8.5 <--- partial machine translation by Rostislav Dugin
+8.6 <--- partial machine translation by Rostislav Dugin
+9.1 <--- partial machine translation by Rostislav Dugin
+9.2 <--- partial machine translation by Rostislav Dugin
+9.3 <--- partial machine translation by Rostislav Dugin
+9.4 <--- partial machine translation by Rostislav Dugin
 ```
