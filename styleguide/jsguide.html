@@ -12,12 +12,14 @@
     <div id="content">
       <h1>Google JavaScript руководство по стилю</h1>
       <h2 id="introduction">1 Введение</h2>
+
       <p>
         Этот документ содержит <strong>полное</strong> описание стандартов
         Google для исходного кода на языке JavaScript. JavaScript файл считается
         написанным в <em>стиле Google</em> если и только если он придерживается
         правил, описанных в этом документе.
       </p>
+
       <p>
         Как и другие руководства по стилю программирования, данный документ
         охватывает не только вопрос оформления и форматирования кода, но также
@@ -27,8 +29,11 @@
         которым не следуют следовать (как при ручном, так и при автоматическом
         написании кода).
       </p>
+
       <h3 id="terminology-notes">1.1 Терминологические примечания</h3>
+
       <p>В данном документе, если не указано другое:</p>
+
       <ol>
         <li>
           <p>
@@ -51,35 +56,46 @@
           </p>
         </li>
       </ol>
+
       <p>
         Другие <q>терминологические уточнения</q> будут иногда появляться по
         ходу документа.
       </p>
+
       <h3 id="guide-notes">1.2 Примечания по руководству</h3>
+
       <p>
         Примеры кода в этом документе не являются
         <strong>нормативными</strong> (т.е. обязательными). Это значит, что
         примеры в стиле Google могут и не иллюстрировать единственно правильный
-        вариант стилизации кода. Форматирование кода в данном файле не должено приниматься в качестве правила.
+        вариант стилизации кода. Форматирование кода в данном файле не должено
+        приниматься в качестве правила.
       </p>
+
       <h2 id="source-file-basics">2 Основы исходных файлов</h2>
       <h3 id="file-name">2.1 Имя файла</h3>
+
       <p>
         Имена файлов должны быть в нижнем регистре и могут включать нижнее
         подчеркивание (<code>_</code>) или "тире" (<code>-</code>), но без любой
         другой пунктуации. Придерживайтесь договоренностей, которые используются
         в вашем проекте. Расширения файлов должны быть <code>.js</code>.
       </p>
+
       <h3 id="file-encoding">2.2 Кодировка файлов UTF-8</h3>
+
       <p>Кодировка файлов должна быть в <strong>UTF-8</strong>.</p>
+
       <h3 id="special-characters">2.3 Специальные символы</h3>
       <h4 id="whitespace-characters">2.3.1 Пробельные символы</h4>
+
       <p>
         Помимо последовательности символов перевода строки, символ
         горизонтального проблела (0х20) из таблицы символов ASCII - единственный
         допустимый символ пробела, который может появляться где-либо в исходном
         коде. Это подразумевает, что:
       </p>
+
       <ol>
         <li><p>Все другие пробельные символы экранируются.</p></li>
         <li>
@@ -88,31 +104,38 @@
           </p>
         </li>
       </ol>
+
       <h4 id="special-escape-sequences">
         2.3.2 Специальные экранирующие последовательности
       </h4>
+
       <p>
         Любые символы, которые требуется экранировать специальными символьными
         последовательностями (<code>\'</code>, <code>\"</code>, <code>\\</code>,
         <code>\b</code>, <code>\f</code>, <code>\n</code>, <code>\r</code>,
-        <code>\t</code>, <code>\v</code>) - используют данные последовательности 
+        <code>\t</code>, <code>\v</code>) - используют данные последовательности
         вместо числового экранированния (например, <code>\x0a</code>,
         <code>\u000a</code>, or <code>\u{a}</code>). Устаревшие восьмиричные
         символы экранирования не используются.
       </p>
+
       <h4 id="non-ascii-characters">2.3.3 Не-ASCII символы</h4>
+
       <p>
-        Для оставшихся не-ASCII символов используется или подходящий символ Unicode
-        (например, <code>&#8734;</code>), или эквивалентная hex или Unicode
-        последовательность символов (например, <code>\u221e</code>) в
+        Для оставшихся не-ASCII символов используется или подходящий символ
+        Unicode (например, <code>&#8734;</code>), или эквивалентная hex или
+        Unicode последовательность символов (например, <code>\u221e</code>) в
         зависимости от того, что делает код более
         <strong>легко читаемым и более понятным</strong>.
       </p>
+
       <p>
         Подсказка: при использовании Unicode-символов (или их
         последовательноостей), лучше использовать пояснительный комментарий.
       </p>
-      <pre><code class="language-js prettyprint">/* В идеале: код хорошо понятен даже без комментария. */
+
+      <pre>
+        <code class="language-js prettyprint">/* В идеале: код хорошо понятен даже без комментария. */
 const units = '&#956;s';
 
 /* Разрешено: но необязательно, так как &#956; - это печатаемый символ. */
@@ -121,20 +144,25 @@ const units = '\u03bcs'; // '&#956;s'
 /* Хорошо: используется экранирование для непечатаемых символов с комментарием для большей ясности. */
 return '\ufeff' + content;  // Добавляется знак "порядка байтов".</code></pre>
       <pre><code class="language-js prettyprint badcode">/* Плохо: читатель не понимает, что это за символ. */
-const units = '\u03bcs';</code></pre>
+const units = '\u03bcs';</code>
+      </pre>
+
       <p>
         Подсказка: никогда не делайте Ваш код менее читабельным просто из-за
         страха, что некоторые программы могут некорректно обрабатывать не-ASCII
         символы. В случае, если это произойдет - программа будет "сломана" и это
         потребуется исправить (т.е. вы не упустите данный момент).
       </p>
+
       <h2 id="source-file-structure">3 Структура исходных файлов</h2>
+
       <p>
         Все новые файлы должны быть или файлом <code>goog.module</code> (файл
         содержащий вызов <code>goog.module</code>), или модулем ECMAScript
         (использует операторы <code>import</code> и <code>export</code>). Файлы
         состоят из следующего (по порядку):
       </p>
+
       <ol>
         <li>Информация о лицензии или авторских правах, если такие имеются</li>
         <li><code>@fileoverview</code> JSDoc, если имеется</li>
@@ -148,154 +176,257 @@ const units = '\u03bcs';</code></pre>
         </li>
         <li>Реализация файла</li>
       </ol>
+
       <p>
-        <strong>Только одна линия</strong> отделяет каждую секуцию кода, за исключением
-        отделения реализации файла, которая должна отделяться 1 или 2 пустыми
-        линиями.
+        <strong>Только одна линия</strong> отделяет каждую секуцию кода, за
+        исключением отделения реализации файла, которая должна отделяться 1 или
+        2 пустыми линиями.
       </p>
+
       <h3 id="file-copyright">
         3.1 Информация о лицензии или авторских правах, если имеется.
       </h3>
+
       <p>
         Если информация о лицензии или авторском праве находится в файле, она
         находится здесь.
       </p>
+
       <h3 id="file-fileoverview">
         3.2 <code>@fileoverview</code> JSDoc, если имеется
       </h3>
+
       <p>
         Смотрите <a href="#jsdoc-top-file-level-comments">??</a> о правилах
         форматирования.
       </p>
+
       <h3 id="file-goog-module">3.3 Оператор <code>goog.module</code></h3>
+
       <p>
         Все <code>goog.module</code> файлы должны объявлять только одно имя для
-        <code>goog.module</code> для одного файла: линии, содержащие объявление
+        <code>goog.module</code>в одном файле: линии, содержащие объявление
         <code>goog.module</code> не должны разрываться и, следовательно, они
         являются исключением из правила про лимит на 80 символов.
       </p>
+
       <p>
-        Внутренние аргументы goog.module - то, что определяет пространство имен.
-        Это имя пакета (идентификатор, который отражает фрагмент структуры
-        каталогов, где находится исходный код) и, опционально, главный
+        Аргумент goog.module определяет пространство имен. Это имя пакета
+        (идентификатор, который отражает фрагмент структуры каталогов, где
+        находится исходный код) и, опционально, главный
         класс\перечисление\интерфейс, который определяет связь со всем модулем.
       </p>
+
       <p>Пример:</p>
-      <pre><code class="language-js prettyprint">goog.module('search.urlHistory.UrlHistoryService');</code></pre>
+
+      <pre>
+        <code class="language-js prettyprint">goog.module('search.urlHistory.UrlHistoryService');</code>
+      </pre>
+
       <h4 id="naming-hierarchy">3.3.1 Иерархия</h4>
+
       <p>
         Пространство имен модуля никогда не должны именоваться как прямой
-        потомок другого модульного пространства имен.
+        потомок другого пространства имен, принадлежащего другому модулю.
       </p>
+
       <p>Не разрешается:</p>
-      <pre><code class="language-js prettyprint badcode">goog.module('foo.bar');   // 'foo.bar.qux' было бы неплохоgoog.module('foo.bar.baz');</code></pre>
+
+      <pre>
+        <code class="language-js prettyprint badcode">goog.module('foo.bar');   // 'foo.bar.qux' было бы неплохо
+goog.module('foo.bar.baz');</code>
+      </pre>
+
       <p>
         Иерархия каталогов отражает иерархию пространств имен, поэтому более
         глубокие вложенные дочерние элементы являются подкаталогами родительских
         каталогов верхнего уровня. Обратите внимание, что владельцы
-        &#8220;родительских&#8221; групп пространств имен обязательно знают обо
+        &#8220;родительских&#8221; групп пространств имен обязательно знают о
         всех дочерних пространствах имен, поскольку они существуют в одном и том
         же каталоге.
       </p>
+
       <h4 id="file-declare-legacy-namespace">
         3.3.2 <code>goog.module.declareLegacyNamespace</code>
       </h4>
+
       <p>
         Оператор <code>goog.module</code> может опционально сдедовать до вызова
         <code>goog.module.declareLegacyNamespace();</code>. Опустите
         <code>goog.module.declareLegacyNamespace()</code>, когда это возможно.
       </p>
+
       <p>Пример:</p>
-      <pre><code class="language-js prettyprint">goog.module('my.test.helpers');goog.module.declareLegacyNamespace();goog.setTestOnly();</code></pre>
+
+      <pre>
+        <code class="language-js prettyprint">goog.module('my.test.helpers');goog.module.declareLegacyNamespace();goog.setTestOnly();</code>
+      </pre>
+
       <p>
         <code>goog.module.declareLegacyNamespace</code> существует для
         облегчения перехода от традиционных пространств имен на основе иерархии
         объектов, но имеет некоторые ограничения в плане именования. Поскольку
         имя дочернего модуля должно быть создано после родительского
-        пространства имен, это имя <strong>не должно быть</strong> не должно
-        быть дочерним или родительским по отношению к
-        <code>goog.module</code> (например,
+        пространства имен, это имя <strong>не должно быть</strong> дочерним или
+        родительским по отношению к <code>goog.module</code> (например,
         <code>goog.module('parent');</code> и
         <code>goog.module('parent.child');</code> не могут существовать
         одновременно, также как не может <code>goog.module('parent');</code> и
         <code>goog.module('parent.child.grandchild');</code>).
       </p>
+
       <h3 id="file-goog-module-exports">
         3.3.3 <code>goog.module</code> Экспорт
       </h3>
+
       <p>
         Классы, перечисления, функции, константы и другие символы
         экспортируются, используя объект <code>exports</code>. Экспортируемые
         символы могут быть определены прямо в объекте <code>exports</code>, или
-        иначе определяться локально и экспортировать раздельно. Символы
-        экспортируются только, если они должны использоваться за пределами
-        модулям. Не экспортируемые модульно-локальные символы не декларируются
-        как <code>@private</code> и не заканчиваются нижней чертой.
-        Определенного порядка для экспортируемых модульно-локальных символов -
-        нет.
+        иначе определяться локально и экспортироваться раздельно. Символы
+        экспортируются только тогда, когда они должны использоваться за
+        пределами модулям. Не экспортируемые модульно-локальные символы не
+        декларируются как <code>@private</code> и не заканчиваются нижней
+        чертой. Определенного порядка для экспортируемых модульно-локальных
+        символов - нет.
       </p>
+
       <p>Пример:</p>
-      <pre><code class="language-js prettyprint">const /** !Array&lt;number&gt; */ exportedArray = [1, 2, 3];const /** !Array&lt;number&gt; */ moduleLocalArray = [4, 5, 6];/** @return {number} */function moduleLocalFunction() {  return moduleLocalArray.length;}/** @return {number} */function exportedFunction() {  return moduleLocalFunction() * 2;}exports = {exportedArray, exportedFunction};</code></pre>
-      <pre><code class="language-js prettyprint">/** @const {number} */exports.CONSTANT_ONE = 1;/** @const {string} */exports.CONSTANT_TWO = 'Другая константа';</code></pre>
+
+      <pre>
+        <code class="language-js prettyprint">const /** !Array&lt;number&gt; */ exportedArray = [1, 2, 3];
+
+const /** !Array&lt;number&gt; */ moduleLocalArray = [4, 5, 6];
+
+/** @return {number} */
+function moduleLocalFunction() {
+  return moduleLocalArray.length;
+}
+
+/** @return {number} */
+function exportedFunction() {  
+  return moduleLocalFunction() * 2;
+}
+
+exports = {exportedArray, exportedFunction};</code></pre>
+      <pre><code class="language-js prettyprint">/** @const {number} */
+exports.CONSTANT_ONE = 1;
+
+/** @const {string} */
+exports.CONSTANT_TWO = 'Другая константа';</code>
+      </pre>
+
       <p>
         Не аннотируйте <code>exports</code> с помощью <code>@const</code>, так
         как они уже рассматриваются компилятором в качестве констант.
       </p>
-      <pre><code class="language-js badcode prettyprint">/** @const */exports = {exportedFunction};</code></pre>
+
+      <pre>
+        <code class="language-js badcode prettyprint">/** @const */
+exports = {exportedFunction};</code>
+      </pre>
+
       <p><span id="file-es6-modules"></span></p>
+
       <h3 id="file-es-modules">3.4 ES модули</h3>
+
       <p><span id="es6-module-imports"></span></p>
+
       <h4 id="es-module-imports">3.4.1 Импорт</h4>
+
       <p>
         Операторы импорта не должны разделяться переносом строки и,
-        следовательно, являются исключением из ограничения в 80 столбцов.
+        следовательно, являются исключением из ограничения в 80 символов.
       </p>
+
       <p><span id="es6-import-paths"></span></p>
+
       <h5 id="esm-import-paths">3.4.1.1 Импорт путей</h5>
       <p>
         Файлы ES модуля должны использовать оператор <code>import</code> для
         импорта файлов из ES модуля. Не используйте
-        <code>goog.require</code> для другого ES модуля.
+        <code>goog.require</code> для импорта другого ES модуля.
       </p>
-      <pre><code class="language-js prettyprint external">import './sideeffects.js';import * as goog from '../closure/goog/goog.js';import * as parent from '../parent.js';import {name} from './sibling.js';</code></pre>
+
+      <pre>
+        <code class="language-js prettyprint external">import './sideeffects.js';
+          
+import * as goog from '../closure/goog/goog.js';
+import * as parent from '../parent.js';
+
+import {name} from './sibling.js';</code>
+      </pre>
+
       <p><span id="es6-import-paths-file-extension"></span></p>
+
       <h6 id="esm-import-paths-file-extension">
         3.4.1.1.1 Расширения файлов в для импортируемых путей
       </h6>
+
       <p>
         Расширение <code>.js</code> не является опциональным в импортируемых
         путях и всегда должно присутствовать.
       </p>
+
       <pre><code class="language-js badcode prettyprint">import '../directory/file';</code></pre>
       <pre><code class="language-js good prettyprint">import '../directory/file.js';</code></pre>
+
       <h5 id="importing-the-same-file-multiple-times">
         3.4.1.2 Импорт одного файла несколько раз
       </h5>
+
       <p>
         Не импортируйте один и тот же файл несколько раз. Это может затруднить
-        определение совокупности всех импортов из файла.
+        определение совокупности всех импортов в файле.
       </p>
-      <pre><code class="language-js badcode prettyprint">// Импорт имеет один и тот же путь, но, поскольку он не выравнивается, может быть трудно его заметить.import {short} from './long/path/to/a/file.js';import {aLongNameThatBreaksAlignment} from './long/path/to/a/file.js';</code></pre>
+
+      <pre>
+        <code class="language-js badcode prettyprint">// Импорт имеет один и тот же путь, но, поскольку он не выравнивается, может быть трудно его заметить.
+import {short} from './long/path/to/a/file.js';
+import {aLongNameThatBreaksAlignment} from './long/path/to/a/file.js';</code>
+      </pre>
+
       <p><span id="naming-es6-imports"></span></p>
+
       <h5 id="naming-esm-imports">3.4.1.3 Именование импортов</h5>
+
       <h6 id="naming-module-imports">
         3.4.1.3.1 Именование модульных импортов
       </h6>
+
       <p>
         Имена импорта модуля (<code>import * as name</code>) - это имена в
         <code>нижнемВерблюжьемСтиле</code>, которые получены из имени
         импортируемого файла.
       </p>
-      <pre><code class="language-js prettyprint">import * as fileOne from '../file-one.js';import * as fileTwo from '../file_two.js';import * as fileThree from '../filethree.js';</code></pre>
-      <pre><code class="language-js prettyprint">import * as libString from './lib/string.js';import * as math from './math/math.js';import * as vectorMath from './vector/math.js';</code></pre>
+
+      <pre>
+        <code class="language-js prettyprint">import * as fileOne from '../file-one.js';
+import * as fileTwo from '../file_two.js';
+import * as fileThree from '../filethree.js';</code>
+      </pre>
+
+      <pre>
+        <code class="language-js prettyprint">import * as libString from './lib/string.js';
+import * as math from './math/math.js';
+import * as vectorMath from './vector/math.js';</code>
+      </pre>
+
       <h6 id="naming-default-imports">
         3.4.1.3.2 Именование импортов по умолчанию
       </h6>
+
       <p>
-        Имена импорта по умолчанию получены из имени импортируемого файла и
+        Имена импорта по умолчанию получаются из имени импортируемого файла и
         следуют правилам из <a href="#naming-rules-by-identifier-type">??</a>.
       </p>
-      <pre><code class="language-js prettyprint">import MyClass from '../my-class.js';import myFunction from '../my_function.js';import SOME_CONSTANT from '../someconstant.js';</code></pre>
+
+      <pre>
+        <code class="language-js prettyprint">import MyClass from '../my-class.js';
+import myFunction from '../my_function.js';
+import SOME_CONSTANT from '../someconstant.js';</code>
+      </pre>
+      
       <p>
         Примечание. В общем случае этого не должно происходить, поскольку
         экспорт по умолчанию запрещен этим руководством по стилю, см.
@@ -303,26 +434,45 @@ const units = '\u03bcs';</code></pre>
         используется только для импорта модулей, которые не соответствуют этому
         руководству по стилю.
       </p>
+
       <h6 id="naming-named-imports">
         3.4.1.3.3 Именование именованного импорта
       </h6>
+
       <p>
         В целом, символы, импортируемые через именованный импорт (<code
           >import {name}</code
         >), должны иметь одинаковое имя. Избегайте импорта псевдонимов (<code
           >import {SomeThing as SomeOtherThing}</code
-        >). Отдавайте предпочтение исправлению конфликты имен, при помощи
-        использования модуля (<code>import *</code>) или переименовывая сами
+        >). Отдавайте предпочтение исправлению конфликты имен при помощи
+        импорта модуля (<code>import *</code>) или переименовывая сами
         экспорты.
       </p>
-      <pre><code class="language-js prettyprint">import * as bigAnimals from './biganimals.js';import * as domesticatedAnimals from './domesticatedanimals.js';new bigAnimals.Cat();new domesticatedAnimals.Cat();</code></pre>
+
+      <pre>
+        <code class="language-js prettyprint">import * as bigAnimals from './biganimals.js';
+import * as domesticatedAnimals from './domesticatedanimals.js';
+
+new bigAnimals.Cat();
+new domesticatedAnimals.Cat();</code>
+      </pre>
+
       <p>
         Если необходимо переименовать именованный импорт, используйте компоненты
-        имени файла или пути импортированного модуля в полученном псевдониме.
+        имени файла или путь в полученном псевдониме.
       </p>
-      <pre><code class="language-js prettyprint">import {Cat as BigCat} from './biganimals.js';import {Cat as DomesticatedCat} from './domesticatedanimals.js';new BigCat();new DomesticatedCat();</code></pre>
+
+      <pre>
+        <code class="language-js prettyprint">import {Cat as BigCat} from './biganimals.js';
+import {Cat as DomesticatedCat} from './domesticatedanimals.js';
+
+new BigCat();
+new DomesticatedCat();</code>
+      </pre>
+
       <p><span id="es6-module-exports"></span></p>
-      <h4 id="es-module-exports">3.4.2 Exports</h4>
+
+      <h4 id="es-module-exports">3.4.2 Экспорт</h4>
       <p>
         Символы экспортируются только в том случае, если они предназначены для
         использования вне модуля. Неэкспортированные локальные символы не
@@ -330,133 +480,281 @@ const units = '\u03bcs';</code></pre>
         подчеркиванием. Не существует предписанного порядка для экспортируемых и
         локальных символов.
       </p>
+
       <h5 id="named-vs-default-exports">
-        3.4.2.1 Именованные против экспорта по умолчанию
+        3.4.2.1 Именованный экспорт vs экспорт по умолчанию
       </h5>
+
       <p>
-        Используйте именованные экспорты во всем коде. Вы можете применить
-        ключевое слово <code>export</code> к объявлению или использовать
+        Используйте именованный экспорт во всем коде. Вы можете применить
+        ключевое слово <code>export</code> в объявлении или использовать
         синтаксис <code>export {name};</code>.
       </p>
+
       <p>
         Не используйте экспорт по умолчанию. Импортирующие модули должны давать
         имя этим значениям, чтобы избежать несоответствий в именах модулей.
       </p>
-      <pre><code class="language-js badcode prettyprint">// Не используйте эспорт по умолчанию:export default class Foo { ... } // Плохо!</code></pre>
-      <pre><code class="language-js good prettyprint">// Используйте именованный экспорт:export class Foo { ... }</code></pre>
-      <pre><code class="language-js good prettyprint">// Альтернативный стиль с именем экспорта:class Foo { ... }export {Foo};</code></pre>
+
+      <pre>
+        <code class="language-js badcode prettyprint">// Не используйте эспорт по умолчанию:
+export default class Foo { ... } // Плохо!</code>
+      </pre>
+
+      <pre>
+        <code class="language-js good prettyprint">// Используйте именованный экспорт:
+export class Foo { ... }</code>
+      </pre>
+
+      <pre>
+        <code class="language-js good prettyprint">// Альтернативный стиль с именем экспорта:
+class Foo { ... }
+
+export {Foo};</code>
+      </pre>
+
       <h5 id="exporting-static-containers">
         3.4.2.2 Экспорт статических контейнерных классов и объектов
       </h5>
+
       <p>
         Не экспортируйте классы контейнеров или объекты со статическими методами
         или свойствами для пространства имен.
       </p>
-      <pre><code class="language-js badcode prettyprint">// container.js// Плохо: контейнер - это экспортируемый класс, который имеет только статические методы и поля.export class Container {  /** @return {number} */  static bar() {    return 1;  }}/** @const {number} */Container.FOO = 1;</code></pre>
+
+      <pre>
+        <code class="language-js badcode prettyprint">// container.js
+// Плохо: контейнер - это экспортируемый класс, который имеет только статические методы и поля.
+export class Container {
+  /** @return {number} */
+  static bar() {
+    return 1;
+  }
+}
+
+/** @const {number} */
+Container.FOO = 1;</code>
+      </pre>
+
       <p>Вместо этого экспортируйте отдельные константы и функции:</p>
-      <pre><code class="language-js good prettyprint">/** @return {number} */export function bar() {  return 1;}export const /** number */ FOO = 1;</code></pre>
+
+      <pre>
+        <code class="language-js good prettyprint">/** @return {number} */
+export function bar() {
+  return 1;
+}
+
+export const /** number */ FOO = 1;</code>
+      </pre>
+
       <p><span id="es6-exports-mutability"></span></p>
-      <h5 id="esm-exports-mutability">3.4.2.3 Мутироемость экспорта</h5>
+
+      <h5 id="esm-exports-mutability">3.4.2.3 Мутабельность экспорта</h5>
+      
       <p>
         Экспортируемые переменные не должны быть видоизменены за пределами
         инициализации модуля.
       </p>
+
       <p>
-        Существуют альтернативы, если необходима мутация, включая экспорт
+        Существуют альтернативы, если необходимо изменения, включая экспорт
         постоянной ссылки на объект, который имеет изменяемые поля или экспорт
         функций доступа для изменяемых данных.
       </p>
-      <pre><code class="language-js badcode prettyprint">// Плохо: и foо, и mutateFoo экспортируются и могут быть изменены.export let /** number */ foo = 0;/** * Изменяется foo. */export function mutateFoo() {  ++foo;}/** * @param {function(number): number} newMutateFoo */export function setMutateFoo(newMutateFoo) {  // Экспортируемые классы и функции могут быть видоизменены!  mutateFoo = () =&gt; {    foo = newMutateFoo(foo);  };}</code></pre>
-      <pre><code class="language-js good prettyprint">// Хорошо: вместо того, чтобы экспортировать изменяемые переменные foo и mutateFoo напрямую,// вместо этого сделайте их модульными и экспортируйте getter для foo и оболочку для// mutateFooFunc.let /** number */ foo = 0;let /** function(number): number */ mutateFooFunc = foo =&gt; foo + 1;/** @return {number} */export function getFoo() {  return foo;}export function mutateFoo() {  foo = mutateFooFunc(foo);}/** @param {function(number): number} mutateFoo */export function setMutateFoo(mutateFoo) {  mutateFooFunc = mutateFoo;}</code></pre>
+
+      <pre><code class="language-js badcode prettyprint">// Плохо: и foо, и mutateFoo экспортируются и могут быть изменены.
+export let /** number */ foo = 0;
+
+/**
+ * Изменяется foo. 
+ */
+ export function mutateFoo() {
+  ++foo;
+}
+
+/**
+ * @param {function(number): number} newMutateFoo 
+ */
+ export function setMutateFoo(newMutateFoo) {
+  // Экспортируемые классы и функции могут быть видоизменены!
+  mutateFoo = () =&gt; {
+    foo = newMutateFoo(foo);  
+  };
+}</code>
+      </pre>
+
+      <pre>
+        <code class="language-js good prettyprint">// Хорошо: вместо того, чтобы экспортировать изменяемые переменные foo и mutateFoo напрямую,
+// вместо этого сделайте их модульными и экспортируйте getter для foo и оболочку для
+// mutateFooFunc.
+let /** number */ foo = 0;
+let /** function(number): number */ mutateFooFunc = foo =&gt; foo + 1;
+
+/** @return {number} */
+export function getFoo() {
+  return foo;
+}
+
+export function mutateFoo() {
+  foo = mutateFooFunc(foo);
+}
+
+/** @param {function(number): number} mutateFoo */
+export function setMutateFoo(mutateFoo) {
+  mutateFooFunc = mutateFoo;
+}</code>
+      </pre>
+
       <p><span id="es6-module-circular-dependencies"></span></p>
       <h5 id="es-module-export-from">3.4.2.4 export from</h5>
+
       <p>
-        Операторы <code>export from</code> не должны быть заключены в строку и
+        Операторы <code>export from</code> не должны быть перевенесены на другую строку и,
         следовательно, являются исключением из ограничения в 80 символом. Это
         относится ко всем <code>export from</code> операторам.
       </p>
-      <pre><code class="language-js">export {specificName} from './other.js';export * from './another.js';</code></pre>
+
+      <pre>
+        <code class="language-js">export {specificName} from './other.js';
+export * from './another.js';</code>
+      </pre>
+
       <h4 id="es-module-circular-dependencies">
         3.4.3 Цикличные зависимости в ES модулях
       </h4>
+
       <p>
         Не создавайте циклы между модулями ES, даже если спецификация ECMAScript
         позволяет это. Обратите внимание, что можно создавать циклы как с
         помощью операторов <code>import</code>, так и <code>export</code>.
       </p>
-      <pre><code class="language-js badcode prettyprint">// a.jsimport './b.js';</code></pre>
-      <pre><code class="language-js badcode prettyprint">// b.jsimport './a.js';// `export from` тоже может вызвать цикличиские зависимости!export {x} from './c.js';</code></pre>
-      <pre><code class="language-js badcode prettyprint">// c.jsimport './b.js';export let x;</code></pre>
+
+      <pre>
+        <code class="language-js badcode prettyprint">// a.js
+import './b.js';</code>
+      </pre>
+
+      <pre>
+        <code class="language-js badcode prettyprint">// b.js
+import './a.js';
+
+// `export from` тоже может вызвать цикличиские зависимости!
+export {x} from './c.js';</code>
+      </pre>
+
+      <pre>
+        <code class="language-js badcode prettyprint">// c.js
+import './b.js';
+
+export let x;</code>
+      </pre>
+
+
       <p><span id="es6-module-closure-interop"></span></p>
-      <h4 id="es-module-closure-interop">3.4.4 Interoperating with Closure</h4>
+      <h4 id="es-module-closure-interop">3.4.4 Взаимодействие с Closure</h4>
+
       <p><span id="es6-module-referencing-goog"></span></p>
-      <h5 id="es-module-referencing-goog">3.4.4.1 Ссылание goog</h5>
+      <h5 id="es-module-referencing-goog">3.4.4.1 Ссылка на goog</h5>
+
       <p>
-        Для ссылки на пространство имён замыкания <code>goog</code>,
-        импортируйте <code>goog.js</code> принадлежащий конкретному замыканию.
+        Для того, чтобы сослаться на пространство имён Closure <code>goog</code>,
+        импортируйте <code>goog.js</code> из Closure.
       </p>
-      <pre><code class="language-js good prettyprint external">import * as goog from '../closure/goog/goog.js';const name = goog.require('a.name');export const CONSTANT = name.compute();</code></pre>
+
+      <pre>
+        <code class="language-js good prettyprint external">import * as goog from '../closure/goog/goog.js';
+
+const name = goog.require('a.name');
+
+export const CONSTANT = name.compute();</code>
+      </pre>
+     
       <p>
         <code>goog.js</code> экспортирует только подмножество параметров из
         глобального <code>goog</code>, которые могут использоваться в ES
         модулях.
       </p>
+
       <p><span id="goog-require-in-es6-module"></span></p>
       <h5 id="goog-require-in-es-module">3.4.4.2 goog.require в ES модулях</h5>
+
       <p>
         <code>goog.require</code> в ES модулях работает так же, как и в
         <code>goog.module</code> файлах. Вы можете потребовать (require) любой
-        символ пространства имён из замыкания (т.е. символы созданные с помощью
+        символ пространства имён из Closure (т.е. символы созданные с помощью
         <code>goog.provide</code> или <code>goog.module</code>) и
         <code>goog.require</code> вернёт значение.
       </p>
-      <pre><code class="language-js prettyprint external">import * as goog from '../closure/goog/goog.js';import * as anEsModule from './anEsModule.js';const GoogPromise = goog.require('goog.Promise');const myNamespace = goog.require('my.namespace');</code></pre>
+
+      <pre>
+        <code class="language-js prettyprint external">import * as goog from '../closure/goog/goog.js';
+import * as anEsModule from './anEsModule.js';
+
+const GoogPromise = goog.require('goog.Promise');
+const myNamespace = goog.require('my.namespace');</code>
+      </pre>
+
       <p><span id="closure-module-id-in-es6-module"></span></p>
+
       <h5 id="closure-module-id-in-es-module">
-        3.4.4.3 Декларирование ID замыканий в ES модулях
+        3.4.4.3 Декларирование Closure ID модулей в ES модулях
       </h5>
+
       <p>
         <code>goog.declareModuleId</code> может использоваться в ES модулях,
         чтобы декларировать ID модуля в стиле <code>goog.module</code>. Это
         значит, что ID модуля может быть потребован с помощью
         <code>goog.require</code>, <code>goog.module.get</code>,
-        <code>goog.forwardDeclare</code>'d и т.п., как-будто это
+        <code>goog.forwardDeclare</code> и т.п., как будто это
         <code>goog.module</code> , который не вызывает
-        <code>goog.module.declareLegacyNamespace</code>. Это не создаёт ID для
-        модуля в качестве глобально доступного символ JavaScript.
+        <code>goog.module.declareLegacyNamespace</code>. Это не делает ID модуля глобально
+        доступным JavaScript символом.
       </p>
+
       <p>
-        <code>goog.require</code> (or <code>goog.module.get</code>) для ID
-        модуля из <code>goog.declareModuleId</code> будет всегда возвращать
-        объект модуля (как будто используется <code>import *</code>'d). Как
+        <code>goog.require</code> (или <code>goog.module.get</code>) примененный для ID
+        модуля из <code>goog.declareModuleId</code> - будет всегда возвращать
+        объект модуля (как будто используется <code>import *</code>). Как
         результат, аргумент для <code>goog.declareModuleId</code> должен всегда
-        заканчиваться <code>имяНижнегоРегистра</code>.
+        заканчиваться <code>именемНижнегоРегистра</code>.
       </p>
+
       <p>
-        Обратите внимание: это ошибка - вызывать
+        Обратите внимание: ошибка - вызывать
         <code>goog.module.declareLegacyNamespace</code> в ES модуле, он может
         быть вызван только из файлов <code>goog.module</code>. Не существует
-        прямолинейных путей, чтобы ассоциировать <q>устаревшее</q> пространство
+        прямых путей, чтобы ассоциировать <q>устаревшее</q> пространство
         имён с ES модулем.
       </p>
+
       <p>
-        <code>goog.declareModuleId</code> должен использоваться только, чтобы
-        обновить файлы замыканий в месте, где используется именованный экспорт.
+        <code>goog.declareModuleId</code> должен использоваться только для того, чтобы
+        обновить Closure файлы в месте, где используется именованный экспорт.
       </p>
-      <pre><code class="language-js prettyprint external">import * as goog from '../closure/goog.js';goog.declareModuleId('my.esm');export class Class {};</code></pre>
+      
+      <pre>
+        <code class="language-js prettyprint external">import * as goog from '../closure/goog.js';
+goog.declareModuleId('my.esm');
+export class Class {};</code>
+      </pre>
+
       <h3 id="file-set-test-only">3.5 <code>goog.setTestOnly</code></h3>
+
       <p>
         В файле модуля <code>goog.module</code> оператор
         <code>goog.module</code> может опционально сопровождаться вызовом
         <code>goog.setTestOnly()</code>.
       </p>
+
       <p>
         В ES модуле оператор <code>import</code> может опционально
         сопровождаться вызовом <code>goog.setTestOnly()</code>.
       </p>
+
       <h3 id="file-goog-require">
         3.6 Операторы <code>goog.require</code> и <code>goog.requireType</code>
       </h3>
+
       <p>
         Импорты реализованные с помощью операторов <code>goog.require</code> и
         <code>goog.requireType</code>. Имена импортированные с помощью оператора
@@ -465,6 +763,7 @@ const units = '\u03bcs';</code></pre>
         <code>goog.requireType</code> могут быть использованные в аннотациях
         типа.
       </p>
+      
       <p>
         Операторы <code>goog.require</code> и
         <code>goog.requireType</code> формируют смежны блок без пустых линий.
