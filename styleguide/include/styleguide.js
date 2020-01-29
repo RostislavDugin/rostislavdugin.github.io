@@ -1,6 +1,6 @@
 TocTypeEnum = {
   VERTICAL: 1,
-  HORIZONTAL: 2
+  HORIZONTAL: 2,
 };
 
 function CreateTOC(tocElement) {
@@ -11,10 +11,10 @@ function CreateTOC(tocElement) {
   var tocType;
 
   switch (tocTypeClass) {
-    case "horizontal_toc":
+    case 'horizontal_toc':
       tocType = TocTypeEnum.HORIZONTAL;
       break;
-    case "vertical_toc":
+    case 'vertical_toc':
       tocType = TocTypeEnum.VERTICAL;
       break;
     default:
@@ -25,8 +25,8 @@ function CreateTOC(tocElement) {
   // If toc_levels is defined, set headingLevels to it.
   // Otherwise, use default value of "h2,h3"
   var headingLevels;
-  if (typeof toc_levels === "undefined") {
-    headingLevels = "h2,h3";
+  if (typeof toc_levels === 'undefined') {
+    headingLevels = 'h2,h3';
   } else {
   }
 
@@ -34,26 +34,26 @@ function CreateTOC(tocElement) {
   var headings = document.querySelectorAll(headingLevels);
 
   // Add TOC title elements
-  var tocHeadingDiv = document.createElement("div");
+  var tocHeadingDiv = document.createElement('div');
   toc.appendChild(tocHeadingDiv);
-  tocHeadingDiv.className = "toc_title";
-  var tocHeading = document.createElement("h3");
+  tocHeadingDiv.className = 'toc_title';
+  var tocHeading = document.createElement('h3');
   toc.appendChild(tocHeading);
-  tocHeading.className = "ignoreLink";
-  tocHeading.id = "toc";
-  var tocText = document.createTextNode("Table of Contents");
+  tocHeading.className = 'ignoreLink';
+  tocHeading.id = 'toc';
+  var tocText = document.createTextNode('Table of Contents');
   tocHeading.appendChild(tocText);
 
   // Add table and tbody
-  var tocTable = document.createElement("table");
+  var tocTable = document.createElement('table');
   if (tocType == TocTypeEnum.VERTICAL) {
-    tocTable.className = "columns";
+    tocTable.className = 'columns';
   }
   toc.appendChild(tocTable);
 
-  var tbody_element = document.createElement("tbody");
-  tbody_element.setAttribute("valign", "top");
-  tbody_element.className = "toc";
+  var tbody_element = document.createElement('tbody');
+  tbody_element.setAttribute('valign', 'top');
+  tbody_element.className = 'toc';
   tocTable.appendChild(tbody_element);
 
   // Get the highest level heading
@@ -74,7 +74,12 @@ function CreateTOC(tocElement) {
   }
 }
 
-function CreateHorizontalTOC(headings, masterLevel, lowestLevel, tbody_element) {
+function CreateHorizontalTOC(
+  headings,
+  masterLevel,
+  lowestLevel,
+  tbody_element
+) {
   // Initialize the header counter
   var h = 0;
   var ignoreChildren = false;
@@ -89,12 +94,12 @@ function CreateHorizontalTOC(headings, masterLevel, lowestLevel, tbody_element) 
     if (isNaN(level) || level < 1 || level > lowestLevel) continue;
 
     // If level is a masterLevel, make it a TOC parent category
-    if (level == masterLevel && !hasClass(heading, "ignoreLink")) {
+    if (level == masterLevel && !hasClass(heading, 'ignoreLink')) {
       toc_current_row = AddTOCMaster(tbody_element, heading);
       ignoreChildren = false;
     }
 
-    if (level == masterLevel && hasClass(heading, "ignoreLink")) {
+    if (level == masterLevel && hasClass(heading, 'ignoreLink')) {
       ignoreChildren = true;
     }
 
@@ -110,26 +115,26 @@ function CreateHorizontalTOC(headings, masterLevel, lowestLevel, tbody_element) 
 // Adds a master Table of Content heading
 function AddTOCMaster(tocTable, heading) {
   // Add the table row scaffolding
-  var toc_tr = document.createElement("tr");
+  var toc_tr = document.createElement('tr');
   tocTable.appendChild(toc_tr);
-  toc_tr.setAttribute("valign", "top");
-  var toc_tr_td = document.createElement("td");
+  toc_tr.setAttribute('valign', 'top');
+  var toc_tr_td = document.createElement('td');
   toc_tr.appendChild(toc_tr_td);
-  var toc_category = document.createElement("div");
+  var toc_category = document.createElement('div');
   toc_tr_td.appendChild(toc_category);
-  toc_category.className = "toc_category";
+  toc_category.className = 'toc_category';
 
   // Create the link to this header
-  var link = document.createElement("a");
-  link.href = "#" + heading.id; // Create the anchor link
+  var link = document.createElement('a');
+  link.href = '#' + heading.id; // Create the anchor link
   link.textContent = heading.textContent; // Link text is same as heading
   toc_category.appendChild(link);
 
   // Add the container table cell for its children
-  var toc_td = document.createElement("td");
+  var toc_td = document.createElement('td');
   toc_tr.appendChild(toc_td);
-  var toc_td_div = document.createElement("div");
-  toc_td_div.className = "toc_stylepoint";
+  var toc_td_div = document.createElement('div');
+  toc_td_div.className = 'toc_stylepoint';
   toc_td.appendChild(toc_td_div);
 
   return toc_td_div;
@@ -141,13 +146,13 @@ function AddTOCElements(toc_div, heading) {
     // The element is currently hidden, so don't create a TOC entry
   } else {
     // Create the list item element
-    var toc_list_element = document.createElement("li");
-    toc_list_element.className = "toc_entry";
+    var toc_list_element = document.createElement('li');
+    toc_list_element.className = 'toc_entry';
     toc_div.appendChild(toc_list_element);
 
     // Create the link to this header
-    var link = document.createElement("a");
-    link.href = "#" + heading.id; // Create the anchor link
+    var link = document.createElement('a');
+    link.href = '#' + heading.id; // Create the anchor link
     link.textContent = heading.textContent; // Link text is same as heading
     toc_list_element.appendChild(link);
   }
@@ -155,10 +160,10 @@ function AddTOCElements(toc_div, heading) {
 
 function CreateVerticalTOC(headings, masterLevel, lowestLevel, tbody_element) {
   // Create the Column scaffolding
-  var toc_tr = document.createElement("tr");
+  var toc_tr = document.createElement('tr');
   tbody_element.appendChild(toc_tr);
-  var toc_tr_td = document.createElement("td");
-  toc_tr_td.className = "two_columns";
+  var toc_tr_td = document.createElement('td');
+  toc_tr_td.className = 'two_columns';
   toc_tr.appendChild(toc_tr_td);
 
   // Initialize the header counter and the current row
@@ -176,19 +181,19 @@ function CreateVerticalTOC(headings, masterLevel, lowestLevel, tbody_element) {
     if (isNaN(level) || level < 1 || level > lowestLevel) continue;
 
     // If level is a masterLevel, make it a TOC parent category
-    if (level == masterLevel && !hasClass(heading, "ignoreLink")) {
+    if (level == masterLevel && !hasClass(heading, 'ignoreLink')) {
       if (heading.offsetParent === null) {
         // The element is currently hidden, so don't create a TOC entry
       } else {
-        var td_dl = document.createElement("dl");
+        var td_dl = document.createElement('dl');
         toc_tr_td.appendChild(td_dl);
-        var td_dt = document.createElement("dt");
+        var td_dt = document.createElement('dt');
         td_dl.appendChild(td_dt);
         toc_current_col = td_dl;
 
         // Create the link to this header
-        var link = document.createElement("a");
-        link.href = "#" + heading.id; // Create the anchor link
+        var link = document.createElement('a');
+        link.href = '#' + heading.id; // Create the anchor link
         link.textContent = heading.textContent; // Link text is same as heading
         td_dt.appendChild(link);
         ignoreChildren = false;
@@ -197,7 +202,7 @@ function CreateVerticalTOC(headings, masterLevel, lowestLevel, tbody_element) {
 
     // If level is a masterLevel but it's specified to ignore links, skip it
     // and its children.
-    if (level == masterLevel && hasClass(heading, "ignoreLink")) {
+    if (level == masterLevel && hasClass(heading, 'ignoreLink')) {
       ignoreChildren = true;
     }
 
@@ -205,11 +210,11 @@ function CreateVerticalTOC(headings, masterLevel, lowestLevel, tbody_element) {
       if (heading.offsetParent === null) {
         // The element is currently hidden, so don't create a TOC entry
       } else {
-        var td_dd = document.createElement("dd");
+        var td_dd = document.createElement('dd');
         toc_current_col.appendChild(td_dd);
         // Create the link to this header
-        var link = document.createElement("a");
-        link.href = "#" + heading.id; // Create the anchor link
+        var link = document.createElement('a');
+        link.href = '#' + heading.id; // Create the anchor link
         link.textContent = heading.textContent; // Link text is same as heading
         td_dd.appendChild(link);
       }
@@ -225,7 +230,7 @@ function CreateVerticalTOC(headings, masterLevel, lowestLevel, tbody_element) {
  * class.
  */
 function hasClass(element, cls) {
-  return (" " + element.className + " ").indexOf(" " + cls + " ") > -1;
+  return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
 }
 
 /*
@@ -235,16 +240,16 @@ function hasClass(element, cls) {
 
 // Add the link image to the element.
 function LinkifyHeader(header, fileName, sizePixels) {
-  var link = document.createElement("a");
-  link.href = "#" + header.id;
-  link.setAttribute("alt", "link to " + header.id);
+  var link = document.createElement('a');
+  link.href = '#' + header.id;
+  link.setAttribute('alt', 'link to ' + header.id);
   link.innerHTML =
     '<img src="include/' +
     fileName +
     '"' +
-    " width=" +
+    ' width=' +
     sizePixels +
-    " height=" +
+    ' height=' +
     sizePixels +
     ' style="float:left;position:relative;bottom:5px;">';
   header.appendChild(link);
@@ -257,11 +262,11 @@ function LinkifyHeadersForTag(tagName) {
   var header;
   for (var j = 0; j != headers.length; j++) {
     header = headers[j];
-    if (!hasClass(header, "ignoreLink") && "id" in header) {
-      if (header.id != "") {
-        LinkifyHeader(header, "link.png", 21);
-        header.style.left = "-46px";
-        header.style.position = "relative";
+    if (!hasClass(header, 'ignoreLink') && 'id' in header) {
+      if (header.id != '') {
+        LinkifyHeader(header, 'link.png', 21);
+        header.style.left = '-46px';
+        header.style.position = 'relative';
       }
     }
   }
@@ -269,9 +274,9 @@ function LinkifyHeadersForTag(tagName) {
 
 // Linkify all h2, h3, and h4s. h1s are titles.
 function LinkifyHeaders() {
-  LinkifyHeadersForTag("h2");
-  LinkifyHeadersForTag("h3");
-  LinkifyHeadersForTag("h4");
+  LinkifyHeadersForTag('h2');
+  LinkifyHeadersForTag('h3');
+  LinkifyHeadersForTag('h4');
 }
 
 /*
@@ -281,5 +286,5 @@ function LinkifyHeaders() {
 
 function initStyleGuide() {
   LinkifyHeaders();
-  CreateTOC("tocDiv");
+  CreateTOC('tocDiv');
 }

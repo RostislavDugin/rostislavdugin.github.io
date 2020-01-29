@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+ <head>
     <meta charset="utf-8" />
     <title>Google JavaScript руководство по стилю</title>
     <link rel="stylesheet" href="javaguide.css" />
@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="https://www.google.com/favicon.ico" />
     <script src="include/jsguide.js"></script>
   </head>
+  
   <body onload="initStyleGuide();">
     <div id="content">
       <h1>Google JavaScript руководство по стилю</h1>
@@ -763,11 +764,11 @@ export class Class {};</code>
         <code>goog.requireType</code> могут быть использованные в аннотациях
         типа.
       </p>
-      
+
       <p>
         Операторы <code>goog.require</code> и
-        <code>goog.requireType</code> формируют смежны блок без пустых линий.
-        Этот блок следуют за декларацией <code>goog.module</code> разделённой
+        <code>goog.requireType</code> формируют единый блок без пустых линий внутри.
+        Этот блок следует за декларацией <code>goog.module</code>, разделённой
         <a href="#source-file-structure">с помощью одной пустой линии</a>.
         Единственный аргумент для <code>goog.require</code> или
         <code>goog.requireType</code> - это пространство имен, определенное с
@@ -775,23 +776,24 @@ export class Class {};</code>
         <code>goog.require</code> и <code>goog.requireType</code> не должны
         появляться в других местах данного файла.
       </p>
+
       <p>
         Каждый <code>goog.require</code> или
-        <code>goog.requireType</code> определяется в единственном константном
-        псевдониме или деструктурируется в несколько константных псевдонимах.
-        Эти псевдонимы единственные допустимые способы для ссылания на
-        зависимости в коде или аннотациях. Полные имена пространства имен не
-        должны использоваться нигде, кроме как в качестве аргумента дял
+        <code>goog.requireType</code> определяется в виде отдельного константного
+        псевдонима или деструктурируется в несколько константных псевдонимах.
+        Эти псевдонимы единственный допустимый способ сослаться на
+        зависимости в коде или аннотациях типа. Полные имена пространства имен не
+        должны использоваться нигде, кроме как в качестве аргумента для
         <code>goog.require</code> или <code>goog.requireType</code>.
       </p>
+
       <p>
         <strong>Ислючение</strong>: Типы, переменные, и функции определенные во
         внешних файлах вынуждены использовать их полные имена в аннотациях и
         коде.
       </p>
       <p>
-        Псевдонимы должны соответствовать финальному компоненту, разделенному
-        точками, принаделажщему пространству имен испортируемого модуля.
+        Псевдонимы должны соответствовать финальному компоненту, разделенного точками, из модульного пространства имен.
       </p>
       <p>
         <strong>Исклбючение</strong>: В некоторых случаях, дополнительные
@@ -799,7 +801,7 @@ export class Class {};</code>
         длинных псевдонимов. Полученный псевдоним должен сохранять регистр
         исходного идентификатора, чтобы он по-прежнему правильно идентифицировал
         свой тип. Более длинные псевдонимы могут использоваться для устранения
-        неоднозначности идентичных псевдонимов, или, если это значительно
+        неоднозначности идентичных псевдонимов или если это значительно
         улучшает читабельность. Кроме того, для предотвращения маскирования
         нативных типов, таких как <code>Element</code>, <code>Event</code>,
         <code>Error</code>, <code>Map</code>, и <code>Promise</code> (см. более
@@ -814,166 +816,315 @@ export class Class {};</code>
         следовать за двоеточием, как требуется в
         <a href="#formatting-horizontal-whitespace">??</a>.
       </p>
+
       <p>
-        Файл должен содержать операторы <code>goog.require</code> и
+        Файл не должен содержать оба оператора <code>goog.require</code> и
         <code>goog.requireType</code> для одного и того же пространства
-        имен.Если импортированное имя используется как в коде, так и в
+        имен. Если импортированное имя используется как в коде, так и в
         аннотациях типа, оно должно быть импортировано одним оператором
         <code>goog.require</code>.
       </p>
+
       <p>
         Если модуль импортируется только для его побочных эффектов, вызов должен
         быть сделан при помощи <code>goog.require</code> (а не
         <code>goog.requireType</code>) и назначение может быть опущено.
-        Комментарий необходим, чтобы объяснить, почему это необходимо, и
+        Также необходим комментарий, чтобы объяснить, почему это необходимо, и
         подавить предупреждение компилятора.
       </p>
+
       <p>
         Строки сортируются в соответствии со следующими правилами: Все
-        требования с именем слева идут на первом месте, сортируются по алфавиту
-        по этим именам. Затем требуется деструктуризация, снова отсортированная
-        по именам с левой стороны. Наконец, любые требующие вызовы, которые
-        являются автономными (обычно это для модулей, импортированных только для
-        их побочных эффектов)
+        <code>require</code> с именем слева идут на первом месте, отсортированными по алфавиту. 
+        Затем <code>require</code> с деструктуризацией, снова отсортированная
+        по названиям слева. Наконец, любые вызовы <code>require</code>, которые
+        являются автономными (обычно модули, импортированные только для
+        побочных эффектов).
       </p>
+
       <p>
-        Совет. Нет необходимости запоминать этот порядок и применять его
+        Совет: Нет необходимости запоминать этот порядок и применять его
         вручную. Вы можете положиться на свою среду IDE, чтобы сообщить о
-        требованиях, которые отсортированы неправильно
+        <code>require</code>, которые отсортированы неправильно.
       </p>
+
       <p>
         Если длинный псевдоним или имя модуля приведет к тому, что строка
-        превысит ограничение в 80 столбцов, оно <strong>не</strong> должно
-        переноситься: обязательные строки являются исключением из ограничения в
+        превысит ограничение в 80 символов, оно <strong>не</strong> должно
+        переноситься: строки с <code>require</code> являются исключением из ограничения в
         80 столбцов.
       </p>
+
       <p>Пример:</p>
-      <pre><code class="language-js prettyprint">// Стандартный стиль псевдонимов.const MyClass = goog.require('some.package.MyClass');const MyType = goog.requireType('some.package.MyType');// Псевдоним на основе пространства имен, используемый для устранения неоднозначности.const NsMyClass = goog.require('other.ns.MyClass');// Псевдоним на основе пространства имен, используемый для предотвращения маскирования собственного типа.const RendererElement = goog.require('web.renderer.Element');// Вне последовательности псевдонимы на основе пространства имен используются для улучшения читабельности.// Кроме того, строки, содержащие более 80 столбцов, не должны переноситься.const SomeDataStructureModel = goog.requireType('identical.package.identifiers.models.SomeDataStructure');const SomeDataStructureProto = goog.require('proto.identical.package.identifiers.SomeDataStructure');// Стандартный стиль псевдонима.const asserts = goog.require('goog.asserts');// Псевдоним на основе пространства имен, используемый для устранения неоднозначности.const testingAsserts = goog.require('goog.testing.asserts');// Стандартная деструкция в псевдонимы.const {clear, clone} = goog.require('goog.array');const {Rgb} = goog.require('goog.color');// Деструктуризация на основе пространства имен в псевдонимы для устранения неоднозначности.const {SomeType: FooSomeType} = goog.requireType('foo.types');const {clear: objectClear, clone: objectClone} = goog.require('goog.object');// goog.require without an alias in order to trigger side effects./** @suppress {extraRequire} Инициализируется MyFramework. */goog.require('my.framework.initialization');</code></pre>
+
+      <pre>
+        <code class="language-js prettyprint">// Стандартный стиль псевдонимов.
+const MyClass = goog.require('some.package.MyClass');
+const MyType = goog.requireType('some.package.MyType');
+// Псевдоним на основе пространства имен, используемый для устранения неоднозначности.
+const NsMyClass = goog.require('other.ns.MyClass');
+// Псевдоним на основе пространства имен, используемый для предотвращения маскирования собственного типа.
+const RendererElement = goog.require('web.renderer.Element');
+// Непоследовательные псевдонимы на основе пространства имен используются для улучшения читабельности.
+// Кроме того, строки, содержащие более 80 столбцов, не должны переноситься.
+const SomeDataStructureModel = goog.requireType('identical.package.identifiers.models.SomeDataStructure');
+const SomeDataStructureProto = goog.require('proto.identical.package.identifiers.SomeDataStructure');
+// Стандартный стиль псевдонима.
+const asserts = goog.require('goog.asserts');
+// Псевдоним на основе пространства имен, используемый для устранения неоднозначности.
+const testingAsserts = goog.require('goog.testing.asserts');
+// Стандартная деструкция в псевдонимы.
+const {clear, clone} = goog.require('goog.array');
+const {Rgb} = goog.require('goog.color');
+// Деструктуризация на основе пространства имен в псевдонимы для устранения неоднозначности.
+const {SomeType: FooSomeType} = goog.requireType('foo.types');
+const {clear: objectClear, clone: objectClone} = goog.require('goog.object');
+// goog.requireбез псевдонима, чтобы вызвать побочные эффекты.
+/** @suppress {extraRequire} Инициализируется MyFramework. */
+goog.require('my.framework.initialization');</code>
+      </pre>
+
+
       <p>Неоднозначно:</p>
-      <pre><code class="language-js badcode prettyprint">// Если необходимо устранить неоднозначность, предпочтите PackageClass, а не SomeClass// ближе к формату имени модуля.const SomeClass = goog.require('some.package.Class');</code></pre>
+      <pre>
+<code class="language-js badcode prettyprint">// Если необходимо устранить неоднозначность, предпочтите PackageClass, а не SomeClass,
+// так как он ближе к формату имени модуля.
+const SomeClass = goog.require('some.package.Class');</code>
+      </pre>
+
       <p>Запрещено:</p>
-      <pre><code class="language-js badcode prettyprint">// Дополнительные термины должны исходить из пространства имен.const MyClassForBizzing = goog.require('some.package.MyClass');// Псевдоним должен включать весь конечный компонент пространства имен.const MyClass = goog.require('some.package.MyClassForBizzing');// Псевдоним не должен маскировать собственный тип (здесь должно быть `const JspbMap`).const Map = goog.require('jspb.Map');// Не ломайте goog.require строки более 80 символов.const SomeDataStructure =    goog.require('proto.identical.package.identifiers.SomeDataStructure');// Псевдоним должен быть основан на пространстве имен.const randomName = goog.require('something.else');// Отсутствует пробел после двоеточия.const {Foo:FooProto} = goog.require('some.package.proto.Foo');// goog.requireType без псевдонима.goog.requireType('some.package.with.a.Type');/** * @param {!some.unimported.Dependency} param Все внешние типы использующиеся в JSDoc *    аннотациях должны быть потребованы с помощью goog.require, если не объявлено в externs. */function someFunction(param) {  // goog.require строки должны быть на верхнем уровне перед любым другим кодом.  const alias = goog.require('my.long.name.alias');  // ...}</code></pre>
+      <pre>
+        <code class="language-js badcode prettyprint">// Дополнительные термины должны исходить из пространства имен.
+const MyClassForBizzing = goog.require('some.package.MyClass');
+// Псевдоним должен включать все конечные компоненты пространства имен.
+const MyClass = goog.require('some.package.MyClassForBizzing');
+// Псевдоним не должен маскировать собственный тип (здесь должно быть `const JspbMap`).
+const Map = goog.require('jspb.Map');
+// Не переносите goog.require строки более 80 символов.
+const SomeDataStructure =
+    goog.require('proto.identical.package.identifiers.SomeDataStructure');
+// Псевдоним должен быть основан на пространстве имен.
+const randomName = goog.require('something.else');
+// Отсутствует пробел после двоеточия.
+const {Foo:FooProto} = goog.require('some.package.proto.Foo');
+// goog.requireType без псевдонима.
+goog.requireType('some.package.with.a.Type');
+
+/** 
+ * @param {!some.unimported.Dependency} param Все внешние типы использующиеся в JSDoc 
+ *    аннотациях должны быть потребованы с помощью goog.require, если не объявлено в externs. 
+ */
+ function someFunction(param) {
+  // goog.require строки должны быть на верхнем уровне перед любым другим кодом.
+  const alias = goog.require('my.long.name.alias');
+  // ...
+}</code>
+      </pre>
+      
       <h3 id="file-implementation">3.7 Реализация файла</h3>
+
       <p>
-        Реальная реализация следует после того, как вся информация о
-        зависимостях объявлена (разделена хотя бы одной пустой строкой).
+        Фактичесая реализация следует после того, как вся информация о
+        зависимостях объявлена (и разделена хотя бы одной пустой строкой).
       </p>
+
       <p>
-        Это может состоять из любых локальных объявлений модулей (констант,
-        переменных, классов, функций и т. Д.), А также любых экспортируемых
-        символов.
+        Она может состоять из любых модульных деклараций (константы, переменные, классы, функции и т.д.), а также любых экспортируемых символов.
       </p>
+
       <h2 id="formatting">4 Форматирование</h2>
+
       <p>
-        <strong>Терминологическая заметка</strong>:
-        <em>блочная конструкция</em> ссылается на тело класса, функции, метода
+        <strong>Терминологическое примечание</strong>:
+        <em>блокоподобная конструкция</em> относится к телу класса, функции, метода
         или блока кода, разделенного скобками. Обратите внимание, что по
         правилам <a href="#features-array-literals">??</a> и
         <a href="#features-object-literals">??</a>, любой массив или объектный
         литерал может опционально обрабатываться, как если бы это была блочная
         конструкция.
       </p>
+
       <p>
         Подсказка: Используйте <code>clang-format</code>. Сообщество JavaScript
-        приложило усилия, чтобы убедиться, clang-format
+        приложило усилия, чтобы убедиться, что clang-format
         <q>правильно работает</q> в JavaScript файлах.
         <code>clang-format</code> имеет интеграцию с несколькими популярными
         редакторами.
       </p>
+
       <h3 id="formatting-braces">4.1 Скобки</h3>
+
       <h4 id="formatting-braces-all">
-        4.1.1 Скобки, использующиеся для всех управляющих структур
+        4.1.1 Скобки используются для всех управляющих структур
       </h4>
+
       <p>
         Скобки требуются для всех управляющих структур (например,
         <code>if</code>, <code>else</code>, <code>for</code>, <code>do</code>,
         <code>while</code> и т.п.), даже если тело содержит один оператор.
         Первый оператор непустого блока должен начинаться с отдельной строки.
       </p>
+
       <p>Не разрешено:</p>
+      
       <pre><code class="language-js badcode prettyprint">if (someVeryLongCondition())  doSomething();for (let i = 0; i &lt; foo.length; i++) bar(foo[i]);</code></pre>
+
       <p>
         <strong>Исключение</strong>: Простой оператор if, который может
         поместиться целиком в одну строку без переноса (и в котором нет
-        другого), может быть сохранен в одной строке без фигурных скобок, когда
+        другого), может быть помещен в одной строке без фигурных скобок, когда
         он улучшает читабельность. Это единственный случай, когда управляющая
         структура может пропускать скобки и переводы строк.
       </p>
+
       <pre><code class="language-js prettyprint">if (shortCondition()) foo();</code></pre>
+
       <h4 id="formatting-nonempty-blocks">
         4.1.2 Непустые блоки: стиль K&amp;R
       </h4>
+
       <p>
         Скобки следуют стилю Кернигана и Ричи (<q
           ><a
             href="http://www.codinghorror.com/blog/2012/07/new-programming-jargon.html"
-            >египитские скобки</a
+            >египетские скобки</a
           ></q
-        >) для <em>непутсых</em> блоков и блочных конструкций:
+        >) для <em>непутсых</em> блоков и блочных конструкций, если:
       </p>
+
       <ul>
         <li>Никакого разрыва строки перед открывающей скобкой.</li>
         <li>Разрыв строки после открывающей скобки.</li>
         <li>Разрыв строки перед закрывающей скобкой.</li>
         <li>
-          Разрыв строки после закрывающей скобки <em>if</em> эта фигурная скобка
-          завершает оператор или тело оператора функции или класса или метод
+          Разрыв строки после закрывающей скобки <em>if</em>. Данная фигурная скобка
+          завершает оператор или тело оператора функции, или класса, или метод
           класса. В частности, после фигурной скобки <em>нет</em> разрыва
           строки, если за ней следует <code>else</code>, <code>catch</code>,
-          <code>while</code>, или запятая, точка с запятой или правая скобка.
+          <code>while</code> или запятая, точка с запятой или правая скобка.
         </li>
       </ul>
+
       <p>Пример:</p>
-      <pre><code class="language-js prettyprint">class InnerClass {  constructor() {}  /** @param {number} foo */  method(foo) {    if (condition(foo)) {      try {        // Обратите внимание: это может потерпеть неудачу.        something();      } catch (err) {        recover();      }    }  }}</code></pre>
+
+      <pre><code class="language-js prettyprint">class InnerClass {
+  constructor() {}
+
+  /** @param {number} foo */
+  method(foo) {
+    if (condition(foo)) {
+      try {
+        // Внимание: это может не сработать.
+        something();
+      } catch (err) {
+        recover();
+      }
+    }
+  }
+}
+</code></pre>
+
       <h4 id="formatting-empty-blocks">
         4.1.3 Пустые блоки: могут быть краткими
       </h4>
+
       <p>
         Пустой блок или блочно-подобная конструкция <em>может</em> быть закрыта
-        сразу после открытия, без символов, пробелов или разрыва строки между
+        сразу после открытия, но без символов, пробелов или разрыва строки между
         ними (например, <code>{}</code>), <strong>Если</strong> только это не
         является частью <em>многоблочного оператора</em> (который содержит
         непосредственно несколько блоков: <code>if</code>/<code>else</code> или
         <code>try</code>/<code>catch</code>/<code>finally</code>).
       </p>
+
       <p>Пример:</p>
+
       <pre><code class="language-js prettyprint">function doNothing() {}</code></pre>
+
       <p>Запрещено:</p>
-      <pre><code class="language-js prettyprint badcode">if (condition) {  // &#8230;} else if (otherCondition) {} else {  // &#8230;}try {  // &#8230;} catch (e) {}</code></pre>
+
+      <pre><code class="language-js prettyprint badcode">if (condition) {
+  // &#8230;
+} else if (otherCondition) {} else {
+  // &#8230;
+}
+
+try {
+  // &#8230;
+} catch (e) {}
+</code></pre>
+
       <h3 id="formatting-block-indentation">4.2 Блочный отступ: +2 пробела</h3>
+
       <p>
         Каждый раз, когда открывается новый блок или блочная конструкция, отступ
         увеличивается на два пробела. Когда блок заканчивается, отступ
         возвращается к предыдущему уровню отступа. Уровень отступа применяется
-        как к коду, так и к комментариям по всему блоку. (См. Пример в
+        как к коду, так и к комментариям по всему блоку. (см. пример в
         <a href="#formatting-nonempty-blocks">??</a>).
       </p>
+
       <h4 id="formatting-array-literals">
-        4.2.1 Литералы массива: <q>опционально блочные</q>
+        4.2.1 Литералы массива: опционально <q>блочный</q>
       </h4>
+
       <p>
         Любой литерал массива может быть необязательно отформатирован так, как
         если бы он был «блочной конструкцией». Например, допустимые варианты
         ниже (<strong>не</strong> исчерпывающий список):
       </p>
-      <pre><code class="language-js prettyprint columns">const a = [  0,  1,  2,];const b =    [0, 1, 2];</code></pre>
-      <pre><code class="language-js prettyprint columns">const c = [0, 1, 2];someMethod(foo, [  0, 1, 2,], bar);</code></pre>
+
+     <pre><code class="language-js prettyprint columns">const a = [
+  0,
+  1,
+  2,
+];
+
+const b =
+    [0, 1, 2];
+
+</code></pre>
+
+      <pre><code class="language-js prettyprint columns">const c = [0, 1, 2];
+
+someMethod(foo, [
+  0, 1, 2,
+], bar);
+</code></pre>
+
       <p>
-        Допускаются другие комбинации, особенно при выделении семантических
-        группировок между элементами, но они не должны использоваться только для
+        Допускаются другие комбинации, особенно при подчеркивании семантических группировок между элементами,
+         но они не должны использоваться только для
         уменьшения вертикального размера больших массивов.
       </p>
+
       <h4 id="formatting-object-literals">
-        4.2.2 Объектные литералы: <q>опционально блочные</q>
+        4.2.2 Объектные литералы: опционально <q>блочные</q>
       </h4>
+
       <p>
         Любой объектный литерал может быть отформатирован так, как если бы он
         был «блочной конструкцией». Применяются те же примеры, что и
-        <a href="#formatting-array-literals">??</a>. Например, следующие
-        действительны (<strong>не</strong> исчерпывающий список):
+        <a href="#formatting-array-literals">??</a>. Например, следующие примеры
+        допустимы (<strong>не</strong> исчерпывающий список):
       </p>
-      <pre><code class="language-js prettyprint columns">const a = {  a: 0,  b: 1,};const b =    {a: 0, b: 1};</code></pre>
-      <pre><code class="language-js prettyprint columns">const c = {a: 0, b: 1};someMethod(foo, {  a: 0, b: 1,}, bar);</code></pre>
+
+      <pre><code class="language-js prettyprint columns">const a = {
+  a: 0,
+  b: 1,
+};
+
+const b =
+    {a: 0, b: 1};
+</code></pre>
+
+      <pre><code class="language-js prettyprint columns">const c = {a: 0, b: 1};
+
+someMethod(foo, {
+  a: 0, b: 1,
+}, bar);
+</code></pre>
+
       <h4 id="formatting-class-literals">4.2.3 Литералы класса</h4>
       <p>
         Литералы класса (будь то объявления или выражения) имеют отступ в виде
@@ -981,59 +1132,135 @@ export class Class {};</code>
         закрывающей скобки <em>объявления класса</em> (операторы, такие как
         присваивания, которые содержат <em>выражения</em> класса, по-прежнему
         заканчиваются точкой с запятой). Используйте ключевое слово
-        <code>@extends</code>, но не аннотацию <code>@extends</code> JSDoc, если
+        <code>extends</code>, но не аннотацию <code>@extends</code> JSDoc, если только 
         класс не расширяет шаблонизированный тип.
       </p>
+
       <p>Пример:</p>
-      <pre><code class="language-js prettyprint columns">class Foo {  constructor() {    /** @type {number} */    this.x = 42;  }  /** @return {number} */  method() {    return this.x;  }}Foo.Empty = class {};</code></pre>
-      <pre><code class="language-js prettyprint columns">/** @extends {Foo&lt;string&gt;} */foo.Bar = class extends Foo {  /** @override */  method() {    return super.method() / 2;  }};/** @interface */class Frobnicator {  /** @param {string} message */  frobnicate(message) {}}</code></pre>
+
+       <pre><code class="language-js prettyprint columns">class Foo {
+  constructor() {
+    /** @type {number} */
+    this.x = 42;
+  }
+
+  /** @return {number} */
+  method() {
+    return this.x;
+  }
+}
+Foo.Empty = class {};
+</code></pre>
+
+      <pre><code class="language-js prettyprint columns">/** @extends {Foo&lt;string&gt;} */
+foo.Bar = class extends Foo {
+  /** @override */
+  method() {
+    return super.method() / 2;
+  }
+};
+
+/** @interface */
+class Frobnicator {
+  /** @param {string} message */
+  frobnicate(message) {}
+}
+</code></pre>
+
       <h4 id="formatting-function-expressions">
         4.2.4 Функциональные выражения
       </h4>
+
       <p>
-        При объявлении анонимной функции в списке аргументов для вызова функции
+        При объявлении анонимной функции в списке аргументов для вызова функции,
         тело функции имеет отступ на два пробела больше, чем предыдущая глубина
         отступа.
       </p>
+
       <p>Пример:</p>
-      <pre><code class="language-js prettyprint">prefix.something.reallyLongFunctionName('whatever', (a1, a2) =&gt; {  // Отступ тела функции +2 относительно глубины отступа  // оператора "префикса" на одну строку выше.  if (a1.equals(a2)) {    someOtherLongFunctionName(a1);  } else {    andNowForSomethingCompletelyDifferent(a2.parrot);  }});some.reallyLongFunctionCall(arg1, arg2, arg3)    .thatsWrapped()    .then((result) =&gt; {      // Отступ тела функции +2 относительно глубины отступа      // от вызова '.then()'.      if (result) {        result.use();      }    });</code></pre>
+<pre><code class="language-js prettyprint">prefix.something.reallyLongFunctionName('whatever', (a1, a2) =&gt; {
+  // Отступ тела функции +2 относительно глубины отступа
+  // оператора на одну строку выше.
+  if (a1.equals(a2)) {
+    someOtherLongFunctionName(a1);
+  } else {
+    andNowForSomethingCompletelyDifferent(a2.parrot);
+  }
+});
+
+some.reallyLongFunctionCall(arg1, arg2, arg3)
+    .thatsWrapped()
+    .then((result) =&gt; {
+      // Отступ тела функции +2 относительно глубины отступа
+      // вызова '.then()'.
+      if (result) {
+        result.use();
+      }
+    });
+</code></pre>
+
       <h4 id="formatting-switch-statements">4.2.5 Switch оператор</h4>
+
       <p>
         Как и в любом другом блоке, содержимое блока switch имеет отступ +2.
       </p>
+
       <p>
-        После метки переключателя появляется новая строка, и уровень отступа
+        После оператора <code>switch</code> добавляется новая строка и уровень отступа
         увеличивается на +2, точно так же, как если бы блок открывался. Явный
         блок может использоваться, если этого требует лексическая область
-        видимости. Следующая метка переключателя возвращает к предыдущему уровню
-        отступа, как если бы блок был закрыт.
+        видимости. После завершения оператора, отступ возвращается на предыдущий уровень.
       </p>
+
       <p>
         Пустая строка необязательна между <code>break</code> и следующим
         случаем.
       </p>
+
       <p>Пример:</p>
-      <pre><code class="language-js prettyprint">switch (animal) {  case Animal.BANDERSNATCH:    handleBandersnatch();    break;  case Animal.JABBERWOCK:    handleJabberwock();    break;  default:    throw new Error('Unknown animal');}</code></pre>
+
+      <pre><code class="language-js prettyprint">switch (animal) {
+  case Animal.BANDERSNATCH:
+    handleBandersnatch();
+    break;
+
+  case Animal.JABBERWOCK:
+    handleJabberwock();
+    break;
+
+  default:
+    throw new Error('Неизвестное животное');
+}
+</code></pre>
+
       <h3 id="formatting-statements">4.3 Операторы</h3>
+
       <h4 id="formatting-one-statement-perline">
         4.3.1 Один оператор на строку
       </h4>
+
       <p>После каждого оператора делается перевод строки.</p>
+
       <h4 id="formatting-semicolons-are-required">
         4.3.2 Необходима точка с запятой.
       </h4>
+
       <p>
-        Каждое утверждение должно заканчиваться точкой с запятой. Использование
+        Каждый оператор должен заканчиваться точкой с запятой. Использование
         автоматической точки с запятой запрещено.
       </p>
+
       <h3 id="formatting-column-limit">4.4 Лимит строки: 80 символов</h3>
+
       <p>
-        Код JavaScript имеет ограничение столбца 80 символов. За исключением
+        Код JavaScript имеет ограничение столбца в 80 символов. За исключением
         случаев, указанных ниже, любая строка, которая превысила бы этот предел,
         должна быть перенесена, как описано в
         <a href="#formatting-line-wrapping">??</a>.
       </p>
+
       <p><strong>Исключения:</strong></p>
+
       <ol>
         <li>
           Операторы <code>goog.module</code>, <code>goog.require</code> и
@@ -1059,29 +1286,38 @@ export class Class {};</code>
           </ul>
         </li>
       </ol>
+
       <h3 id="formatting-line-wrapping">4.5 Перенос строк</h3>
+
       <p>
-        <strong>Терминологическая заметка</strong>:
+        <strong>Терминологическое примечание</strong>:
         <em>Перенос строки</em> разбивает кусок кода на несколько строк в
-        соответствии с ограничением столбца, где фрагмент в противном случае мог
-        бы по закону поместиться в одну строку.
+        соответствии с ограничением по количеству символов, где фрагмент в противном случае мог
+        бы поместиться в одну строку в соответствии с правилами данного руководства.
       </p>
+
       <p>
-        Не существует всеобъемлющей формулы, показывающей, как
+        Не существует всеобъемлющего правила, показывающего, как
         <em>именно</em> переносить строки в каждой ситуации. Очень часто есть
         несколько допустимых способов переноса строк в одном и том же фрагменте
         кода.
       </p>
+
       <p>
         Примечание. Хотя типичная причина переноса строки заключается в том,
-        чтобы избежать переполнения предела столбца, даже код, который на самом
-        деле помещается в пределе столбца, может быть перенесен строкой на
+        чтобы избежать переполнения предела столбца - даже код, который на самом
+        деле помещается в пределе допустимого количества символов, может быть разбит строкой на
         усмотрение автора.
       </p>
+      <p>
+        Note: While the typical reason for line-wrapping is to avoid overflowing the column limit, even code that would in fact fit within the column limit may be line-wrapped at the author's discretion.
+      </p>
+
       <p>
         Совет: извлечение метода или локальной переменной может решить проблему
         без необходимости переноса строки.
       </p>
+      
       <h4 id="formatting-where-to-break">4.5.1 Когда переносить</h4>
       <p>
         Основная директива переноса строк такова: предпочитайте разрывать на
