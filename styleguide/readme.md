@@ -10,20 +10,10 @@
 
 <br>
 
-### How to contribute:
-
-1. Enter the Telegram chat - https://t.me/js_style_guide_translation.
-2. Make the first pull request and add to a list's item which you want to translate in the `readme.md` the string `<--- is translating by *your name*` (see the current). This point is used to avoid misunderstanding between contributors.
-3. Translate any section of the Style Guide in the `./styleguide/jsguide.html`.
-4. Make a pull request with translation.
-5. Repeat the sequence of actions (please, do not translate several sections at a time).
-
-<br>
-
 ### Progress
 
 ```
-Translated: 46,4% (26 from 56 sections)
+Translated: 82,1% (46 from 56 sections)
 Translation progress (translated points - must be removed):
 
 1.1 - TRANSLATED by Rostislav Dugin
@@ -52,27 +42,27 @@ Translation progress (translated points - must be removed):
 5.3 - TRANSLATED by Rostislav Dugin
 5.4 - TRANSLATED by Rostislav Dugin
 5.5 - TRANSLATED by Rostislav Dugin
-5.6 <--- is translating by Rostislav Dugin
-5.7 <--- partial machine translation by Rostislav Dugin
-5.8 <--- partial machine translation by Rostislav Dugin
-5.9 <--- partial machine translation by Rostislav Dugin
-5.10 <--- partial machine translation by Rostislav Dugin
-5.11 <--- partial machine translation by Rostislav Dugin
-6.1 <--- partial machine translation by Rostislav Dugin
-6.2 <--- partial machine translation by Rostislav Dugin
-6.3 <--- partial machine translation by Rostislav Dugin
-7.1 <--- partial machine translation by Rostislav Dugin
-7.2 <--- partial machine translation by Rostislav Dugin
-7.3 <--- partial machine translation by Rostislav Dugin
-7.4 <--- partial machine translation by Rostislav Dugin
-7.5 <--- partial machine translation by Rostislav Dugin
-7.6 <--- partial machine translation by Rostislav Dugin
-7.7 <--- partial machine translation by Rostislav Dugin
-7.8 <--- partial machine translation by Rostislav Dugin
-7.9 <--- partial machine translation by Rostislav Dugin
-7.10 <--- partial machine translation by Rostislav Dugin
-7.11 <--- partial machine translation by Rostislav Dugin
-8.1 <--- partial machine translation by Rostislav Dugin
+5.6 - TRANSLATED by Rostislav Dugin
+5.7 - TRANSLATED by Rostislav Dugin
+5.8 - TRANSLATED by Rostislav Dugin
+5.9 - TRANSLATED by Rostislav Dugin
+5.10 - TRANSLATED by Rostislav Dugin
+5.11 - TRANSLATED by Rostislav Dugin
+6.1 - TRANSLATED by Rostislav Dugin
+6.2 - TRANSLATED by Rostislav Dugin
+6.3 - TRANSLATED by Rostislav Dugin
+7.1 - TRANSLATED by Rostislav Dugin
+7.2 - TRANSLATED by Rostislav Dugin
+7.3 - TRANSLATED by Rostislav Dugin
+7.4 - TRANSLATED by Rostislav Dugin
+7.5 - TRANSLATED by Rostislav Dugin
+7.6 - TRANSLATED by Rostislav Dugin
+7.7 - TRANSLATED by Rostislav Dugin
+7.8 - TRANSLATED by Rostislav Dugin
+7.9 - TRANSLATED by Rostislav Dugin
+7.10 - TRANSLATED by Rostislav Dugin
+7.11 - TRANSLATED by Rostislav Dugin
+8.1 <--- is translating by Rostislav Dugin
 8.2 <--- partial machine translation by Rostislav Dugin
 8.3 <--- partial machine translation by Rostislav Dugin
 8.4 <--- partial machine translation by Rostislav Dugin

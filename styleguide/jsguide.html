@@ -1919,8 +1919,8 @@ function optionalDestructuring([a = 4, b = 2] = []) { &#8230; };</code></pre>
       </h4>
 
       <p>
-        Объектные литералы могут представлять либо <em>structs</em> (с ключами
-        и/или символами в кавычках), либо <em>dicts</em> (с и/или вычисляемыми
+        Объектные литералы могут представлять собой либо <em>structs</em> (с ключами
+        и/или символами без кавычек), либо <em>dicts</em> (с и/или вычисляемыми
         ключами в кавычках). Не смешивайте эти типы ключей в одном объектном
         литерале.
       </p>
@@ -1982,7 +1982,7 @@ if (o.maxWidth != null) {
       <p>
         Методы могут быть определены в объектных литералах с помощью
         сокращенного варианта (<code>{method() {&#8230; }}</code>), вместо
-        двоеточия сразу за которым следует <code>function</code> или литерал
+        двоеточия, сразу за которым следует <code>function</code> или литерал
         стрелочной функции.
       </p>
 
@@ -2037,7 +2037,7 @@ assertEquals(3, obj.method());
       <h4 id="features-objects-destructuring">5.3.7 Деструктуризация</h4>
 
       <p>
-        Деструктуризации объектов может быть использована слева от определения
+        Деструктуризация объектов может быть использована слева от определения
         для распаковки нескольких значений из одного объекта.
       </p>
 
@@ -2153,7 +2153,7 @@ const Option = {
 
       <p>
         Подсказка: Свойства никогда не следует добавлять или удалять из
-        экземпляра после завершения работы конструктора, так как это существенно
+        экземпляра класса после завершения работы конструктора, так как это существенно
         затрудняет работу виртуальной машины (которая пытается провести
         оптимизацию). При необходимости, поля, которые инициализируются позже,
         должны быть явно установлены как
@@ -2185,7 +2185,7 @@ const Option = {
         в старых браузерах.
       </p>
 
-      <h4 id="features-classes-static-methods">5.4.4 Статисческие методы</h4>
+      <h4 id="features-classes-static-methods">5.4.4 Статические методы</h4>
 
       <p>
         Там, где это не мешает читабельности, предпочитайте модульно локальные
@@ -2389,7 +2389,7 @@ C.prototype.method = function(param) {
       </p>
 
       <p>
-        Все нестатические тела методов в интерфейсе должны быть пустыми блоками.
+        Все тела нестатических методов в интерфейсе должны быть пустыми блоками.
         Поля должны быть объявлены как неинициализированные свойства в
         конструкторе класса.
       </p>
@@ -2529,7 +2529,7 @@ class CallbackExample {
     this.cachedValue_ = 0;
 
     // Для однострочных callback'ов, вы можете использовать определение типов для параметров.
-    // Используется блочный оператор, потому что значение выражение не должно ничего
+    // Используется блочный оператор, потому что значение выражения не должно ничего
     // возвращать и выражение не является единственным вызовом функции.
     getNullableValue((/** ?number */ result) =&gt; {
       this.cachedValue_ = result == null ? 0 : result;
@@ -2643,14 +2643,14 @@ class MyInterface {
         (такие как <code>{}</code> или <code>[]</code>), потому что
         инициализатор вычисляется каждый раз при использовании значения по
         умолчанию, поэтому один объект не будет совместно использоваться в
-        нескольких вызовах
+        нескольких вызовах.
       </p>
 
       <p>
         Подсказка: Хотя в качестве инициализаторов могут использоваться
         произвольные выражения, включая вызовы функций, их следует делать как
         можно более простыми. Избегайте инициализаторов, показывающих общее
-        мутируемое состояние, так как это может легко привести к
+        изменяемое состояние, так как это может легко привести к
         непреднамеренной связи между вызовами функций.
       </p>
 
@@ -2660,12 +2660,12 @@ class MyInterface {
 
       <p>
         Используйте параметр <em>rest</em> вместо доступа к
-        <code>arguments</code>. Оставшиеся параметры начинаются с префиксом
+        <code>arguments</code>. Оставшиеся параметры начинаются с префикса
         <code>...</code> в JSDoc. <code>rest</code> параметр должен быть
         последним в списке. Между <code>...</code> и именем параметра нет
         пробела. Не называйте параметр rest <code>var_args</code>. Никогда не
         называйте локальную переменную или параметр <code>arguments</code>,
-        который вносит путаницу из-за встроенного arguments.
+        он вносит путаницу из-за встроенного arguments.
       </p>
 
       <p>Пример:</p>
@@ -2702,185 +2702,283 @@ myFunction(...array, ...iterable, ...generator());
 
       <h3 id="features-string-literals">5.6 Строковые литералы</h3>
 
-      <h4 id="features-strings-use-single-quotes">5.6.1 Use single quotes</h4>
+      <h4 id="features-strings-use-single-quotes">5.6.1 Используйте одиночные кавычки</h4>
+
       <p>
         Обычные строковые литералы разделяются одиночными кавычками
         (<code>'</code>), а не двойными кавычками (<code>"</code>).
       </p>
+
       <p>
         Подсказка: если строка содержит символ одиночной кавычки, рассмотрите
         возможность использования строки-шаблона, чтобы избежать необходимости
         экранирования кавычек.
       </p>
+
       <p>Обычные строковые литералы не могут охватывать несколько строк.</p>
-      <h4 id="features-strings-template-strings">5.6.2 Template literals</h4>
+
+      <h4 id="features-strings-template-strings">5.6.2 Шаблонные литералы</h4>
+
       <p>
-        Используйте шаблонные литералы (разделенные <code>`</code>) над сложной
+        Используйте шаблонные литералы (разделенные <code>`</code>) со сложной
         конкатеннацией строк, особенно если речь идет о многострочных литералах.
         Шаблонные литералы могут занимать несколько строк.
       </p>
+
       <p>
         Если шаблонный литерал охватывает несколько строк, ему не нужно
-        следовать за отступом ограждающего блока, хотя это может произойти, если
-        добавленные пробельные символы не имеют значения.
+        поддерживать отступ блока (хотя это возможно, если
+        добавленные пробельные символы не имеют значения).
       </p>
+
       <p>Пример:</p>
-      <pre><code class="language-js prettyprint">function arithmetic(a, b) {  return `Here is a table of arithmetic operations:${a} + ${b} = ${a + b}${a} - ${b} = ${a - b}${a} * ${b} = ${a * b}${a} / ${b} = ${a / b}`;}</code></pre>
+
+      <pre><code class="language-js prettyprint">function arithmetic(a, b) {
+  return `Это таблица с арифмитическими операторами:
+${a} + ${b} = ${a + b}
+${a} - ${b} = ${a - b}
+${a} * ${b} = ${a * b}
+${a} / ${b} = ${a / b}`;
+}
+</code></pre>
+
       <h4 id="features-strings-no-line-continuations">
-        5.6.3 No line continuations
+        5.6.3 Не используйте продолжения строк
       </h4>
+
       <p>
         Не используйте <em>продолжения строк</em> (то есть завершение строки
         внутри строкового литерала обратным слешем) ни в обычных, ни в шаблонных
-        строковых литералах. Хотя ES5 позволяет это, это может привести к хитрым
-        ошибкам, если любой трейлинговый пробельный символ приходит после косой
-        черты, и менее очевиден для читателей.
+        строковых литералах. Хотя ES5 позволяет это, это может привести к неожиданным
+        ошибкам, если любой пробельный символ стоит после косой
+        черты - к тому же, он является менее очевидным для читателей.
       </p>
+
       <p>Запрещено:</p>
-      <pre><code class="language-js prettyprint badcode">const longString = 'This is a very long string that far exceeds the 80 \    column limit. It unfortunately contains long stretches of spaces due \    to how the continued lines are indented.';</code></pre>
+
+      <pre><code class="language-js prettyprint badcode">const longString = 'Это очень длинная строка, которая превышает лимит в \
+    80 символов. К сожалению, она содержит длинные отрезки пустого пространства, так \
+    как имеются отступы для поддержания форматирования.';
+</code></pre>
+
       <p>Вместо этого напишите</p>
-      <pre><code class="language-js prettyprint">const longString = 'This is a very long string that far exceeds the 80 ' +    'column limit. It does not contain long stretches of spaces since ' +    'the concatenated strings are cleaner.';</code></pre>
-      <h3 id="features-number-literals">5.7 Number literals</h3>
+
+      <pre><code class="language-js prettyprint">const longString = 'Это очень длинная строка, которая превышает лимит в ' +
+    '80 символов. К сожалению, она содержит длинные отрезки пустого пространства, так ' +
+    'как имеются отступы для поддержания форматирования.';
+</code></pre>
+
+      <h3 id="features-number-literals">5.7 Числовые литералы</h3>
+
       <p>
         Числа могут быть указаны в десятичной, шестнадцатеричной, восьмеричной
         или двоичной форме. Используйте точные префиксы <code>0x</code>,
-        <code>0o</code> и <code>0b</code>, с строчными буквами, для
-        шестнадцатеричных, восьмеричных и двоичных, соответственно. Никогда не
+        <code>0o</code> и <code>0b</code> со строчными буквами для
+        шестнадцатеричных, восьмеричных и двоичных форм соответственно. Никогда не
         включайте ведущий ноль, если за ним не следуют <code>x</code>,
         <code>o</code> или <code>b</code>.
       </p>
-      <h3 id="features-control-structures">5.8 Control structures</h3>
-      <h4 id="features-for-loops">5.8.1 For loops</h4>
+
+      <h3 id="features-control-structures">5.8 Управляющие циклы</h3>
+
+      <h4 id="features-for-loops">5.8.1 Для циклов</h4>
+
       <p>
-        В ES6 язык теперь имеет три различных типа циклов <code> для</code>. Все
-        они могут использоваться, хотя <code> для</code>-<code>of</code> циклов
-        должны быть предпочтительны, когда это возможно.
+        В ES6 язык теперь имеет три различных типа циклов <code>for</code>. Все
+        они могут использоваться, хотя <code>for</code>-<code>of</code> цикл
+        должнен быть в приоритете, когда это возможно.
       </p>
+      
       <p>
-        <code> для</code>-<code>в</code> циклах можно использовать только для
-        объектов в стиле диктата (см.
-        <a href="#features-objects-mixing-клавиши">?</a>), и их не следует
+        <code>for</code>-<code>in</code> циклы можно использовать только для
+        объектов в dict стиле (см.
+        <a href="#features-objects-mixing-клавиши">??</a>), и их не следует
         использовать для итераций по массиву.
         <code>Object.prototype.hasOwnProperty</code> следует использовать в
-        <code> для</code>-<code>в</code>циклах для исключения нежелательных
-        свойств прототипа. Предпочтите <code> для</code>-<code>of</code> и
-        <code>Object.keys</code> над <code> для</code>-<code>в</code> когда это
+        <code>for</code>-<code>in</code> циклах для исключения нежелательных
+        свойств прототипа. Предпочтите <code>for</code>-<code>of</code> и
+        <code>Object.keys</code>, чем <code>for</code>-<code>in</code>, когда это
         возможно.
       </p>
-      <h4 id="features-exceptions">5.8.2 Exceptions</h4>
+
+      <h4 id="features-exceptions">5.8.2 Исключения</h4>
+
       <p>
         Исключения являются важной частью языка и должны использоваться всякий
         раз, когда возникают исключительные случаи. Всегда бросайте
-        <code>Error</code>s или подклассы <code>Error</code>: никогда не
-        бросайте строковые литералы или другие объекты. Всегда используйте
+        <code>Error</code> или подклассы <code>Error</code>: никогда не
+        выбрасывайте строковые литералы или другие объекты. Всегда используйте
         <code>new</code> при построении <code>Error</code>.
       </p>
+
       <p>
-        Эта обработка распространяется на <code>Promise</code> значения
-        отклонения, поскольку <code>Promise.rejection(obj)</code> эквивалентно
+        Эта обработка распространяется на значения <code>Promise</code> <code>rejection()</code> 
+        , поскольку <code>Promise.rejection(obj)</code> эквивалентно
         <code>throw obj;</code> в асинхронных функциях.
       </p>
+
       <p>
         Пользовательские исключения обеспечивают отличный способ передачи
-        дополнительной информации об ошибках от функций. Они должны быть
+        дополнительной информации об ошибках из функций. Они должны быть
         определены и использованы везде, где родной тип
         <code>Error</code> недостаточен.
       </p>
+
       <p>
-        Предпочтение отдается бросанию исключений, а не специальным подходам к
-        обработке ошибок (таким как передача типа ссылки на контейнер ошибок или
+        Предпочтение отдается выбрасыванию исключений, а не специальным подходам к
+        обработке ошибок (таким как передача ссылки на тип контейнера ошибоки или
         возврат объекта со свойством ошибки).
       </p>
-      <h5 id="features-empty-catch-blocks">5.8.2.1 Empty catch blocks</h5>
+
+      <h5 id="features-empty-catch-blocks">5.8.2.1 Пустые catch блоки</h5>
+
       <p>
         Очень редко корректно ничего не делать в ответ на пойманное исключение.
         Когда действительно уместно не предпринимать никаких действий в блоке
-        catch, причина, по которой это оправдано, объясняется в комментарии.
+        catch, причина, по которой это оправдано, объясняется в комментариях.
       </p>
-      <pre><code class="language-js prettyprint">try {  return handleNumericResponse(response);} catch (ok) {  // it's not numeric; that's fine, just continue}return handleTextResponse(response);</code></pre>
+
+      <pre><code class="language-js prettyprint">try {
+  return handleNumericResponse(response);
+} catch (ok) {
+  // это не число; это нормально - продолжаем работу
+}
+return handleTextResponse(response);
+</code></pre>
+
       <p>Запрещено:</p>
-      <pre><code class="language-js prettyprint badcode">  try {    shouldFail();    fail('expected an error');  } catch (expected) {  }</code></pre>
+
+      <pre><code class="language-js prettyprint badcode">  try {
+    shouldFail();
+    fail('ожидается ошибка');
+  } catch (expected) {
+  }
+</code></pre>
+
       <p>
         Совет: В отличие от некоторых других языков, шаблоны, подобные
-        вышеприведенным, просто don&#8217;t работают, так как они будут ловить
-        ошибку, брошенную <code>fail</code>. Вместо этого используйте
+        вышеприведенным, просто не работают, так как они будут ловить
+        ошибку, брошенную с помощью <code>fail</code>. Вместо этого используйте
         <code>assertThrows()</code>.
       </p>
-      <h4 id="features-switch-statements">5.8.3 Switch statements</h4>
+
+      <h4 id="features-switch-statements">5.8.3 Switch оператор</h4>
+
       <p>
-        Замечание по терминологии: Внутри фигурных скобок блока переключателей
+        Терминологическое примечание: Внутри фигурных скобок блока switch
         находятся одна или несколько групп операторов. Каждая группа операторов
-        состоит из одной или нескольких меток переключателя (либо
+        состоит из одной или нескольких блоков switch (либо
         <code>case FOO:</code> или <code>default:</code>), за которыми следует
         один или несколько операторов.
       </p>
-      <h5 id="features-switch-fall-through">5.8.3.1 Fall-through: commented</h5>
+
+      <h5 id="features-switch-fall-through">5.8.3.1 Пропуски вниз: должны комментироваться</h5>
+
       <p>
-        Внутри блока переключателей каждая группа операторов либо прерывается
-        внезапно (с помощью <code>броса</code>, <code>возврата</code> или
-        <code>бросает</code>n исключение), либо помечается комментарием,
+        Внутри блока switch каждая группа операторов либо прерывается
+        внезапно (с помощью <code>break</code>, <code>return</code> или
+        <code>throw</code>), либо помечается комментарием,
         указывающим на то, что выполнение будет или может быть продолжено в
         следующей группе операторов. Достаточно любого комментария, который
-        передает идею падения (обычно <code>// попадает в</code>). Этот
+        передает идею продолжения (обычно пишется <code>// fall through</code>). Этот
         специальный комментарий не требуется в последней группе операторов в
-        блоке переключателей.
+        блоке switch.
       </p>
+
       <p>Пример:</p>
-      <pre><code class="language-js prettyprint">switch (input) {  case 1:  case 2:    prepareOneOrTwo();  // fall through  case 3:    handleOneTwoOrThree();    break;  default:    handleLargeNumber(input);}</code></pre>
+
+      <pre><code class="language-js prettyprint">switch (input) {
+  case 1:
+  case 2:
+    prepareOneOrTwo();
+    // fall through (продолжение)
+  case 3:
+    handleOneTwoOrThree();
+    break;
+  default:
+    handleLargeNumber(input);
+}
+</code></pre>
+
+
       <h5 id="features-switch-default-case">
-        5.8.3.2 The <code>default</code> case is present
+        5.8.3.2 Блок <code>default</code> должен присутствовать
       </h5>
+
       <p>
-        Каждый оператор-переключатель включает группу операторов
-        <code>default</code>, даже если он не содержит кода. Группа операторов
-        <code>default</code> должна быть последней.
+        Каждый оператор switch включает оператор
+        <code>default</code>, даже если он не содержит кода. Оператор
+        <code>default</code> должен быть последним.
       </p>
+
       <h3 id="features-this">5.9 this</h3>
+
       <p>
-        Используйте только <code>этот</code> в конструкторах и методах класса, в
-        функциях со стрелками, определенных внутри конструкторов и методов
-        класса, или в функциях, которые имеют явный <code>@это</code>,
-        объявленный в JSDoc в функции немедленного закрытия&#8217;s.
+        Используйте <code>this</code> только в конструкторах и методах класса, в
+        стрелочных функциях, определенных внутри конструкторов и методов
+        класса, или в функциях, которые имеют явный <code>@this</code>,
+        объявленный в JSDoc, а также в функциях, которые сразу закрываются.
       </p>
+
       <p>
-        Никогда не используйте <code>это</code> для обращения к глобальному
-        объекту, контексту <code>eval</code>, цели события, или неоправданно
-        <code></code><code>call()</code>ed или <code>apply()</code>ed функций.
+        Никогда не используйте <code>this</code> для обращения к глобальному
+        объекту, контексту <code>eval</code>, <code>target</code> принадлежащему <code>event</code>,
+         или ненужному
+        <code>call()</code> или <code>apply()</code> функций.
       </p>
-      <h3 id="features-equality-checks">5.10 Equality Checks</h3>
+
+      <h3 id="features-equality-checks">5.10 Проверка равенства</h3>
+
       <p>
-        Используйте операторы идентификации (<code>===</code>/<code>!==</code>),
+        Используйте операторы сравнения (<code>===</code>/<code>!==</code>),
         за исключением случаев, описанных ниже.
       </p>
+
       <h4 id="features-equality-checks-exceptions">
-        5.10.1 Exceptions Where Coercion is Desirable
+        5.10.1 Исключения, где необходимо приведение типов
       </h4>
-      <p>Поймать оба значения <code>null</code> и <code>undefined</code>:</p>
-      <pre><code class="language-js prettyprint">if (someObjectOrPrimitive == null) {  // Checking for null catches both null and undefined for objects and  // primitives, but does not catch other falsy values like 0 or the empty  // string.}</code></pre>
-      <h3 id="disallowed-features">5.11 Disallowed features</h3>
+
+      <p>Поимка с помощью <code>catch</code> обоих значений <code>null</code> и <code>undefined</code>:</p>
+
+      <pre><code class="language-js prettyprint">if (someObjectOrPrimitive == null) {
+  // Проверка на наличие null ловит и null, и undefined для объектов и
+  // примитивов, но не ловит другие неправильные значения, как 0 или пустые
+  // строки.
+}
+</code></pre>
+
+      <h3 id="disallowed-features">5.11 Запрещенные возможности</h3>
+
       <h4 id="disallowed-features-with">5.11.1 with</h4>
+
       <p>
-        Не используйте <code> с ключевым словом</code>. Это делает ваш код более
-        трудным для понимания и был запрещен в строгом режиме со времен ES5.
+        Не используйте ключевое слово <code>with</code>. Это сделает ваш код более
+        трудным для понимания. К тому же, он запрещен в строгом режиме со времен ES5.
       </p>
+      
       <h4 id="disallowed-features-dynamic-code-evaluation">
-        5.11.2 Dynamic code evaluation
+        5.11.2 Динамическая оценка кода
       </h4>
+
       <p>
-        Не используйте <code>eval</code> или конструктор
+        Не используйте <code>eval</code> для конструктора
         <code>Function(...string)</code> (за исключением загрузчиков кода). Эти
-        возможности потенциально опасны и просто не работают в среде CSP.
+        возможности потенциально опасны и просто не работают в среде CSP (политики защиты контента).
       </p>
+
       <h4 id="disallowed-features-automatic-semicolon-insertion">
-        5.11.3 Automatic semicolon insertion
+        5.11.3 Автоматическая установка точки с запятой
       </h4>
+
       <p>
         Всегда завершайте выражения точкой с запятой (за исключением объявлений
         функций и классов, как было отмечено выше).
       </p>
+
       <h4 id="disallowed-features-non-standard-features">
-        5.11.4 Non-standard features
+        5.11.4 Нестандартные функции
       </h4>
+
       <p>
         Не используйте нестандартные функции. Сюда относятся старые функции,
         которые были удалены (например, <code>WeakMap.clear</code>), новые
@@ -2889,94 +2987,141 @@ myFunction(...array, ...iterable, ...generator());
         исчерпывающие веб-стандарты), или проприетарные функции, которые
         реализованы только в некоторых браузерах. Используйте только те функции,
         которые определены в текущих стандартах ECMA-262 или WHATWG. (Обратите
-        внимание, что проекты, пишущие против определенных API, таких как
+        внимание, что проекты, настаивающие против определенных API, такие как
         расширения Chrome или Node.js, очевидно, могут использовать эти API).
-        Нестандартный язык &#8220; расширения &#8221; (например, предоставляемые
-        некоторыми внешними транспайлерами) запрещены.
+        Нестандартный языковые расширения (например, предоставляемые
+        некоторыми внешними транспайлерами - source-to-source комплияторами) запрещены.
       </p>
+
       <h4 id="disallowed-features-wrapper-objects">
-        5.11.5 Wrapper objects for primitive types
+        5.11.5 Объекты-обёртки для примитивных типов
       </h4>
+
       <p>
         Никогда не используйте <code>new</code> на обертках примитивных объектов
         (<code>Boolean</code>, <code>Number</code>, <code>String</code>,
         <code>Symbol</code>), а также не включайте их в аннотации к типам.
       </p>
+
       <p>Запрещено:</p>
-      <pre><code class="language-js prettyprint badcode">const /** Boolean */ x = new Boolean(false);if (x) alert(typeof x);  // alerts 'object' - WAT?</code></pre>
+
+      <pre><code class="language-js prettyprint badcode">const /** Boolean */ x = new Boolean(false);
+if (x) alert(typeof x);  // отобразить 'object'... - какого типа?
+</code></pre>
+
       <p>
-        Обертки могут вызываться как функции для принуждения (что
+        Обертки могут вызываться как функции для приведения типов (что
         предпочтительнее, чем использование <code>+</code> или конкатенация
         пустой строки) или создания символов.
       </p>
+
       <p>Пример:</p>
-      <pre><code class="language-js prettyprint">const /** boolean */ x = Boolean(0);if (!x) alert(typeof x);  // alerts 'boolean', as expected</code></pre>
+
+      <pre><code class="language-js prettyprint">const /** boolean */ x = Boolean(0);
+if (!x) alert(typeof x);  // отобразить 'boolean', как ожидается
+</code></pre>
+
       <h4 id="disallowed-features-modifying-builtin-objects">
-        5.11.6 Modifying builtin objects
+        5.11.6 Модификация встроенных объектов
       </h4>
+
       <p>
-        Никогда не модифицируйте типы builtin, добавляя методы в свои
+        Никогда не модифицируйте встроенные типы, добавляя методы в свои
         конструкторы или прототипы. Избегайте зависимости от библиотек, которые
         это делают. Обратите внимание, что библиотека исполнения
-        JSCompiler&#8217;s по возможности предоставляет полифайлы,
-        соответствующие стандартам; больше ничто не может модифицировать
+        JSCompiler'a по возможности предоставляет полифиллеры (преобразуют новый код в поддерживаемый старыми браузерами),
+        соответствующие стандартам; больше ничто не должно модифицировать
         встроенные объекты.
       </p>
+
       <p>
         Не добавляйте символы в глобальный объект, если только это не является
         абсолютно необходимым (например, требуется сторонним API).
       </p>
+
       <h4 id="disallowed-features-omitting-parents-with-new">
-        5.11.7 Omitting <code>()</code> when invoking a constructor
+        5.11.7 Опускание <code>()</code>, когда вызываете конструктор
       </h4>
+
       <p>
-        Никогда не вызывайте конструктор в операторе <code>new</code> без
+        Никогда не вызывайте конструктор с оператором <code>new</code> без
         использования скобок <code>()</code>.
       </p>
+
       <p>Запрещено:</p>
+
       <pre><code class="language-js prettyprint badcode">new Foo;</code></pre>
-      <p>Использовать вместо этого:</p>
+
+      <p>Используйте вместо этого:</p>
+
       <pre><code class="language-js prettyprint">new Foo();</code></pre>
+
       <p>
-        Упущение скобок может привести к едва уловимым ошибкам. Эти две строки
+        Опущенные скобоки могут привести к едва уловимым ошибкам. Эти две строки
         не эквивалентны:
       </p>
-      <pre><code class="language-js prettyprint">new Foo().Bar();new Foo.Bar();</code></pre>
-      <h2 id="naming">6 Naming</h2>
+
+      <pre><code class="language-js prettyprint">new Foo().Bar();
+new Foo.Bar();</code></pre>
+
+      <h2 id="naming">6 Именование</h2>
+
       <h3 id="naming-rules-common-to-all-identifiers">
-        6.1 Rules common to all identifiers
+        6.1 Общие для всех идентификаторов правила
       </h3>
+
       <p>
         Идентификаторы используют только ASCII-буквы и цифры, и в небольшом
-        количестве случаев, отмеченных ниже, подчеркивают и очень редко (когда
-        этого требуют такие фреймворки, как Угловые) знаки доллара.
+        количестве случаев, отмеченных ниже, подчеркивания и очень редко (когда
+        этого требуют такие фреймворки, как Angular) знаки доллара.
       </p>
+
       <p>
-        Дайте как можно более описательное название в пределах разумного. Не
+        Давайте как можно более описательное название (в пределах разумного). Не
         беспокойтесь об экономии горизонтального пространства, т.к. гораздо
         важнее сделать свой код сразу же понятным для нового читателя. Не
         используйте аббревиатуры, которые являются двусмысленными или
         незнакомыми для читателей вне Вашего проекта, и не сокращайте, удаляя
         буквы внутри слова.
       </p>
-      <pre><code class="language-js prettyprint">errorCount          // No abbreviation.dnsConnectionIndex  // Most people know what "DNS" stands for.referrerUrl         // Ditto for "URL".customerId          // "Id" is both ubiquitous and unlikely to be misunderstood.</code></pre>
+
+      <pre><code class="language-js prettyprint">errorCount          // Без аббревиатуры.
+dnsConnectionIndex  // Большинство людей знает, что такое "DNS".
+referrerUrl         // То же самое для "URL".
+customerId          // "Id" используется везде, поэтому вряд ли будет неправильно понят.
+</code></pre>
+
       <p>Запрещено:</p>
-      <pre><code class="language-js prettyprint badcode">n                   // Meaningless.nErr                // Ambiguous abbreviation.nCompConns          // Ambiguous abbreviation.wgcConnections      // Only your group knows what this stands for.pcReader            // Lots of things can be abbreviated "pc".cstmrId             // Deletes internal letters.kSecondsPerDay      // Do not use Hungarian notation.</code></pre>
-      <h3 id="naming-rules-by-identifier-type">6.2 Rules by identifier type</h3>
-      <h4 id="naming-package-names">6.2.1 Package names</h4>
+
+       <pre><code class="language-js prettyprint badcode">n                   // Бессмысленный.
+nErr                // Двусмысленная аббревиатура.
+nCompConns          // Двусмысленная аббревиатура.
+wgcConnections      // Только ваша команда знает, что это значит.
+pcReader            // Многие вещи можно назвать как "pc".
+cstmrId             // Удалены внутренние символы.
+kSecondsPerDay      // Не используйте венгерскую нотацию.
+</code></pre>
+
+
+      <h3 id="naming-rules-by-identifier-type">6.2 Правила для типов идентификатора</h3>
+
+      <h4 id="naming-package-names">6.2.1 Именование пакетов</h4>
+
       <p>
-        Имена всех пакетов <code>lowerCamelCase</code>. Например,
+        Имена всех пакетов должны быть в <code>lowerCamelCase</code>. Например,
         <code>my.exampleCode.deepSpace</code>, но не
         <code class="badcode">my.examplecode.deepspace</code> или
         <code class="badcode">my.example_code.deep_space</code>.
       </p>
-      <h4 id="naming-class-names">6.2.2 Class names</h4>
+
+      <h4 id="naming-class-names">6.2.2 Имена классов</h4>
+
       <p>
-        Имена классов, интерфейса, записи и typedef записываются в
+        Имена классов, интерфейсов, записей и typedef'ов записываются в
         <code>UpperCamelCase</code>. Неэкспортируемые классы являются просто
-        локальными: они не помечены <code>@private</code> и поэтому не именуются
-        с трейлинговым подчеркиванием.
+        локальными: они не помечаются как <code>@private</code> и не казанчиваются завершающим подчеркиванием.
       </p>
+
       <p>
         Имена типов обычно представляют собой существительные или фразы
         существительных. Например, <code>Request</code>,
@@ -2984,11 +3129,14 @@ myFunction(...array, ...iterable, ...generator());
         имена интерфейсов иногда могут быть прилагательными или прилагательными
         фразами (например, <code>Readable</code>).
       </p>
-      <h4 id="naming-method-names">6.2.3 Method names</h4>
+
+      <h4 id="naming-method-names">6.2.3 Именование методов</h4>
+
       <p>
         Имена методов записываются в <code>lowerCamelCase</code>. Имена методов
-        <code>@private</code> должны заканчиваться трейлинговым подчеркиванием.
+        <code>@private</code> должны заканчиваться завершающимся подчеркиванием.
       </p>
+
       <p>
         Имена методов обычно представляют собой глаголы или глагольные фразы.
         Например, <code>sendMessage</code> или <code>stop_</code>. Методы getter
@@ -2997,6 +3145,7 @@ myFunction(...array, ...iterable, ...generator());
         <code>isFoo</code> или <code>hasFoo</code> для booleans), или
         <code>setFoo(value)</code> для setters.
       </p>
+
       <p>
         Подчёркивания могут также появляться в именах методов тестирования
         JsUnit для разделения логических компонентов имени. Одним из типичных
@@ -3004,83 +3153,122 @@ myFunction(...array, ...iterable, ...generator());
         <code
           >test&lt;MethodUnderTest&gt;_&lt;state&gt;_&lt;expectedOutcome&gt;</code
         >, например <code>testPop_emptyStack_throws</code>. Нет единого
-        правильного способа назвать методы тестирования.
+        правильного способа называть методы для тестирования.
       </p>
-      <h4 id="naming-enum-names">6.2.4 Enum names</h4>
+
+      <h4 id="naming-enum-names">6.2.4 Имена перечислений</h4>
+
       <p>
         Имена перечислений записываются в <code>UpperCamelCase</code>,
         аналогично классам, и обычно должны быть единичными существительными.
         Отдельные элементы внутри перечисления именуются в
         <code>CONSTANT_CASE</code>.
       </p>
-      <h4 id="naming-constant-names">6.2.5 Constant names</h4>
+
+      <h4 id="naming-constant-names">6.2.5 Именование констант</h4>
+
       <p>
-        Постоянные имена используют <code>CONSTANT_CASE</code>: все заглавные
+        Константы используют <code>CONSTANT_CASE</code>: все заглавные
         буквы, слова разделены подчеркиванием. Нет причин для именования
-        константы с трейлинговым подчеркиванием, так как приватные статические
+        констант с завершающимся подчеркиванием, так как приватные статические
         свойства могут быть заменены (неявно приватными) локальными модулями.
       </p>
+
       <h5 id="naming-definition-of-constant">
-        6.2.5.1 Definition of &#8220;constant&#8221;
+        6.2.5.1 Определение &#8220;constant&#8221;
       </h5>
+
       <p>
-        Каждая константа представляет собой <code>@const</code> статическое
-        свойство или модуль-локальное <code>const</code> объявление, но не все
-        <code>@const</code> статические свойства, а модуль-локальные
-        <code>const</code>s являются константами. Перед тем, как выбрать
+        Каждая константа представляет собой статическое
+        свойство <code>@const</code>
+         или модульно-локальные <code>const</code> объявления, но не все
+        <code>@const</code> - это статические свойства, а модульно-локальные
+        <code>const</code> - являются константами. Перед тем, как выбрать
         константный регистр, подумайте, действительно ли поле похоже на
-        <em>глубоко неизменяемую </em> константу. Например, если какое-либо из
+        <em>глубоко неизменяемую</em> константу. Например, если какое-либо из
         наблюдаемых состояний этого экземпляра может измениться, то это почти
-        наверняка не константа. Простого намерения никогда не мутировать объект,
+        наверняка не константа. Простого намерения никогда не изменять объект,
         как правило, недостаточно.
       </p>
+
       <p>Примеры:</p>
-      <pre><code class="language-js prettyprint">// Constantsconst NUMBER = 5;/** @const */ exports.NAMES = ImmutableList.of('Ed', 'Ann');/** @enum */ exports.SomeEnum = { ENUM_CONSTANT: 'value' };// Not constantslet letVariable = 'non-const';class MyClass { constructor() { /** @const {string} */ this.nonStatic = 'non-static'; } };/** @type {string} */ MyClass.staticButMutable = 'not @const, can be reassigned';const /** Set&lt;string&gt; */ mutableCollection = new Set();const /** ImmutableSet&lt;SomeMutableType&gt; */ mutableElements = ImmutableSet.of(mutable);const Foo = goog.require('my.Foo');  // mirrors imported nameconst logger = log.getLogger('loggers.are.not.immutable');</code></pre>
+
+      <pre><code class="language-js prettyprint">// Константы
+const NUMBER = 5;
+/** @const */ exports.NAMES = ImmutableList.of('Ed', 'Ann');
+/** @enum */ exports.SomeEnum = { ENUM_CONSTANT: 'value' };
+
+// Не константы
+let letVariable = 'non-const';
+class MyClass { constructor() { /** @const {string} */ this.nonStatic = 'non-static'; } };
+/** @type {string} */ MyClass.staticButMutable = 'не @const, может быть переопределено';
+const /** Set&lt;string&gt; */ mutableCollection = new Set();
+const /** ImmutableSet&lt;SomeMutableType&gt; */ mutableElements = ImmutableSet.of(mutable);
+const Foo = goog.require('my.Foo');  // зеркально импортируемое имя
+const logger = log.getLogger('loggers.are.not.immutable');
+</code></pre>
+
       <p>
-        Constants&#8217; имена обычно представляют собой существительные или
+        Иимена констант обычно представляют собой существительные или
         существительные фразы.
       </p>
-      <h5 id="naming-local-aliases">6.2.5.2 Local aliases</h5>
+
+      <h5 id="naming-local-aliases">6.2.5.2 Локальные псевдонимы</h5>
+
       <p>
         Локальные псевдонимы следует использовать всякий раз, когда они улучшают
-        читабельность по сравнению с полностью квалифицированными именами.
-        Следуйте тем же правилам, что и <code>goog.require</code>s (<a
+        читабельность по сравнению с полноразмерными именами.
+        Следуйте тем же правилам, что и <code>goog.require</code> (<a
           href="#file-goog-require"
-          >?</a
+          >??</a
         >), сохраняя последнюю часть псевдонима. Псевдонимы также могут
         использоваться внутри функций. Псевдонимы должны быть
         <code>const</code>.
       </p>
+
       <p>Примеры:</p>
-      <pre><code class="language-js prettyprint">const staticHelper = importedNamespace.staticHelper;const CONSTANT_NAME = ImportedClass.CONSTANT_NAME;const {assert, assertInstanceof} = asserts;</code></pre>
+
+      <pre><code class="language-js prettyprint">const staticHelper = importedNamespace.staticHelper;
+const CONSTANT_NAME = ImportedClass.CONSTANT_NAME;
+const {assert, assertInstanceof} = asserts;
+</code></pre>
+
       <h4 id="naming-non-constant-field-names">
-        6.2.6 Non-constant field names
+        6.2.6 Неконсатные названия полей
       </h4>
+
       <p>
         Неконстантные имена полей (статические или иные) записываются в
-        <code>lowerCamelCase</code>, с трейлинговым подчеркиванием для приватных
+        <code>lowerCamelCase</code>, с завершающимися подчеркиванием для приватных
         полей.
       </p>
+
       <p>
         Эти имена обычно являются существительными или фразами существительных.
         Например, <code>computedValues</code> или <code>index_</code>.
       </p>
-      <h4 id="naming-parameter-names">6.2.7 Parameter names</h4>
+
+      <h4 id="naming-parameter-names">6.2.7 Имена параметров</h4>
+
       <p>
         Имена параметров записываются в <code>lowerCamelCase</code>. Обратите
         внимание, что это применимо, даже если параметр ожидает конструктор.
       </p>
+
       <p>
         Односимвольные имена параметров не должны использоваться в публичных
         методах.
       </p>
+
       <p>
-        <strong>Exception</strong>: По требованию стороннего фреймворка имена
+        <strong>Исключение</strong>: По требованию стороннего фреймворка имена
         параметров могут начинаться с <code>$</code>. Это исключение не
         распространяется на любые другие идентификаторы (например, локальные
         переменные или свойства).
       </p>
-      <h4 id="naming-local-variable-names">6.2.8 Local variable names</h4>
+
+      <h4 id="naming-local-variable-names">6.2.8 Именование локальных переменных</h4>
+
       <p>
         Имена локальных переменных записываются в <code>lowerCamelCase</code>,
         за исключением модульно-локальных (верхнего уровня) констант, как
@@ -3089,72 +3277,76 @@ myFunction(...array, ...iterable, ...generator());
         <code>lowerCamelCase</code> используется, даже если переменная содержит
         конструктор.
       </p>
+
       <h4 id="naming-template-parameter-names">
-        6.2.9 Template parameter names
+        6.2.9 Имена параметров шаблона
       </h4>
+
       <p>
         Имена параметров шаблона должны быть краткими, однозначными или
-        однобуквенными идентификаторами, и должны быть all-caps, например
+        однобуквенными идентификаторами, и должны быть в ВЕРХНЕМ РЕГИСТРЕ, например
         <code>TYPE</code> или <code>THIS</code>.
       </p>
-      <h4 id="naming-module-local-names">6.2.10 Module-local names</h4>
+
+      <h4 id="naming-module-local-names">6.2.10 Модульно-локальные имена</h4>
+
       <p>
-        Имена модулей, которые не экспортируются, являются неявно закрытыми. Они
-        не помечены <code>@приватный</code> и не заканчиваются подчеркиванием.
+        Имена в модулях, которые не экспортируются, являются неявно закрытыми. Они
+        не помечены <code>@private</code> и не заканчиваются подчеркиванием.
         Это относится к классам, функциям, переменным, константам, перечислениям
         и другим модульно-локальным идентификаторам.
       </p>
-      <h3 id="naming-camel-case-defined">6.3 Camel case: defined</h3>
+
+      <h3 id="naming-camel-case-defined">6.3 Верблюжий стиль: отдельный случай</h3>
+
       <p>
         Иногда существует более одного разумного способа преобразования
-        английской фразы в верблюжью пазуху, например, когда присутствуют
+        английской фразы в верблюжий стиль, например, когда присутствуют
         аббревиатуры или необычные конструкции вроде <q>IPv6</q> или <q>iOS</q>.
-        Для повышения предсказуемости Google Style задает следующую (почти)
-        детерминистическую схему.
+        Для повышения предсказуемости Google Style задает следующую
+        исчерпывающую (почти) схему.
       </p>
-      <p>Начиная с прозаической формы имени:</p>
+
+      <p>Начиная с изначальной формы имени:</p>
+
       <ol>
         <li>
-          Convert the phrase to plain ASCII and remove any apostrophes. For
-          example, <q>M&#252;ller's algorithm</q> might become
+          Преобразуйте фразу в обычный ASCII и удалите все апострофы. Например,
+           <q>M&#252;ller's algorithm</q> может стать
           <q>Muellers algorithm</q>.
         </li>
         <li>
-          Divide this result into words, splitting on spaces and any remaining
-          punctuation (typically hyphens).
+          Разделите этот результат на слова, разделяя их на пробелы и оставшиеся знаки препинания (обычно дефисы).
           <ol>
             <li>
-              Recommended: if any word already has a conventional camel case
-              appearance in common usage, split this into its constituent parts
-              (e.g., <q>AdWords</q> becomes <q>ad words</q>). Note that a word
-              such as <q>iOS</q> is not really in camel case per se; it defies
-              any convention, so this recommendation does not apply.
+             Рекомендовано: если какое-либо слово уже имеет общепринятый внешний вид в camelCase, разделите его на составные части (например, AdWords становится "ad words"). Обратите внимание, что такое слово, как iOS, на самом деле, не совсем в camelCase; оно не поддается никаким соглашениям, поэтому данная рекомендация не применяется.
             </li>
           </ol>
         </li>
         <li>
-          Now lowercase everything (including acronyms), then uppercase only the
-          first character of:
+          Теперь сделайте все буквы в нижнем регистре (включая аббревиатуры), затем сделайте в верхнем регистре только первый символ:
           <ol>
-            <li>&#8230; each word, to yield upper camel case, or</li>
+            <li>&#8230; каждого слова (чтобы вышел CamelCase в верхнем регистре) или </li>
             <li>
-              &#8230; each word except the first, to yield lower camel case
+              &#8230; каждого слова, кроме первого (чтобы вышел camelCase в нижнем регистре)
             </li>
           </ol>
         </li>
-        <li>Finally, join all the words into a single identifier.</li>
+        <li>В конце, соедините все слова в один идентификатор.</li>
       </ol>
+
       <p>
-        Обратите внимание, что оболочка исходных слов почти полностью
-        игнорируется.
+        Обратите внимание, что регистр исходных слов почти полностью игнорируется.
       </p>
+
       <p>Примеры:</p>
+
       <table>
         <thead>
           <tr>
-            <th style="text-align: center">Prose form</th>
-            <th style="text-align: center">Correct</th>
-            <th style="text-align: center">Incorrect</th>
+            <th style="text-align: center">Изначальная форма</th>
+            <th style="text-align: center">Корректно</th>
+            <th style="text-align: center">Некорректно</th>
           </tr>
         </thead>
         <tbody>
@@ -3185,14 +3377,18 @@ myFunction(...array, ...iterable, ...generator());
           </tr>
         </tbody>
       </table>
+
       <p>*Приемлемо, но не рекомендуется.</p>
+      
       <p>
-        Примечание: некоторые слова в английском языке неоднозначно
-        дефинированы: например, <q>nonempty</q> и <q>non-empty</q> оба
+Примечание: некоторые слова неоднозначны в английском языке:
+ например, <q>nonempty</q> и <q>non-empty</q> оба
         правильны, поэтому имена методов checkNonempty и checkNonEmpty также
         правильны.
       </p>
+
       <h2 id="jsdoc">7 JSDoc</h2>
+
       <p>
         <a
           href="https://developers.google.com/closure/compiler/docs/js-for-compiler"
@@ -3200,145 +3396,286 @@ myFunction(...array, ...iterable, ...generator());
         >
         используется для всех классов, полей и методов.
       </p>
-      <h3 id="jsdoc-general-form">7.1 General form</h3>
-      <p>Основное форматирование блоков JSDoc, как показано в этом примере:</p>
-      <pre><code class="language-js prettyprint">/** * Multiple lines of JSDoc text are written here, * wrapped normally. * @param {number} arg A number to do something to. */function doSomething(arg) { &#8230; }</code></pre>
+
+      <h3 id="jsdoc-general-form">7.1 Общая форма</h3>
+
+      <p>Основной вид форматирования блоков JSDoc показан в этом примере:</p>
+
+      <pre><code class="language-js prettyprint">/**
+ * Несколько линий текста JSDoc написаны здесь.
+ * Строки переносятся, как обычно.
+ * @param {number} arg Число, чтобы делать что-то.
+ */
+function doSomething(arg) { &#8230; }
+</code></pre>
+
       <p>или в этом однострочном примере:</p>
-      <pre><code class="language-js prettyprint">/** @const @private {!Foo} A short bit of JSDoc. */this.foo_ = foo;</code></pre>
+
+      <pre><code class="language-js prettyprint">/** @const @private {!Foo} Чуть меньше JSDoc. */
+this.foo_ = foo;
+</code></pre>
+
       <p>
-        Если однострочный комментарий переполняется на несколько строк, он
+        Если однострочный комментарий переносится на несколько строк, он
         должен использовать многострочный стиль с <code>/**</code> и
-        <code>*/</code> на своих строках.
+        <code>*/</code> в своих строках.
       </p>
+
       <p>
         Многие инструменты извлекают метаданные из комментариев JSDoc для
         выполнения валидации и оптимизации кода. Поэтому эти комментарии
         <strong>должны</strong> быть хорошо сформированы.
       </p>
+
       <h3 id="jsdoc-markdown">7.2 Markdown</h3>
+
       <p>
         JSDoc написан на языке Markdown, хотя при необходимости может включать
         HTML.
       </p>
+
       <p>
         Обратите внимание, что инструменты, которые автоматически извлекают
         JSDoc (например,
         <a href="https://github.com/jleyba/js-dossier">JsDossier</a>) часто
-        игнорируют форматирование обычного текста, так что если вы это сделаете:
+        игнорируют форматирование обычного текста, так что если вы сделаете так:
       </p>
-      <pre><code class="language-js prettyprint badcode">/** * Computes weight based on three factors: *   items sent *   items received *   last timestamp */</code></pre>
-      <p>это получится вот так:</p>
-      <pre><code>Computes weight based on three factors: items sent items received last timestamp</code></pre>
+
+      <pre><code class="language-js prettyprint badcode">/**
+ * Вычисляет вес на основе трех факторов:
+ *   элементов отправлено
+ *   элементов получено
+ *   последная временная метка
+ */
+</code></pre>
+
+      <p>это станет таким:</p>
+
+      <pre><code>Вычисляет вес на основе трех факторов: элементов отправлено элементов получено последная временная метка</code></pre>
+
       <p>Вместо этого напишите список Markdown:</p>
-      <pre><code class="language-js prettyprint">/** * Computes weight based on three factors: * *  - items sent *  - items received *  - last timestamp */</code></pre>
-      <h3 id="jsdoc-tags">7.3 JSDoc tags</h3>
+
+      <pre><code class="language-js prettyprint badcode">/**
+ * Вычисляет вес на основе трех факторов:
+ *  - элементов отправлено
+ *  - элементов получено
+ *  - последная временная метка
+ */
+</code></pre>
+
+      <h3 id="jsdoc-tags">7.3 JSDoc теги</h3>
+
       <p>
-        Стиль Google позволяет подмножество JSDoc-тегов. Смотрите
-        <a href="#appendices-jsdoc-tag-reference">?</a> для полного списка.
+        Стиль Google разрешает подмножество JSDoc-тегов. См.
+        <a href="#appendices-jsdoc-tag-reference">??</a> для полного списка.
         Большинство тегов должны занимать свою собственную строку, с тегом в
         начале строки.
       </p>
-      <p>Disallowed:</p>
-      <pre><code class="language-js prettyprint badcode">/** * The "param" tag must occupy its own line and may not be combined. * @param {number} left @param {number} right */function add(left, right) { ... }</code></pre>
+
+      <p>Запрещено:</p>
+      
+      <pre><code class="language-js prettyprint badcode">/**
+ * Тэг "param" должен занимать свою собственную строку и не может комбинироваться.
+ * @param {number} left @param {number} right
+ */
+function add(left, right) { ... }
+</code></pre>
+
       <p>
         Простые теги, не требующие дополнительных данных (такие как
         <code>@private</code>, <code>@const</code>, <code>@final</code>,
         <code>@export</code>) могут быть объединены в одну строку вместе с
         дополнительным типом, если это необходимо.
       </p>
-      <pre><code class="language-js prettyprint">/** * Place more complex annotations (like "implements" and "template") * on their own lines.  Multiple simple tags (like "export" and "final") * may be combined in one line. * @export @final * @implements {Iterable&lt;TYPE&gt;} * @template TYPE */class MyClass {  /**   * @param {!ObjType} obj Some object.   * @param {number=} num An optional number.   */  constructor(obj, num = 42) {    /** @private @const {!Array&lt;!ObjType|number&gt;} */    this.data_ = [obj, num];  }}</code></pre>
-      <p>%321%</p>
+
+      <pre><code class="language-js prettyprint">/**
+ * Размещайте более сложные аннотации (например, "implements" и "template").
+ * на своих отдельных линиях.  Несколько простых тегов (например, "export" и "final").
+ * могут быть скомбинированы в одной линии.
+ * @export @final
+ * @implements {Iterable&lt;TYPE&gt;}
+ * @template TYPE
+ */
+class MyClass {
+  /**
+   * @param {!ObjType} obj Отдельный объект.
+   * @param {number=} num Опциональное число.
+   */
+  constructor(obj, num = 42) {
+    /** @private @const {!Array&lt;!ObjType|number&gt;} */
+    this.data_ = [obj, num];
+  }
+}
+</code></pre>
+
+      <p>Не существует точного правила, когда и в каком порядке комбинировать теги, но будьте последовательным.</p>
+
       <p>
         Общую информацию об аннотировании типов в JavaScript см. в разделе
         <a
           href="https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler"
-          >Аннотирование JavaScript для компилятора типов закрытия</a
+          >Аннотирование JavaScript для Closure Compiler</a
         >
         и
         <a
           href="https://github.com/google/closure-compiler/wiki/Types-in-the-Closure-Type-System"
-          >Типы в системе типов закрытия</a
+          >Типы в Closure Type System</a
         >.
       </p>
-      <h3 id="jsdoc-line-wrapping">7.4 Line wrapping</h3>
+
+      <h3 id="jsdoc-line-wrapping">7.4 Перенос строк</h3>
+
       <p>
-        Тэги блоков в линейной обертке имеют отступы в четыре пробела. Обернутый
+        Перенесенные теги имеют отступы в четыре пробела. Перенесенный
         текст описания может быть выровнен с описанием в предыдущих строках, но
         такое выравнивание по горизонтали не рекомендуется.
       </p>
-      <pre><code class="language-js prettyprint">/** * Illustrates line wrapping for long param/return descriptions. * @param {string} foo This is a param with a description too long to fit in *     one line. * @return {number} This returns something that has a description too long to *     fit in one line. */exports.method = function(foo) {  return 5;};</code></pre>
+
+      <pre><code class="language-js prettyprint">/**
+ * Иллюстрирует перенос строки для длинных описаний.
+ * @param {string} foo Это параметр с описанием, слишком длинным, чтобы 
+ *     быть в одной строке.
+ * @return {number} Это параметр с описанием, слишком длинным, чтобы 
+ *     быть в одной строке.
+ */
+exports.method = function(foo) {
+  return 5;
+};
+</code></pre>
+
       <p>
-        Не делайте отступов при обёртывании описания <code>@desc</code> или
-        <code>@просмотр файла</code>.
+        Не делайте отступы при переносе описания <code>@desc</code> или
+        <code>@fileoverview</code>.
       </p>
-      <h3 id="jsdoc-top-file-level-comments">7.5 Top/file-level comments</h3>
+
+      <h3 id="jsdoc-top-file-level-comments">7.5 Комментарии верхнего\файлового уровня</h3>
+
       <p>
-        Файл может иметь обзор файлов верхнего уровня. Уведомление об авторском
-        праве, информация об авторе и по умолчанию
-        <a href="#jsdoc-visibility-annotations">уровень видимости</a> являются
-        необязательными. Общий обзор файлов обычно рекомендуется, когда файл
+        Файл может иметь описание верхнего уровня. Уведомление об авторском
+        праве, информация об авторе и
+        <a href="#jsdoc-visibility-annotations">уровень видимости</a> по умолчанию являются
+        необязательными. Общее описание файлов обычно рекомендуется, когда файл
         состоит из более чем одного определения класса. Комментарий верхнего
         уровня предназначен для того, чтобы сориентировать читателей, незнакомых
         с кодом, на то, что находится в этом файле. Если он присутствует, он
         может предоставить описание содержимого файла и информацию о любых
-        зависимостях или совместимости. Обернутые строки не имеют отступов.
+        зависимостях или совместимости. Перенесенные строки не имеют отступов.
       </p>
+
       <p>Пример:</p>
-      <pre><code class="language-js prettyprint">/** * @fileoverview Description of file, its uses and information * about its dependencies. * @package */</code></pre>
-      <h3 id="jsdoc-class-comments">7.6 Class comments</h3>
+
+      <pre><code class="language-js prettyprint">/**
+ * @fileoverview Описание файла, цели его использование и информация
+ * о его зависимостях.
+ * @package
+ */
+</code></pre>
+
+      <h3 id="jsdoc-class-comments">7.6 Комментарии класса</h3>
       <p>
-        Классы, интерфейсы и записи должны быть задокументированы с описанием и
+        Классы, интерфейсы и записи должны быть задокументированы описанием и
         любыми параметрами шаблона, реализованными интерфейсами, видимостью или
         другими соответствующими тегами. Описание класса должно давать читателю
         достаточно информации, чтобы знать, как и когда использовать класс, а
-        также любые дополнительные соображения, необходимые для корректного
-        использования класса. Текстовые описания могут быть опущены на
-        конструкторе. <code>@конструктор</code> и
-        <code>@расширения</code> аннотации не используются с ключевым словом
-        <code>класса</code>, если только класс не используется для объявления
-        <code>@интерфейса</code> или не расширяет общий класс.
+        также любые дополнительные моменты, необходимые для корректного
+        использования класса. Текстовые описания могут быть опущены в
+        конструкторе. <code>@constructor</code> и
+        <code>@extends </code> аннотации не используются с ключевым словом
+        <code>class</code>, если только класс не используется для объявления
+        <code>@interface </code> или не расширяет общий класс.
       </p>
-      <pre><code class="language-js prettyprint">/** * A fancier event target that does cool things. * @implements {Iterable&lt;string&gt;} */class MyFancyTarget extends EventTarget {  /**   * @param {string} arg1 An argument that makes this more interesting.   * @param {!Array&lt;number&gt;} arg2 List of numbers to be processed.   */  constructor(arg1, arg2) {    // ...  }};/** * Records are also helpful. * @extends {Iterator&lt;TYPE&gt;} * @record * @template TYPE */class Listable {  /** @return {TYPE} The next item in line to be returned. */  next() {}}</code></pre>
+
+      <pre><code class="language-js prettyprint">/**
+ * Особенная цель события, которая делает полезные вещи.
+ * @implements {Iterable&lt;string&gt;}
+ */
+class MyFancyTarget extends EventTarget {
+  /**
+   * @param {string} arg1 Аргумент, который делает это более полезным.
+   * @param {!Array&lt;number&gt;} arg2 Список чисел для обработки.
+   */
+  constructor(arg1, arg2) {
+    // ...
+  }
+};
+
+/**
+ * Записи также полезны.
+ * @extends {Iterator&lt;TYPE&gt;}
+ * @record
+ * @template TYPE
+ */
+class Listable {
+  /** @return {TYPE} Следующий элемент в строке, который будет возвращен. */
+  next() {}
+}
+</code></pre>
+
       <h3 id="jsdoc-enum-and-typedef-comments">
-        7.7 Enum and typedef comments
+        7.7 Комментарии перечисления и typedef 
       </h3>
+
       <p>
         Все перечисления и typedefs должны быть задокументированы с помощью
         соответствующих тегов JSDoc (<code>@typedef</code> или
-        <code>@enum</code>) в предыдущей строке. Публичные перечисления и
+        <code>@enum</code>) на предшествующей строке. Публичные перечисления и
         typedefs также должны иметь описание. Отдельные элементы перечисления
-        могут быть задокументированы JSDoc комментарием в предыдущей строке.
+        могут быть задокументированы JSDoc комментарием на предшествующей строке.
       </p>
-      <pre><code class="language-js prettyprint">/** * A useful type union, which is reused often. * @typedef {!Bandersnatch|!BandersnatchType} */let CoolUnionType;/** * Types of bandersnatches. * @enum {string} */const BandersnatchType = {  /** This kind is really frumious. */  FRUMIOUS: 'frumious',  /** The less-frumious kind. */  MANXOME: 'manxome',};</code></pre>
+
+      <pre><code class="language-js prettyprint">/**
+ * Полезное объединение типа, которое часто используется повторно.
+ * @typedef {!Bandersnatch|!BandersnatchType}
+ */
+let CoolUnionType;
+
+
+/**
+ * Типы бандерснатчей.
+ * @enum {string}
+ */
+const BandersnatchType = {
+  /** Этот вид действительно странный */
+  FRUMIOUS: 'frumious',
+  /** Менее важный тип */
+  MANXOME: 'manxome',
+};
+</code></pre>
+
       <p>
-        Teypedefs полезны для определения типов коротких записей или псевдонимов
+        Typedefs полезны для определения типов коротких записей или псевдонимов
         для объединений, сложных функций или общих типов. Следует избегать
-        типедов для типов записей с большим количеством полей, поскольку они не
+        typedefs'ов для типов записей с большим количеством полей, поскольку они не
         позволяют документировать отдельные поля, а также использовать шаблоны
         или рекурсивные ссылки. Для больших типов записей предпочитайте
-        <code>@запись</code>.
+        <code>@record</code>.
       </p>
+
       <h3 id="jsdoc-method-and-function-comments">
-        7.8 Method and function comments
+        7.8 Комментарии методов и функций
       </h3>
+
       <p>
         В методах и именованных функциях должны документироваться типы
-        параметров и возврата, за исключением случая одинаковой подписи
-        <code>@override</code>s, где опущены все типы. Тип
-        <code>этот тип</code> должен быть документирован при необходимости.
+        параметров и возвращаемого значения, за исключением случая одинаковой подписи
+        <code>@override</code>, где опущены все типы. Тип
+        <code>this</code> должен быть документирован при необходимости.
         Возвращаемый тип может быть опущен, если функция не имеет непустых
         выражений <code>return</code>.
       </p>
+
       <p>
-        Описания метода, параметров и возвращаемых типов (но не типов) могут
-        быть опущены, если они очевидны из остальной части метода&#8217;s JSDoc
-        или из его подписи.
+        Описания метода, параметров и возвращаемых значений (но не типов) могут
+        быть опущены, если они очевидны из остальной части JSDoc'a метода
+        или из его определения.
       </p>
+
       <p>
-        Описания метода начинаются с глагольной фразы, описывающей, что делает
+        Описание метода начинается с глагольной фразы, описывающей, что делает
         метод. Эта фраза не является обязательным предложением, а написана в
-        третьем лице, как будто перед ней подразумевается <q>Этот метод ...</q>.
+        третьем лице, как будто подразумевается <q>Этот метод ...</q>.
       </p>
+
       <p>
         Если метод переопределяет метод суперкласса, он должен включать в себя
         примечание <code>@override</code>. Переопределенные методы наследуют все
@@ -3347,171 +3684,358 @@ myFunction(...array, ...iterable, ...generator());
         типа какой-либо тип уточнен, все <code>@param</code> и
         <code>@return</code> аннотации должны быть указаны явно.
       </p>
-      <pre><code class="language-js prettyprint">/** A class that does something. */class SomeClass extends SomeBaseClass {  /**   * Operates on an instance of MyClass and returns something.   * @param {!MyClass} obj An object that for some reason needs detailed   *     explanation that spans multiple lines.   * @param {!OtherClass} obviousOtherClass   * @return {boolean} Whether something occurred.   */  someMethod(obj, obviousOtherClass) { ... }  /** @override */  overriddenMethod(param) { ... }}/** * Demonstrates how top-level functions follow the same rules.  This one * makes an array. * @param {TYPE} arg * @return {!Array&lt;TYPE&gt;} * @template TYPE */function makeArray(arg) { ... }</code></pre>
+
+      <pre><code class="language-js prettyprint">/** Класс, который что-то делает. */
+class SomeClass extends SomeBaseClass {
+  /**
+   * Взаимодействует с экземпляром MyClass и что-то возвращает.
+   * @param {!MyClass} obj Объект, который по какой-то причине требует детального
+   *     описания, которое занимает несколько строк.
+   * @param {!OtherClass} obviousOtherClass
+   * @return {boolean} Если что-то произошло.
+   */
+  someMethod(obj, obviousOtherClass) { ... }
+
+  /** @override */
+  overriddenMethod(param) { ... }
+}
+
+/**
+ * Демонстрирует, как функции верхнего уровня следуют тем же правилам. Данная функция
+ * создает массив.
+ * @param {TYPE} arg
+ * @return {!Array&lt;TYPE&gt;}
+ * @template TYPE
+ */
+function makeArray(arg) { ... }
+</code></pre>
+
       <p>
         Если необходимо только документировать параметры и возвращаемые типы
         функции, можно дополнительно использовать встроенные JSDocs в сигнатуре
-        функции. Эти встроенные JSDocs определяют типы возврата и параметров без
+        функции. Эти встроенные JSDoc'и определяют типы возвращаемого занчения и параметров без
         тегов.
       </p>
-      <pre><code class="language-js prettyprint">function /** string */ foo(/** number */ arg) {...}</code></pre>
+
+      <pre><code class="language-js prettyprint">function /** string */ foo(/** number */ arg) {...}
+</code></pre>
+
       <p>
-        Если вам нужны описания или теги, используйте один JSDoc комментарий
-        выше метода. Например, методы, возвращающие значения, должны иметь тег
+        Если вам нужно описание или теги, используйте один JSDoc комментарий
+        над методом. Например, методы, возвращающие значения, должны иметь тег
         <code>@return</code>.
       </p>
-      <pre><code class="language-js prettyprint">class MyClass {  /**   * @param {number} arg   * @return {string}   */  bar(arg) {...}}</code></pre>
-      <pre><code class="language-js prettyprint badcode">// Illegal inline JSDocs.class MyClass {  /** @return {string} */ foo() {...}}/** Function description. */ bar() {...}</code></pre>
+
+      <pre><code class="language-js prettyprint">class MyClass {
+  /**
+   * @param {number} arg
+   * @return {string}
+   */
+  bar(arg) {...}
+}
+</code></pre>
+
+      <pre><code class="language-js prettyprint badcode">// Недопустимый однострочный JSDoc.
+
+class MyClass {
+  /** @return {string} */ foo() {...}
+}
+
+/** Function description. */ bar() {...}
+</code></pre>
+        
       <p>
         В анонимных функциях аннотации, как правило, являются необязательными.
         Если автоматический вывод типа недостаточен или явная аннотация улучшает
         читабельность, то аннотируйте параметры и возвращаемые типы, как это
-        делается:
+        делается здесь:
       </p>
-      <pre><code class="language-js prettyprint">promise.then(    /** @return {string} */    (/** !Array&lt;string&gt; */ items) =&gt; {      doSomethingWith(items);      return items[0];    });</code></pre>
-      <p>
-        Выражения типов функций см. в разделе
-        <a href="#jsdoc-функции-типы">?</a>.
+
+      <pre><code class="language-js prettyprint">promise.then(
+    /** @return {string} */
+    (/** !Array&lt;string&gt; */ items) =&gt; {
+      doSomethingWith(items);
+      return items[0];
+    });
+</code></pre>
+
+       <p>
+        Для функциональных выражений, см.
+        <a href="#jsdoc-function-types">??</a>.
       </p>
-      <h3 id="jsdoc-property-comments">7.9 Property comments</h3>
+
+      <h3 id="jsdoc-property-comments">7.9 Комментарии параметров</h3>
+
       <p>
         Типы свойств должны быть документированы. Описание может быть опущено
-        для частных свойств, если имя и тип предоставляют достаточно
+        для некоторых свойств, если имя и тип предоставляют достаточно
         документации для понимания кода.
       </p>
+
       <p>
         Публично экспортируемые константы комментируются так же, как и свойства.
       </p>
-      <pre><code class="language-js prettyprint">/** My class. */class MyClass {  /** @param {string=} someString */  constructor(someString = 'default string') {    /** @private @const {string} */    this.someString_ = someString;    /** @private @const {!OtherType} */    this.someOtherThing_ = functionThatReturnsAThing();    /**     * Maximum number of things per pane.     * @type {number}     */    this.someProperty = 4;  }}/** * The number of times we'll try before giving up. * @const {number} */MyClass.RETRY_COUNT = 33;</code></pre>
-      <h3 id="jsdoc-type-annotations">7.10 Type annotations</h3>
+
+      <pre><code class="language-js prettyprint">/** My class. */
+class MyClass {
+  /** @param {string=} someString */
+  constructor(someString = 'default string') {
+    /** @private @const {string} */
+    this.someString_ = someString;
+
+    /** @private @const {!OtherType} */
+    this.someOtherThing_ = functionThatReturnsAThing();
+
+    /**
+     * Максимальное количество вещей на панели.
+     * @type {number}
+     */
+    this.someProperty = 4;
+  }
+}
+
+/**
+ * Сколько раз мы попробуем, прежде чем прекратить.
+ * @const {number}
+ */
+MyClass.RETRY_COUNT = 33;
+</code></pre>
+
+      <h3 id="jsdoc-type-annotations">7.10 Аннотации типа</h3>
+
       <p>
-        Аннотации типов находятся на тегах <code>@param</code>,
-        <code>@return</code>, <code>@this</code>, и <code>@type</code>, и
-        опционально на тегах <code>@const</code>, <code>@export</code>, и на
+        Аннотации типов находятся в тегах <code>@param</code>,
+        <code>@return</code>, <code>@this</code> и <code>@type</code>, и
+        опционально в тегах <code>@const</code>, <code>@export</code> и на
         любых тегах видимости. Аннотации типа, прикрепленные к тегам JSDoc,
         всегда должны быть заключены в фигурные скобки.
       </p>
+
       <h4 id="jsdoc-nullability">7.10.1 Nullability</h4>
+
       <p>
         Система типов определяет модификаторы <code>!</code> и
         <code>?</code> для ненулевых и нулевых соответственно. Эти модификаторы
         должны предшествовать типу.
       </p>
+
       <p>
         Модификаторы Nullability имеют различные требования к различным типам,
-        которые делятся на две широкие категории:
+        которые делятся на две категории:
       </p>
+
       <ol>
         <li>
-          Type annotations for primitives (<code>string</code>,
+          Аннотации типов для примитивов (<code>string</code>,
           <code>number</code>, <code>boolean</code>, <code>symbol</code>,
-          <code>undefined</code>, <code>null</code>) and literals (<code
+          <code>undefined</code>, <code>null</code>) и литералов (<code
             >{function(...): ...}</code
           >
-          and <code>{{foo: string...}}</code>) are always non-nullable by
-          default. Use the <code>?</code> modifier to make it nullable, but omit
-          the redundant <code>!</code>.
+          и <code>{{foo: string...}}</code>) всегда ненулевые по-умолчанию. Используйте
+          модификатор <code>?</code>, чтобы сделать его нулевым, но опускайте
+          ненужный <code>!</code>.
         </li>
+
         <li>
-          Reference types (generally, anything in <code>UpperCamelCase</code>,
-          including <code>some.namespace.ReferenceType</code>) refer to a class,
-          enum, record, or typedef defined elsewhere. Since these types may or
-          may not be nullable, it is impossible to tell from the name alone
-          whether it is nullable or not. Always use explicit <code>?</code> and
-          <code>!</code> modifiers for these types to prevent ambiguity at use
-          sites.
+          Ссылочные типы (обычно все, что угодно в <code>ВверхнемВерблюжьемСтиле</code>, включая 
+          <code>some.namespace.ReferenceType</code>) относятся к классу, перечислению,
+           записи или typedef, определенному в другом месте. Так как эти типы
+            могут быть или не быть нулевыми, невозможно определить по одному
+             только имени, является ли оно нулевым или нет. Всегда используйте
+              явные модификаторы <code>?</code> и <code>!</code> для этих типов, чтобы предотвратить
+               двусмысленность при использовании в конкретных местах.
         </li>
       </ol>
+
       <p>Плохо:</p>
-      <pre><code class="language-js prettyprint badcode">const /** MyObject */ myObject = null; // Non-primitive types must be annotated.const /** !number */ someNum = 5; // Primitives are non-nullable by default.const /** number? */ someNullableNum = null; // ? should precede the type.const /** !{foo: string, bar: number} */ record = ...; // Already non-nullable.const /** MyTypeDef */ def = ...; // Not sure if MyTypeDef is nullable.// Not sure if object (nullable), enum (non-nullable, unless otherwise// specified), or typedef (depends on definition).const /** SomeCamelCaseName */ n = ...;</code></pre>
+
+      <pre><code class="language-js prettyprint badcode">const /** MyObject */ myObject = null; // Непримитивные типы должны быть аннотированы.
+const /** !number */ someNum = 5; // Примитивы по умолчанию не могут быть нулевыми.
+const /** number? */ someNullableNum = null; // ? должно предшествовать типу.
+const /** !{foo: string, bar: number} */ record = ...; // Всегда ненулевой.
+const /** MyTypeDef */ def = ...; // Не ясно, что MyTypeDef нуллевой.
+
+// Не уверен, что объект (может быть нулевым), перечисление (ненулевой, если не указано иначе)
+// или typedef (зависит от определения).
+const /** SomeCamelCaseName */ n = ...;
+</code></pre>
+
       <p>Хорошо:</p>
-      <pre><code class="language-js prettyprint">const /** ?MyObject */ myObject = null;const /** number */ someNum = 5;const /** ?number */ someNullableNum = null;const /** {foo: string, bar: number} */ record = ...;const /** !MyTypeDef */ def = ...;const /** ?SomeCamelCaseName */ n = ...;</code></pre>
-      <h4 id="jsdoc-type-casts">7.10.2 Type Casts</h4>
+
+      <pre><code class="language-js prettyprint">const /** ?MyObject */ myObject = null;
+const /** number */ someNum = 5;
+const /** ?number */ someNullableNum = null;
+const /** {foo: string, bar: number} */ record = ...;
+const /** !MyTypeDef */ def = ...;
+const /** ?SomeCamelCaseName */ n = ...;
+</code></pre>
+
+      <h4 id="jsdoc-type-casts">7.10.2 Преобразования типов</h4>
+
       <p>
         В случаях, когда компилятор неточно определяет тип выражения, а функции
         утверждения в
         <a href="https://google.github.io/closure-library/api/goog.asserts.html"
           >goog.asserts</a
         >
-        не могут это исправить, можно ужесточить тип, добавив комментарий к
+        не могут это исправить, можно уточнить тип, добавив комментарий к
         аннотации типа и заключив выражение в круглые скобки. Обратите внимание,
         что скобки необходимы.
       </p>
+
       <pre><code class="language-js prettyprint">/** @type {number} */ (x)</code></pre>
+
       <h4 id="jsdoc-template-parameter-types">
-        7.10.3 Template Parameter Types
+        7.10.3 Типы параметров шаблона
       </h4>
+
       <p>
         Всегда указывайте параметры шаблона. Таким образом, компилятор может
         сделать работу лучше, и читателю будет легче понять, что делает код.
       </p>
+
       <p>Плохо:</p>
-      <pre><code class="language-js prettyprint badcode">const /** !Object */ users = {};const /** !Array */ books = [];const /** !Promise */ response = ...;</code></pre>
+
+       <pre><code class="language-js prettyprint badcode">const /** !Object */ users = {};
+const /** !Array */ books = [];
+const /** !Promise */ response = ...;
+</code></pre>
+
       <p>Хорошо:</p>
-      <pre><code class="language-js prettyprint">const /** !Object&lt;string, !User&gt; */ users = {};const /** !Array&lt;string&gt; */ books = [];const /** !Promise&lt;!Response&gt; */ response = ...;const /** !Promise&lt;undefined&gt; */ thisPromiseReturnsNothingButParameterIsStillUseful = ...;const /** !Object&lt;string, *&gt; */ mapOfEverything = {};</code></pre>
-      <p>Случаи, когда параметры шаблона не должны использоваться:</p>
+
+       <pre><code class="language-js prettyprint">const /** !Object&lt;string, !User&gt; */ users = {};
+const /** !Array&lt;string&gt; */ books = [];
+const /** !Promise&lt;!Response&gt; */ response = ...;
+
+const /** !Promise&lt;undefined&gt; */ thisPromiseReturnsNothingButParameterIsStillUseful = ...;
+const /** !Object&lt;string, *&gt; */ mapOfEverything = {};
+</code></pre>
+      
+    <p>Случаи, когда параметры шаблона не должны использоваться:</p>
+
       <ul>
         <li>
-          <code>Object</code> is used for type hierarchy and not as map-like
-          structure.
+          <code>Object</code> используется для иерархии типов, а не структура подобная Map.
         </li>
       </ul>
-      <h4 id="jsdoc-function-types">7.10.4 Function type expressions</h4>
+
+      <h4 id="jsdoc-function-types">7.10.4 Функциональные выражений</h4>
+
       <p>
-        <strong>Заметка по терминологии</strong>:
-        <em>выражение типа функции</em> относится к аннотации типов функций с
+        <strong>Терминологическое уточнение</strong>:
+        <em>функциональные выражения</em> относятся к аннотации типов функций с
         ключевым словом <code>function</code> в аннотации (см. примеры ниже).
       </p>
+
       <p>
-        Там, где дано определение функции, не используйте выражение типа
-        функции. Указывайте типы параметров и возвращаемых функций с помощью
+        Там, где дано определение функции, не используйте функциональные выражения.
+         Указывайте типы параметров и возвращаемых функций с помощью
         <code>@param</code> и <code>@return</code>, либо со строчными
-        аннотациями (см. <a href="#jsdoc-метод-и-функция-комментарии">?</a>).
+        аннотациями (см. <a href="#jsdoc-method-and-function-comments">??</a>).
         Это включает анонимные функции и функции, определенные и назначенные
-        консту (где функция jsdoc появляется над всем выражением назначения).
+        в <code>const</code> (где функция jsdoc появляется над всем выражением назначения).
       </p>
+
       <p>
-        Выражения типа функции необходимы, например, внутри
+        Функциональные выражения необходимы, например, внутри
         <code>@typedef</code>, <code>@param</code> или <code>@return</code>.
         Используйте его также для переменных или свойств типа функции, если они
         не инициализируются сразу с определением функции.
       </p>
-      <pre><code class="language-js prettyprint">  /** @private {function(string): string} */  this.idGenerator_ = googFunctions.identity;</code></pre>
+
+      <pre><code class="language-js prettyprint">  /** @private {function(string): string} */
+  this.idGenerator_ = googFunctions.identity;
+</code></pre>
+
       <p>
-        При использовании выражения типа функции всегда указывайте тип возврата
+        При использовании функционального выражения всегда указывайте тип возврата
         явно. В противном случае типом возврата по умолчанию является
-        <q>неизвестный</q> (<code>?</code>), что приводит к странному и
+        <q>undefined</q> (<code>?</code>), что приводит к странному и
         неожиданному поведению и редко является тем, что действительно
         желательно.
       </p>
-      <p>Ошибка - ошибка типа, но предупреждение не выдается:</p>
-      <pre><code class="language-js prettyprint badcode">/** @param {function()} generateNumber */function foo(generateNumber) {  const /** number */ x = generateNumber();  // No compile-time type error here.}foo(() =&gt; 'clearly not a number');</code></pre>
+
+      <p>Плохо - ошибка типа, но предупреждение не выдается:</p>
+
+       <pre><code class="language-js prettyprint badcode">/** @param {function()} generateNumber */
+function foo(generateNumber) {
+  const /** number */ x = generateNumber();  // Здесь нет ошибки типа времени компиляции.
+}
+
+foo(() =&gt; 'точно не число');
+</code></pre>
+
       <p>Хорошо:</p>
-      <pre><code class="language-js prettyprint">/** * @param {function(): *} inputFunction1 Can return any type. * @param {function(): undefined} inputFunction2 Definitely doesn't return *      anything. * NOTE: the return type of `foo` itself is safely implied to be {undefined}. */function foo(inputFunction1, inputFunction2) {...}</code></pre>
-      <h4 id="jsdoc-whitespace">7.10.5 Whitespace</h4>
+
+       <pre><code class="language-js prettyprint">/**
+ * @param {function(): *} inputFunction1 Может вернуть любой тип.
+ * @param {function(): undefined} inputFunction2 Точно ничего не
+ *      возвращает.
+ * Внимание: тип возвращаемого значения `foo` подразумевает {undefined}.
+ */
+function foo(inputFunction1, inputFunction2) {...}
+</code></pre>
+
+      <h4 id="jsdoc-whitespace">7.10.5 Пробел</h4>
+
       <p>
-        В пределах типовой аннотации после каждой запятой или двоеточием
+        В пределах аннотации типа, после каждой запятой или двоеточия
         требуется один пробел или разрыв строки. Дополнительные разрывы строк
         могут быть вставлены для улучшения читабельности или во избежание
-        превышения предела столбца. Эти разрывы должны быть выбраны и снабжены
-        отступами в соответствии с применимыми рекомендациями (например,
-        <a href="#форматирование-обертка строк">?</a> и
-        <a href="#форматирование-блок-индентирование">?</a>). Никакие другие
+        превышения лимита в 80 символов. Эти разрывы должны быть выбраны и снабжены
+        отступами в соответствии с рекомендациями (например,
+        <a href="#formatting-line-wrapping">??</a> и
+        <a href="#formatting-block-indentation">??</a>). Никакие другие
         пробельные символы не допускаются в аннотациях типов.
       </p>
+
       <p>Хорошо:</p>
-      <pre><code class="language-js prettyprint">/** @type {function(string): number} *//** @type {{foo: number, bar: number}} *//** @type {number|string} *//** @type {!Object&lt;string, string&gt;} *//** @type {function(this: Object&lt;string, string&gt;, number): string} *//** * @type {function( *     !SuperDuperReallyReallyLongTypedefThatForcesTheLineBreak, *     !OtherVeryLongTypedef): string} *//** * @type {!SuperDuperReallyReallyLongTypedefThatForcesTheLineBreak| *     !OtherVeryLongTypedef} */</code></pre>
+
+      <pre><code class="language-js prettyprint">/** @type {function(string): number} */
+
+/** @type {{foo: number, bar: number}} */
+
+/** @type {number|string} */
+
+/** @type {!Object&lt;string, string&gt;} */
+
+/** @type {function(this: Object&lt;string, string&gt;, number): string} */
+
+/**
+ * @type {function(
+ *     !SuperDuperReallyReallyLongTypedefThatForcesTheLineBreak,
+ *     !OtherVeryLongTypedef): string}
+ */
+
+/**
+ * @type {!SuperDuperReallyReallyLongTypedefThatForcesTheLineBreak|
+ *     !OtherVeryLongTypedef}
+ */
+</code></pre>
+
       <p>Плохо:</p>
-      <pre><code class="language-js prettyprint badcode">// Only put a space after the colon/** @type {function(string) : number} */// Put spaces after colons and commas/** @type {{foo:number,bar:number}} */// No space in union types/** @type {number | string} */</code></pre>
-      <h3 id="jsdoc-visibility-annotations">7.11 Visibility annotations</h3>
+
+      <pre><code class="language-js prettyprint badcode">// Пробел должен быть только после двоеточия
+/** @type {function(string) : number} */
+
+// Поставьте пробелы после двоеточий и запятых
+/** @type {{foo:number,bar:number}} */
+
+// Не должно быть пробелов в объединениях типов
+/** @type {number | string} */
+</code></pre>
+
+      <h3 id="jsdoc-visibility-annotations">7.11 Аннотации видимости</h3>
+
       <p>
-        Аннотации видимости (<code>@приватный</code>, <code>@пакет</code>,
-        <code>@защищенный</code>) могут быть указаны в
-        <code>@блоке просмотра профиля</code>, или на любом экспортированном
+        Аннотации видимости (<code>@private</code>, <code>@package</code>,
+        <code>@protected</code>) могут быть указаны в
+        <code>@fileoverview </code> или на любом экспортированном
         символе или свойстве. Не указывайте видимость для локальных переменных,
         будь то внутри функции или на верхнем уровне модуля. Все имена
         <code>@private</code> должны заканчиваться подчеркиванием.
       </p>
+
       <h2 id="policies">8 Policies</h2>
       <h3 id="policies-be-consistent">
         8.1 Issues unspecified by Google Style: Be Consistent!
