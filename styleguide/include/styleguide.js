@@ -242,7 +242,6 @@ function hasClass(element, cls) {
 function LinkifyHeader(header, fileName, sizePixels) {
   var link = document.createElement('a');
   link.href = '#' + header.id;
-  link.classList.add('header-link');
   link.setAttribute('alt', 'link to ' + header.id);
   link.innerHTML =
     '<img src="include/' +
@@ -252,7 +251,7 @@ function LinkifyHeader(header, fileName, sizePixels) {
     sizePixels +
     ' height=' +
     sizePixels +
-    '>';
+    ' style="float:left;position:relative;bottom:5px;">';
   header.appendChild(link);
 }
 
@@ -266,6 +265,8 @@ function LinkifyHeadersForTag(tagName) {
     if (!hasClass(header, 'ignoreLink') && 'id' in header) {
       if (header.id != '') {
         LinkifyHeader(header, 'link.png', 21);
+        header.style.left = '-46px';
+        header.style.position = 'relative';
       }
     }
   }
