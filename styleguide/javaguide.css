@@ -29,12 +29,6 @@ pre {
   padding-bottom: 4px;
 }
 
-pre.badcode {
-  color: #c00;
-  background-color: #ffe6d8;
-  border-color: #fff0f0;
-}
-
 hr {
   margin-top: 3.5em;
   border-width: 1px;
@@ -46,64 +40,13 @@ html {
   margin-left:10%;
   margin-right:10%;
   padding:0;
+  scroll-behavior: smooth;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
 }
 
-.bp-reset-element,
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section,
-summary,
-blockquote,
-q,
-th,
-td,
-caption,
-table,
-div,
-span,
-object,
-iframe,
-p,
-pre,
-a,
-abbr,
-acronym,
-address,
-code,
-del,
-dfn,
-em,
-img,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-caption,
-tbody,
-tfoot,
-thead,
-tr {
+.bp-reset-element {
   margin:0;
   padding:0;
   border:0;
@@ -115,7 +58,7 @@ tr {
 }
 
 body {
-  font-family:'Arial', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-size:81.25%;
   color:#222;
   background-color:#fff;
@@ -155,11 +98,29 @@ h6 {
   margin-bottom:.75em;
 }
 
+h2:before,
+h3:before,
+h4:before,
+h5:before,
+h6:before {
+  content: "";
+  display: block;
+  border-bottom: 1px solid #ececec;
+  margin-bottom: 20px;
+}
+
 h1 {font-size:200%;}
 h2 {font-size:167%;}
 h3 {font-size:133%;}
 h4 {font-size:120%;}
 h5 {font-size:110%;}
+
+h2,
+h3,
+h4 {
+  position: relative;
+  left: -46px;
+}
 
 p {
   margin:0 0 1.5em;
@@ -167,6 +128,16 @@ p {
 
 a[href=''] {
   cursor:default;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 1px solid;
+  color: #1e88e5;
+}
+
+a:hover {
+  background-color: #e1f3fc;
 }
 
 h1 img,
@@ -178,8 +149,19 @@ h6 img {
   margin:0;
 }
 
-a img {
-  border:none;
+.header-link {
+  float: left;
+  border: none;
+  position:relative;
+  margin-right: .5rem;
+}
+
+.header-link:hover {
+  background-color: initial;
+}
+
+.header-link img {
+  vertical-align: middle;
 }
 
 pre {
@@ -420,22 +402,21 @@ table.striped code {
 pre {
   padding:6px 10px;
   background-color:#FAFAFA;
-  border:1px solid #bbb;
   overflow:auto;
 }
 
 pre.prettyprint {
   padding:6px 10px !important;
-  border:1px solid #bbb !important;
+  border:none !important;
 }
 
 code.bad, code.badcode {
-  color: magenta;
+  color: #c00;
 }
+
 pre.bad, pre.badcode {
-  background-color:#ffe6d8;
-  border-top:1px inset #a03;
-  border-left:1px inset #a03;
+  color: #c00;
+  background-color: #feefe3;
 }
 
 .tip {
@@ -523,7 +504,8 @@ table.columns {
 
 td.two_columns {
   -webkit-column-count: 2;
-  column-count: 2;
+  -moz-column-count: 2;
+       column-count: 2;
 }
 
 .toc_category {
