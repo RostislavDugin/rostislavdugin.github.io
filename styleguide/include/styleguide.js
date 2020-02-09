@@ -251,8 +251,8 @@ function LinkifyHeader(header, fileName, sizePixels) {
     sizePixels +
     ' height=' +
     sizePixels +
-    ' style="float:left;position:relative;bottom:5px;">';
-  header.appendChild(link);
+    '>';
+  header.prepend(link);
 }
 
 // Find all elements of the given tag and linkify if
@@ -288,3 +288,7 @@ function initStyleGuide() {
   LinkifyHeaders();
   CreateTOC('tocDiv');
 }
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  initStyleGuide();
+});
