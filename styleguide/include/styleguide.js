@@ -253,7 +253,7 @@ function LinkifyHeader(header, fileName, sizePixels) {
     ' height=' +
     sizePixels +
     '>';
-  header.appendChild(link);
+  header.prepend(link);
 }
 
 // Find all elements of the given tag and linkify if
@@ -287,3 +287,7 @@ function initStyleGuide() {
   LinkifyHeaders();
   CreateTOC('tocDiv');
 }
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  initStyleGuide();
+});
